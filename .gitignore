@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Editor / IDE
+.vscode/
+.idea/
+.claude/
+
+# Local agent / scheduler artefacts (not part of the site)
+processed_messages.json
+run_log.md
+run_log_*.md
+
+# Local secrets (review before committing)
+# config.json

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Oslo Tours Uploader</title>
+<style>
+body { font-family: monospace; background: #111; color: #0f0; padding: 20px; }
+#log { white-space: pre-wrap; font-size: 13px; }
+button { background: #0f0; color: #000; border: none; padding: 8px 16px; cursor: pointer; margin: 4px; font-size: 14px; }
+input[type=file] { color: #0f0; }
+</style>
+</head>
+<body>
+<h2>Oslo Tours Auto-Uploader</h2>
+<input type="file" id="fileInput" accept="image/*" multiple>
+<br><br>
+<button onclick="uploadIMG56()">Upload IMG_8056.jpeg → FB+IG</button>
+<button onclick="uploadIMG53()">Upload IMG_8053.jpeg → FB+IG</button>
+<br><br>
+<div id="log">Ready.</div>
+
+<script>
+const TOKEN = 'EAAL0IGnhruUBRI08H62gLmPSlW90n2VLp55H4ZAMK6MBTEjpHQ0PJmWlwQvBUNAgOwh1rvxqqLX361LSxU5TuqbbXg231DZCuKoccnKalgqOfaFtxtB4ZAmg2xpp1UZAXmL4ZAdOHWxaMNJKl6kpJ8wmSoZA7ZC9KE31Ow02EpWaZALgb9WY6gzZBW7j0wElmRAi0p7PikfZBWIgYMkUXWfAZDZD';
+const PAGE_ID = '1104222602768422';
+const IG_ID = '17841435062747753';
+
+function log(msg) {
+  const el = document.getElementById('log');
+  el.textContent += '\n' + new Date().toISOString().slice(11,19) + ' ' + msg;
+}
+
+async function postToFBAndIG(file, caption) {
+  log('Uploading ' + file.name + ' to Facebook...');
+
+  // Step 1: Upload to Facebook as published=true
+  const fbForm = new FormData();
+  fbForm.append('source', file, file.name);
+  fbForm.append('message', caption);
+  fbForm.append('access_token', TOKEN);
+
+  const fbResp = await fetch('https://graph.facebook.com/v25.0/' + PAGE_ID + '/photos', {
+    method: 'POST', body: fbForm
+  });
+  const fbData = await fbResp.json();
+  log('FB result: ' + JSON.stringify(fbData));
+
+  if (!fbData.id) throw new Error('FB upload failed: ' + JSON.stringify(fbData));
+
+  // Step 2: Get the photo URL from Facebook to use for Instagram
+  const fbPostId = fbData.post_id || fbData.id;
+  log('FB post_id: ' + fbPostId);
+
+  // Get the photo details to find the URL
+  const photoResp = await fetch('https://graph.facebook.com/v25.0/' + fbData.id + '?fields=images&access_token=' + TOKEN);
+  const photoData = await photoResp.json();
+  log('Photo data: ' + JSON.stringify(photoData).slice(0, 300));
+
+  // Pick the largest image URL
+  let imageUrl = null;
+  if (photoData.images && photoData.images.length > 0) {
+    // Sort by width desc and pick largest
+    const sorted = photoData.images.sort((a,b) => b.width - a.width);
+    imageUrl = sorted[0].source;
+  }
+  log('Image URL for IG: ' + (imageUrl || 'not found'));
+
+  if (imageUrl) {
+    // Step 3: Post to Instagram
+    log('Creating IG container...');
+    const igCaption = caption;
+    const containerResp = await fetch('https://graph.facebook.com/v25.0/' + IG_ID + '/media', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        image_url: imageUrl,
+        caption: igCaption,
+        access_token: TOKEN
+      })
+    });
+    const containerData = await containerResp.json();
+    log('IG container: ' + JSON.stringify(containerData));
+
+    if (containerData.id) {
+      // Wait 3 seconds
+      await new Promise(r => setTimeout(r, 3000));
+      // Publish
+      const publishResp = await fetch('https://graph.facebook.com/v25.0/' + IG_ID + '/media_publish', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          creation_id: containerData.id,
+          access_token: TOKEN
+        })
+      });
+      const publishData = await publishResp.json();
+      log('IG publish: ' + JSON.stringify(publishData));
+    }
+  }
+  log('Done with ' + file.name);
+  return fbData;
+}
+
+// Wait for file to be loaded via file input, then upload
+async function uploadFromInput(caption) {
+  const file = document.getElementById('fileInput').files[0];
+  if (!file) { log('No file selected!'); return; }
+  try {
+    await postToFBAndIG(file, caption);
+    log('SUCCESS!');
+  } catch(e) {
+    log('ERROR: ' + e.message);
+  }
+}
+
+async function uploadIMG56() {
+  const caption = `Spring is a state of mind. The trails above Oslo are still wearing winter, but the sun disagrees. 🌲❄️\n\n#OsloBikeTours #Nordmarka #CyclingOslo #Oslo #NorwayLife #BikeLife #GuidedTours #OutdoorNorway`;
+  await uploadFromInput(caption);
+}
+
+async function uploadIMG53() {
+  const caption = `There's a spot in the hills above the fjord where you sit down and stop wanting to leave. This is that spot. 🏔️🌊\n\n#OsloBikeTours #Oslo #Fjord #Nordmarka #CyclingNorway #OutdoorNorway #NorwayNature #BikeLife`;
+  await uploadFromInput(caption);
+}
+</script>
+</body>
+</html>
