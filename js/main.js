@@ -162,7 +162,7 @@ document.addEventListener('keydown', e => {
 });
 
 /* ── Booking form ────────────────────────────────────────────── */
-const FORMSPREE_ENDPOINT = 'https://api.web3forms.com/submit';
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 
 const dateInput = document.getElementById('date');
 if (dateInput) {
@@ -172,33 +172,50 @@ if (dateInput) {
 const form         = document.getElementById('bookForm');
 const confirmPanel = document.getElementById('formConfirm');
 
-form.addEventListener('submit', async e => {
-  e.preventDefault();
+if (form) {
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
 
-  const btn = form.querySelector('button[type="submit"]');
-  btn.textContent = 'Sending…';
-  btn.disabled    = true;
-
-  const showConfirmation = () => {
-    form.style.display         = 'none';
-    confirmPanel.style.display = 'flex';
-  };
-
-  try {
-    const res = await fetch(FORMSPREE_ENDPOINT, {
-      method:  'POST',
-      headers: { 'Accept': 'application/json' },
-      body:    new FormData(form),
+    // Validate required fields (form uses novalidate so we handle this manually)
+    let valid = true;
+    form.querySelectorAll('[required]').forEach(field => {
+      const empty = !field.value.trim();
+      field.classList.toggle('input--error', empty);
+      if (empty) valid = false;
     });
+    if (!valid) return;
 
-    if (res.ok) {
-      showConfirmation();
-    } else {
-      btn.textContent = 'Something went wrong — try again';
+    const btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending…';
+    btn.disabled    = true;
+
+    const showConfirmation = () => {
+      form.style.display         = 'none';
+      confirmPanel.style.display = 'flex';
+    };
+
+    try {
+      const res  = await fetch(WEB3FORMS_ENDPOINT, {
+        method:  'POST',
+        headers: { 'Accept': 'application/json' },
+        body:    new FormData(form),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        showConfirmation();
+      } else {
+        btn.textContent = 'Something went wrong — try again';
+        btn.disabled    = false;
+      }
+    } catch {
+      btn.textContent = 'Network error — try again';
       btn.disabled    = false;
     }
-  } catch {
-    btn.textContent = 'Network error — try again';
-    btn.disabled    = false;
-  }
-});
+  });
+
+  // Clear error state on input
+  form.querySelectorAll('[required]').forEach(field => {
+    field.addEventListener('input', () => field.classList.remove('input--error'));
+  });
+}
