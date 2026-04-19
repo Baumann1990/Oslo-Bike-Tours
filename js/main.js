@@ -173,26 +173,74 @@ const form         = document.getElementById('bookForm');
 const confirmPanel = document.getElementById('formConfirm');
 
 if (form) {
+  const setFieldError = (id, message) => {
+    const field = document.getElementById(id);
+    const span  = document.getElementById('error-' + id);
+    if (field) field.classList.add('input--error');
+    if (span)  span.textContent = message;
+  };
+
+  const clearFieldError = (id) => {
+    const field = document.getElementById(id);
+    const span  = document.getElementById('error-' + id);
+    if (field) field.classList.remove('input--error');
+    if (span)  span.textContent = '';
+  };
+
+  const validateForm = () => {
+    let valid = true;
+    ['name', 'email', 'tour', 'date', 'riders'].forEach(id => clearFieldError(id));
+
+    const name = form.querySelector('#name');
+    if (!name.value.trim()) {
+      setFieldError('name', 'Please enter your name.');
+      valid = false;
+    }
+
+    const email = form.querySelector('#email');
+    if (!email.value.trim()) {
+      setFieldError('email', 'Please enter your email address.');
+      valid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())) {
+      setFieldError('email', 'Please enter a valid email address (e.g. you@example.com).');
+      valid = false;
+    }
+
+    const tour = form.querySelector('#tour');
+    if (!tour.value) {
+      setFieldError('tour', 'Please select a tour.');
+      valid = false;
+    }
+
+    const date = form.querySelector('#date');
+    if (!date.value) {
+      setFieldError('date', 'Please pick a preferred date.');
+      valid = false;
+    }
+
+    const riders = form.querySelector('#riders');
+    if (!riders.value) {
+      setFieldError('riders', 'Please enter the number of riders.');
+      valid = false;
+    }
+
+    return valid;
+  };
+
+  // Clear errors as the user corrects each field
+  ['name', 'email', 'tour', 'date', 'riders'].forEach(id => {
+    const field = document.getElementById(id);
+    if (field) field.addEventListener('input', () => clearFieldError(id));
+  });
+
   form.addEventListener('submit', async e => {
     e.preventDefault();
 
-    // Validate required fields (form uses novalidate so we handle this manually)
-    let valid = true;
-    form.querySelectorAll('[required]').forEach(field => {
-      const empty = !field.value.trim();
-      field.classList.toggle('input--error', empty);
-      if (empty) valid = false;
-    });
-    if (!valid) return;
+    if (!validateForm()) return;
 
     const btn = form.querySelector('button[type="submit"]');
     btn.textContent = 'Sending…';
     btn.disabled    = true;
-
-    const showConfirmation = () => {
-      form.style.display         = 'none';
-      confirmPanel.style.display = 'flex';
-    };
 
     try {
       const res  = await fetch(WEB3FORMS_ENDPOINT, {
@@ -203,7 +251,8 @@ if (form) {
       const data = await res.json();
 
       if (data.success) {
-        showConfirmation();
+        form.style.display         = 'none';
+        confirmPanel.style.display = 'flex';
       } else {
         btn.textContent = 'Something went wrong — try again';
         btn.disabled    = false;
@@ -212,10 +261,5 @@ if (form) {
       btn.textContent = 'Network error — try again';
       btn.disabled    = false;
     }
-  });
-
-  // Clear error state on input
-  form.querySelectorAll('[required]').forEach(field => {
-    field.addEventListener('input', () => field.classList.remove('input--error'));
   });
 }

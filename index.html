@@ -526,10 +526,12 @@
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" placeholder="Your full name" required />
+                <span class="field-error" id="error-name"></span>
               </div>
               <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" placeholder="you@example.com" required />
+                <span class="field-error" id="error-email"></span>
               </div>
             </div>
             <div class="form-row">
@@ -542,16 +544,19 @@
                   <option>Nordmarka Forest (Ring 4)</option>
                   <option>Epic Marka Endurance</option>
                 </select>
+                <span class="field-error" id="error-tour"></span>
               </div>
               <div class="form-group">
                 <label for="date">Preferred Date</label>
                 <input type="date" id="date" name="date" required />
+                <span class="field-error" id="error-date"></span>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="riders">Number of Riders</label>
                 <input type="number" id="riders" name="riders" min="1" max="8" placeholder="1–8" required />
+                <span class="field-error" id="error-riders"></span>
               </div>
               <div class="form-group">
                 <label for="level">Fitness Level</label>
