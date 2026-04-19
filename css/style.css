@@ -1253,6 +1253,13 @@ textarea { resize: vertical; }
 
   .nav { padding: 0 20px; }
 
+  /* Scale logo down to fit the 60px nav bar */
+  .nav__logo {
+    width: 110px;
+    height: 52px;
+    background-size: 110px 110px;
+  }
+
   .nav__menu {
     position: fixed;
     top: var(--nav-h);
@@ -1284,6 +1291,10 @@ textarea { resize: vertical; }
 
   .nav__toggle { display: flex; }
 
+  .hero {
+    min-height: 520px;
+  }
+
   .hero__content { padding: 0 20px; margin-left: 0; }
 
   .section { padding: 64px 0; }
@@ -1298,6 +1309,56 @@ textarea { resize: vertical; }
   .form-row { grid-template-columns: 1fr; }
 
   .footer__inner { grid-template-columns: 1fr; gap: 24px; }
+
+  .footer__logo {
+    width: 220px;
+    height: 110px;
+    background-size: 230px 230px;
+  }
+
+  .tour-hero { height: 45vh; min-height: 280px; }
+}
+
+/* ── Small phones (≤ 480px) ──────────────────────────────────── */
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+
+  .section { padding: 48px 0; }
+
+  .section-title { font-size: 1.7rem; }
+
+  .hero { min-height: 460px; }
+
+  .hero__sub { font-size: 1rem; }
+
+  .hero__actions { flex-direction: column; }
+  .hero__actions .btn { width: 100%; justify-content: center; text-align: center; }
+
+  .tour-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .tour-card__actions { width: 100%; }
+  .tour-card__actions .btn { flex: 1; justify-content: center; }
+
+  .about__img--main { height: 280px; }
+
+  .book__grid { gap: 32px; }
+
+  .modal__body h2 { font-size: 1.5rem; }
+  .modal__stats { flex-direction: column; gap: 8px; }
+
+  .tour-page__stats { flex-direction: column; gap: 8px; }
+  .tour-page__price { font-size: 1.6rem; }
+
+  .footer__logo {
+    width: 180px;
+    height: 90px;
+    background-size: 188px 188px;
+  }
+
+  .faq__question { font-size: .95rem; }
 }
 
 /* ── Tour card actions ───────────────────────────────────────── */
