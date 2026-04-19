@@ -251,8 +251,7 @@ if (form) {
       const data = await res.json();
 
       if (data.success) {
-        form.style.display         = 'none';
-        confirmPanel.style.display = 'flex';
+        window.location.href = '/thank-you';
       } else {
         btn.textContent = 'Something went wrong — try again';
         btn.disabled    = false;

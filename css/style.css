@@ -913,6 +913,62 @@ textarea { resize: vertical; }
   font-weight: 500;
 }
 
+/* ── Thank-you page ──────────────────────────────────────────── */
+.thankyou {
+  min-height: calc(100vh - var(--nav-h) - 260px);
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+}
+
+.thankyou__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto;
+  animation: fadeUp .5s ease both;
+}
+
+.thankyou__icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #d8f3dc;
+  color: #1b4332;
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.thankyou__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--green-deep);
+  margin-bottom: 20px;
+}
+
+.thankyou__body {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.thankyou__email {
+  font-size: .88rem;
+  color: var(--text-muted);
+  margin-bottom: 36px;
+}
+
+.thankyou__email a {
+  color: var(--green-mid);
+  font-weight: 500;
+}
+
 /* ── Footer ──────────────────────────────────────────────────── */
 .footer {
   background: var(--bg-dark);
