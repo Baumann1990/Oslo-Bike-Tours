@@ -548,6 +548,23 @@ ul { list-style: none; }
   color: var(--green-deep);
 }
 
+.tour-card__badge--new {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  left: auto;
+  background: var(--amber);
+  color: var(--green-deep);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  transform: rotate(2deg);
+  box-shadow: 0 2px 6px rgba(0,0,0,.18);
+}
+
 .tour-card__body { padding: 20px 22px 22px; }
 
 .tour-card__meta {

@@ -97,6 +97,24 @@
         "offers": { "@type": "Offer", "price": "2150", "priceCurrency": "NOK" }
       },
       {
+        "@type": "TouristTrip",
+        "name": "Oslo Coffee Tour",
+        "url": "https://www.oslobiketours.no/oslo-coffee-tour",
+        "image": "https://www.oslobiketours.no/images/fuglen.png",
+        "description": "A 22 km guided bike tour through Oslo's world-class specialty coffee scene — Tim Wendelboe, Supreme Roastworks, Fuglen and Java. Oslo is among the world's great coffee capitals, home to over 80 micro-roasteries and a celebrated light-roast drip coffee culture. Coffee and pastry at each stop included.",
+        "touristType": "Cyclists",
+        "offers": { "@type": "Offer", "price": "1190", "priceCurrency": "NOK" }
+      },
+      {
+        "@type": "TouristTrip",
+        "name": "Oslo Architecture Tour",
+        "url": "https://www.oslobiketours.no/oslo-architecture-tour",
+        "image": "https://www.oslobiketours.no/images/stenersen.jpg",
+        "description": "A 30 km guided bike tour through Oslo's Nordic functionalist legacy — Villa Stenersen, Planetveien 12, Havna Allé and Villa Dammann. The world of Arne Korsmo and Sverre Fehn, explored by bike through the city's western residential districts.",
+        "touristType": "Cyclists",
+        "offers": { "@type": "Offer", "price": "1310", "priceCurrency": "NOK" }
+      },
+      {
         "@type": "FAQPage",
         "mainEntity": [
           {
@@ -287,32 +305,32 @@
         <!-- Tour 1 -->
         <article class="tour-card" data-surface="road" data-level="easy">
           <div class="tour-card__img-wrap">
-            <a href="oslo-city-highlights" aria-label="Oslo City Highlights — full tour page">
+            <a href="oslo-coffee-tour" aria-label="Oslo Coffee Tour — full tour page">
               <img
-                src="images/arsene-m-ovrejorde-BovGw4div6U-unsplash.jpg"
-                alt="Oslo City Highlights tour"
+                src="images/fuglen.png"
+                alt="Oslo Coffee Tour"
                 class="tour-card__img"
                 loading="lazy"
-                width="4896" height="3264"
               />
             </a>
             <span class="tour-card__badge tour-card__badge--road">Road</span>
+            <span class="tour-card__badge tour-card__badge--new">New</span>
           </div>
           <div class="tour-card__body">
             <div class="tour-card__meta">
               <span class="difficulty difficulty--easy">Easy</span>
-              <span class="tour-card__duration">⏱ 2 hrs</span>
-              <span class="tour-card__dist">🚴 18 km</span>
+              <span class="tour-card__duration">⏱ 3 hrs</span>
+              <span class="tour-card__dist">🚴 22 km</span>
             </div>
-            <h3 class="tour-card__title"><a href="oslo-city-highlights" class="tour-card__title-link">Oslo City Highlights</a></h3>
+            <h3 class="tour-card__title"><a href="oslo-coffee-tour" class="tour-card__title-link">Oslo Coffee Tour</a></h3>
             <p class="tour-card__desc">
-              A relaxed spin through the heart of Oslo — Aker Brygge, the Opera
-              House, Vigeland Park and the Royal Palace. Perfect for first-timers.
+              Oslo may be the coffee capital of the world. Find out why — four legendary cafés, one
+              great ride through Grünerløkka and Frogner.
             </p>
             <div class="tour-card__footer">
-              <span class="tour-card__price">NOK 890 <em>/ person</em></span>
+              <span class="tour-card__price">NOK 1 190 <em>/ person</em></span>
               <div class="tour-card__actions">
-                <button class="btn btn--outline btn--sm" data-modal="modal-city">Details</button>
+                <button class="btn btn--outline btn--sm" data-modal="modal-coffee">Details</button>
                 <a href="#book" class="btn btn--sm">Book</a>
               </div>
             </div>
@@ -320,34 +338,34 @@
         </article>
 
         <!-- Tour 2 -->
-        <article class="tour-card" data-surface="road" data-level="medium">
+        <article class="tour-card" data-surface="road" data-level="easy">
           <div class="tour-card__img-wrap">
-            <a href="bygdoy-peninsula" aria-label="Bygdøy Peninsula — full tour page">
+            <a href="oslo-architecture-tour" aria-label="Oslo Architecture Tour — full tour page">
               <img
-                src="images/delia-giandeini--yz2HFg6WYo-unsplash.jpg"
-                alt="Bygdøy Peninsula tour"
+                src="images/stenersen.jpg"
+                alt="Oslo Architecture Tour"
                 class="tour-card__img"
                 loading="lazy"
-                width="2896" height="1944"
               />
             </a>
             <span class="tour-card__badge tour-card__badge--road">Road</span>
+            <span class="tour-card__badge tour-card__badge--new">New</span>
           </div>
           <div class="tour-card__body">
             <div class="tour-card__meta">
-              <span class="difficulty difficulty--medium">Medium</span>
-              <span class="tour-card__duration">⏱ 2.5 hrs</span>
-              <span class="tour-card__dist">🚴 28 km</span>
+              <span class="difficulty difficulty--easy">Easy</span>
+              <span class="tour-card__duration">⏱ 3 hrs</span>
+              <span class="tour-card__dist">🚴 30 km</span>
             </div>
-            <h3 class="tour-card__title"><a href="bygdoy-peninsula" class="tour-card__title-link">Bygdøy Peninsula</a></h3>
+            <h3 class="tour-card__title"><a href="oslo-architecture-tour" class="tour-card__title-link">Oslo Architecture Tour</a></h3>
             <p class="tour-card__desc">
-              Sweep along the waterfront to the museum peninsula, past Viking
-              ships and the Folk Museum, with stunning fjord panoramas throughout.
+              Arne Korsmo, Nordic functionalism, Villa Stenersen, Planetveien 12. A ride through
+              the buildings that defined modern Norwegian architecture.
             </p>
             <div class="tour-card__footer">
-              <span class="tour-card__price">NOK 1 050 <em>/ person</em></span>
+              <span class="tour-card__price">NOK 1 310 <em>/ person</em></span>
               <div class="tour-card__actions">
-                <button class="btn btn--outline btn--sm" data-modal="modal-bygdoy">Details</button>
+                <button class="btn btn--outline btn--sm" data-modal="modal-architecture">Details</button>
                 <a href="#book" class="btn btn--sm">Book</a>
               </div>
             </div>
@@ -418,6 +436,76 @@
               <span class="tour-card__price">NOK 2 150 <em>/ person</em></span>
               <div class="tour-card__actions">
                 <button class="btn btn--outline btn--sm" data-modal="modal-epic">Details</button>
+                <a href="#book" class="btn btn--sm">Book</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tour 5 -->
+        <article class="tour-card" data-surface="road" data-level="easy">
+          <div class="tour-card__img-wrap">
+            <a href="oslo-city-highlights" aria-label="Oslo City Highlights — full tour page">
+              <img
+                src="images/arsene-m-ovrejorde-BovGw4div6U-unsplash.jpg"
+                alt="Oslo City Highlights tour"
+                class="tour-card__img"
+                loading="lazy"
+                width="4896" height="3264"
+              />
+            </a>
+            <span class="tour-card__badge tour-card__badge--road">Road</span>
+          </div>
+          <div class="tour-card__body">
+            <div class="tour-card__meta">
+              <span class="difficulty difficulty--easy">Easy</span>
+              <span class="tour-card__duration">⏱ 2 hrs</span>
+              <span class="tour-card__dist">🚴 18 km</span>
+            </div>
+            <h3 class="tour-card__title"><a href="oslo-city-highlights" class="tour-card__title-link">Oslo City Highlights</a></h3>
+            <p class="tour-card__desc">
+              A relaxed spin through the heart of Oslo — Aker Brygge, the Opera
+              House, Vigeland Park and the Royal Palace. Perfect for first-timers.
+            </p>
+            <div class="tour-card__footer">
+              <span class="tour-card__price">NOK 890 <em>/ person</em></span>
+              <div class="tour-card__actions">
+                <button class="btn btn--outline btn--sm" data-modal="modal-city">Details</button>
+                <a href="#book" class="btn btn--sm">Book</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tour 6 -->
+        <article class="tour-card" data-surface="road" data-level="medium">
+          <div class="tour-card__img-wrap">
+            <a href="bygdoy-peninsula" aria-label="Bygdøy Peninsula — full tour page">
+              <img
+                src="images/delia-giandeini--yz2HFg6WYo-unsplash.jpg"
+                alt="Bygdøy Peninsula tour"
+                class="tour-card__img"
+                loading="lazy"
+                width="2896" height="1944"
+              />
+            </a>
+            <span class="tour-card__badge tour-card__badge--road">Road</span>
+          </div>
+          <div class="tour-card__body">
+            <div class="tour-card__meta">
+              <span class="difficulty difficulty--medium">Medium</span>
+              <span class="tour-card__duration">⏱ 2.5 hrs</span>
+              <span class="tour-card__dist">🚴 28 km</span>
+            </div>
+            <h3 class="tour-card__title"><a href="bygdoy-peninsula" class="tour-card__title-link">Bygdøy Peninsula</a></h3>
+            <p class="tour-card__desc">
+              Sweep along the waterfront to the museum peninsula, past Viking
+              ships and the Folk Museum, with stunning fjord panoramas throughout.
+            </p>
+            <div class="tour-card__footer">
+              <span class="tour-card__price">NOK 1 050 <em>/ person</em></span>
+              <div class="tour-card__actions">
+                <button class="btn btn--outline btn--sm" data-modal="modal-bygdoy">Details</button>
                 <a href="#book" class="btn btn--sm">Book</a>
               </div>
             </div>
@@ -543,6 +631,8 @@
                   <option>Bygdøy Peninsula</option>
                   <option>Nordmarka Forest (Ring 4)</option>
                   <option>Epic Marka Endurance</option>
+                  <option>Oslo Coffee Tour</option>
+                  <option>Oslo Architecture Tour</option>
                 </select>
                 <span class="field-error" id="error-tour"></span>
               </div>
@@ -820,6 +910,107 @@
         </div>
         <div class="modal__footer">
           <span class="modal__price">NOK 2 150 <em>/ person</em></span>
+          <a href="#book" class="btn btn--primary modal__book">Book this tour</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Oslo Coffee Tour -->
+  <div class="modal" id="modal-coffee" role="dialog" aria-modal="true" aria-labelledby="modal-coffee-title" hidden>
+    <div class="modal__backdrop"></div>
+    <div class="modal__panel">
+      <button class="modal__close" aria-label="Close">&times;</button>
+      <div class="modal__hero modal__hero--slideshow">
+        <img src="images/fuglen.png" alt="Fuglen café, Frogner" />
+        <img src="images/christoffer-engstrom-tjguVu0GoEM-unsplash.jpg" alt="Oslo neighbourhood street" />
+        <img src="images/hana-clarinda-o0i_hR68r0o-unsplash.jpg" alt="Oslo at golden hour" />
+        <div class="modal__hero-badges">
+          <span class="tour-card__badge tour-card__badge--road">Road</span>
+          <span class="difficulty difficulty--easy">Easy</span>
+        </div>
+      </div>
+      <div class="modal__body">
+        <div class="modal__stats">
+          <div class="modal__stat"><span>⏱</span> 3 hours</div>
+          <div class="modal__stat"><span>🚴</span> 22 km</div>
+          <div class="modal__stat"><span>📍</span> Pickup from your hotel</div>
+          <div class="modal__stat"><span>👥</span> Max 8 riders</div>
+        </div>
+        <h2 id="modal-coffee-title">Oslo Coffee Tour</h2>
+        <p>There is a serious argument — made by serious people — that Oslo is the coffee capital of the world. This tour visits the four cafés that make the case: Tim Wendelboe in Grünerløkka, whose roastery became a global pilgrimage site after he won the World Barista Championship in 2004; Supreme Roastworks at Vulkan by the Akerselva river; Fuglen in Frogner, a mid-century room that spawned outposts in Tokyo and New York; and Java, Oslo's original specialty coffee institution, open since 1997.</p>
+        <p>We connect them by bike through the city's finest coffee neighbourhoods — Grünerløkka's murals and market streets, the river path along Akerselva, the elegant calm of Frogner — stopping properly at each place. Coffee and a pastry at every stop are included.</p>
+        <h3>The four stops</h3>
+        <ul class="modal__list">
+          <li><strong>Tim Wendelboe</strong> — Grünerløkka. World Barista Champion, pioneer roaster, global reference point.</li>
+          <li><strong>Supreme Roastworks</strong> — Vulkan. Roastery-forward café in Oslo's most exciting food district.</li>
+          <li><strong>Fuglen</strong> — Frogner. The most beautiful room in Oslo to drink coffee in.</li>
+          <li><strong>Java</strong> — Frogner. Oslo's original specialty coffee institution, open since 1997.</li>
+        </ul>
+        <h3>Good to know</h3>
+        <ul class="modal__list">
+          <li>Flat, easy city riding — suitable for all fitness levels</li>
+          <li>Coffee and one pastry per stop included in the tour price</li>
+          <li>Budget 15–20 minutes per café — these are proper sit-down stops</li>
+          <li>Gravel bike and e-bike rentals available on request</li>
+        </ul>
+        <div class="modal__gallery">
+          <img src="images/fuglen.png" alt="Fuglen café interior, Frogner" loading="lazy" />
+          <img src="images/christoffer-engstrom-tjguVu0GoEM-unsplash.jpg" alt="Oslo neighbourhood" loading="lazy" />
+        </div>
+        <div class="modal__footer">
+          <span class="modal__price">NOK 1 190 <em>/ person</em></span>
+          <a href="#book" class="btn btn--primary modal__book">Book this tour</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Oslo Architecture Tour -->
+  <div class="modal" id="modal-architecture" role="dialog" aria-modal="true" aria-labelledby="modal-architecture-title" hidden>
+    <div class="modal__backdrop"></div>
+    <div class="modal__panel">
+      <button class="modal__close" aria-label="Close">&times;</button>
+      <div class="modal__hero modal__hero--slideshow">
+        <img src="images/stenersen.jpg" alt="Villa Stenersen, Tuengen allé — Arne Korsmo 1939" />
+        <img src="images/vidar-nordli-mathisen-q-fr4QsIyic-unsplash.jpg" alt="Oslo residential neighbourhood" />
+        <img src="images/arsene-m-ovrejorde-BovGw4div6U-unsplash.jpg" alt="Oslo modernist architecture" />
+        <div class="modal__hero-badges">
+          <span class="tour-card__badge tour-card__badge--road">Road</span>
+          <span class="difficulty difficulty--easy">Easy</span>
+        </div>
+      </div>
+      <div class="modal__body">
+        <div class="modal__stats">
+          <div class="modal__stat"><span>⏱</span> 3 hours</div>
+          <div class="modal__stat"><span>🚴</span> 30 km</div>
+          <div class="modal__stat"><span>📍</span> Pickup from your hotel</div>
+          <div class="modal__stat"><span>👥</span> Max 8 riders</div>
+        </div>
+        <h2 id="modal-architecture-title">Oslo Architecture Tour</h2>
+        <p>In the late 1920s, a new idea arrived in Norway from the south — flat roofs, white render, windows as wide as the light required. The Norwegians called it funksjonalisme, and Arne Korsmo became its Oslo master. This tour visits the buildings that define his legacy and the ideas that drove it.</p>
+        <p>We ride from Aker Brygge out to Havna Allé, one of Oslo's finest functionalist housing developments, then up through the residential hills to Villa Stenersen in Vinderen — Korsmo's 1939 masterpiece, now used as an exhibition space and the only Korsmo interior open to the public in Oslo. Continuing west we pass Planetveien 12, the house Korsmo built for himself, and Villa Dammann, his bold 1930 debut. The return follows the fjord corridor, where your guide frames the wider story including Sverre Fehn, Korsmo's most distinguished pupil.</p>
+        <h3>Highlights</h3>
+        <ul class="modal__list">
+          <li><strong>Havna Allé</strong> — Oslo's landmark functionalist housing development</li>
+          <li><strong>Villa Stenersen, Vinderen</strong> — Korsmo's 1939 masterpiece; only Korsmo interior open to the public</li>
+          <li><strong>Planetveien 12, Montebello</strong> — Korsmo's own house (1955), heritage-listed</li>
+          <li><strong>Villa Dammann</strong> — Korsmo's 1930 debut that announced Nordic functionalism</li>
+          <li>The Sverre Fehn connection and the next generation</li>
+        </ul>
+        <h3>Good to know</h3>
+        <ul class="modal__list">
+          <li>One moderate climb through Vinderen — otherwise easy city and suburban riding</li>
+          <li>All private residences are admired from the road; Villa Stenersen interior visit available on request</li>
+          <li>Café stop with fjord view on the return leg</li>
+          <li>Gravel bike and e-bike rentals available on request</li>
+        </ul>
+        <div class="modal__gallery">
+          <img src="images/stenersen.jpg" alt="Villa Stenersen, Tuengen allé — Arne Korsmo 1939" loading="lazy" />
+          <img src="images/vidar-nordli-mathisen-q-fr4QsIyic-unsplash.jpg" alt="Oslo residential district" loading="lazy" />
+        </div>
+        <div class="modal__footer">
+          <span class="modal__price">NOK 1 310 <em>/ person</em></span>
           <a href="#book" class="btn btn--primary modal__book">Book this tour</a>
         </div>
       </div>
