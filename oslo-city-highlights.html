@@ -7,11 +7,28 @@
   <meta name="description" content="A private guided 18 km bike tour through central Oslo — Aker Brygge, the Opera House, Vigeland Park and the Royal Palace. Easy, suitable for all fitness levels. From NOK 890." />
   <link rel="canonical" href="https://www.oslobiketours.no/oslo-city-highlights" />
 
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R0V0SXWY4F"></script>
+  <!-- Google Analytics 4 — Consent Mode v2 -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage:   'denied',
+      ad_storage:          'denied',
+      ad_user_data:        'denied',
+      ad_personalization:  'denied',
+      wait_for_update:     500
+    });
+    if (localStorage.getItem('obt_consent') === 'granted') {
+      gtag('consent', 'update', {
+        analytics_storage:   'granted',
+        ad_storage:          'granted',
+        ad_user_data:        'granted',
+        ad_personalization:  'granted'
+      });
+    }
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R0V0SXWY4F"></script>
+  <script>
     gtag('js', new Date());
     gtag('config', 'G-R0V0SXWY4F');
   </script>
@@ -206,5 +223,47 @@
   </footer>
 
   <script src="js/main.js"></script>
+
+  <!-- ─── Cookie Consent Banner ─────────────────────────────── -->
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie consent">
+    <p class="cookie-banner__text">
+      We use cookies to understand how visitors find and use our tours (Google Analytics).
+      No data is shared for advertising without your consent.
+    </p>
+    <div class="cookie-banner__actions">
+      <button class="cookie-btn cookie-btn--decline" id="cookieDecline">Decline</button>
+      <button class="cookie-btn cookie-btn--accept" id="cookieAccept">Accept</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var banner = document.getElementById('cookieBanner');
+      var stored = localStorage.getItem('obt_consent');
+
+      if (!stored) {
+        // Small delay so the banner slides in after paint
+        setTimeout(function () { banner.classList.add('is-visible'); }, 300);
+      }
+
+      function setConsent(value) {
+        localStorage.setItem('obt_consent', value);
+        banner.classList.remove('is-visible');
+        gtag('consent', 'update', {
+          analytics_storage:  value === 'granted' ? 'granted' : 'denied',
+          ad_storage:         value === 'granted' ? 'granted' : 'denied',
+          ad_user_data:       value === 'granted' ? 'granted' : 'denied',
+          ad_personalization: value === 'granted' ? 'granted' : 'denied'
+        });
+      }
+
+      document.getElementById('cookieAccept').addEventListener('click', function () {
+        setConsent('granted');
+      });
+      document.getElementById('cookieDecline').addEventListener('click', function () {
+        setConsent('denied');
+      });
+    })();
+  </script>
 </body>
 </html>
