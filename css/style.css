@@ -1690,3 +1690,100 @@ textarea { resize: vertical; }
   .cookie-banner__actions { width: 100%; }
   .cookie-btn { flex: 1; text-align: center; }
 }
+
+/* ─── Quick Facts Section ────────────────────────────────── */
+.facts {
+  background: var(--bg-dark);
+  color: var(--white);
+}
+.facts .section-title { color: var(--white); }
+.facts .section-sub   { color: rgba(255,255,255,.6); }
+.facts .tag           { background: rgba(255,255,255,.1); color: rgba(255,255,255,.7); }
+
+.facts__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 48px;
+  margin-top: 40px;
+}
+
+.facts__block-title {
+  font-family: var(--font-sans);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 20px;
+}
+
+/* Definition list */
+.facts__dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0;
+}
+.facts__dl dt,
+.facts__dl dd {
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  font-family: var(--font-sans);
+  font-size: .875rem;
+  line-height: 1.5;
+  margin: 0;
+}
+.facts__dl dt {
+  color: rgba(255,255,255,.5);
+  padding-right: 24px;
+  white-space: nowrap;
+}
+.facts__dl dd { color: rgba(255,255,255,.88); }
+.facts__dl dt:last-of-type,
+.facts__dl dd:last-of-type { border-bottom: none; }
+
+/* Table */
+.facts__table-wrap { overflow-x: auto; }
+.facts__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: .85rem;
+}
+.facts__table th {
+  text-align: left;
+  font-weight: 600;
+  font-size: .72rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+  padding: 0 12px 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+.facts__table td {
+  padding: 10px 12px 10px 0;
+  color: rgba(255,255,255,.82);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  vertical-align: middle;
+}
+.facts__table tbody tr:last-child td { border-bottom: none; }
+.facts__table td a {
+  color: var(--white);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,.2);
+  transition: border-color .15s;
+}
+.facts__table td a:hover { border-color: var(--amber); color: var(--amber); }
+
+.facts__note {
+  margin-top: 14px;
+  font-family: var(--font-sans);
+  font-size: .78rem;
+  color: rgba(255,255,255,.38);
+}
+
+@media (max-width: 900px) {
+  .facts__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

@@ -1,26 +1,51 @@
 # Oslo Bike Tours
 
 Oslo Bike Tours offers private, fully guided bike tours in Oslo, Norway.
-Small groups (max 8 people), hotel pickup, local guides Eivind and Haakon.
+Small groups (max 8 people), hotel pickup included, local guides Eivind and Haakon.
 
 ## Tours
 
 - Oslo City Highlights — 18 km, 2 hours, road, easy. Aker Brygge, Opera House, Vigeland Park, Royal Palace. NOK 890/person.
 - Bygdøy Peninsula — 28 km, 2.5 hours, road, medium. Fjord views, Viking Ship Museum, Folk Museum. NOK 1 050/person.
 - Nordmarka Forest (Ring 4) — 45 km, 4 hours, gravel, medium. Pine and birch forest, Kikutstua cabin, Sognsvann lake. NOK 1 450/person.
-- Epic Marka Endurance — 85 km, 6 hours, gravel, challenging. Deep Nordmarka wilderness, remote lakes, ridge climbs. Max 8 riders. NOK 2 150/person.
-- Oslo Coffee Tour — 22 km, 3 hours, road, easy. Oslo's world-class specialty coffee scene — Tim Wendelboe, Supreme Roastworks, Fuglen, Java. Light roast drip coffee, 80+ micro-roasteries nationwide. NOK 1 190/person. Coffee and pastry at each stop included.
-- Oslo Architecture Tour — 30 km, 3 hours, road, easy. Nordic functionalism — Arne Korsmo, Villa Stenersen, Planetveien 12, Havna Allé, Villa Dammann. NOK 1 310/person.
+- Epic Marka Endurance — 85 km, 6 hours, gravel, challenging. Deep Nordmarka wilderness, remote lakes, sustained climbs, rocky forest roads. Max 8 riders. NOK 2 150/person.
+- Oslo Coffee Tour — 22 km, 3 hours, road, easy. Specialty coffee stops: Tim Wendelboe, Supreme Roastworks, Fuglen, Java. Coffee and pastry at each stop included. NOK 1 190/person.
+- Oslo Architecture Tour — 30 km, 3 hours, road, easy. Nordic functionalism: Villa Stenersen (Arne Korsmo, 1939), Planetveien 12 (Korsmo, 1955), Havna Allé & Villa Dammann (1930–32), Skådalen School (Sverre Fehn, 1977). NOK 1 310/person.
 
 ## Key facts
 
 - All tours are private — no strangers in your group
-- Guide picks you up at your hotel
+- Guide picks you up at your hotel in Oslo
 - Tours tailored to your pace and preferences
 - Optional café stops available on all tours
-- Gravel bike and e-bike rentals available
+- Gravel bike and e-bike rentals available on request
 - Bike not included in base price
+- Helmet not included in base price
+- Languages: English and Norwegian
+- Group size: 1–8 people
 - Based in Oslo, Norway
+
+## Booking
+
+- Book via web form at oslobiketours.no or by email
+- No fixed departure times — tours run by appointment
+- Enquiries answered within 24 hours
+
+## Pricing summary
+
+- Lowest price: NOK 890/person (Oslo City Highlights)
+- Highest price: NOK 2 150/person (Epic Marka Endurance)
+- All prices are per person
+- Bike rental is an add-on, not included in base prices
+
+## Physical requirements by tour
+
+- Oslo City Highlights: Suitable for all fitness levels. Flat, paved roads. No hills.
+- Bygdøy Peninsula: Suitable for all fitness levels. Gentle terrain. Paved roads.
+- Nordmarka Forest Ring 4: Recreational fitness recommended. Gravel roads, moderate climbs.
+- Epic Marka Endurance: Good fitness required. 85 km, gravel, long climbs. Full-day ride.
+- Oslo Coffee Tour: Suitable for all fitness levels. Flat, paved roads. Urban route.
+- Oslo Architecture Tour: Suitable for all fitness levels. Gentle hills. Paved roads.
 
 ## Contact
 
