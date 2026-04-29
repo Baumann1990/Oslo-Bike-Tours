@@ -1,0 +1,2 @@
+# Redirect apex domain to www (canonical domain)
+https://oslobiketours.no/*  https://www.oslobiketours.no/:splat  301!
