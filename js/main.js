@@ -251,7 +251,11 @@ if (form) {
       const data = await res.json();
 
       if (data.success) {
-        window.location.href = '/thank-you';
+        // Fire Google Ads conversion event, then redirect
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion_event_submit_lead_form_1');
+        }
+        setTimeout(() => { window.location.href = '/thank-you'; }, 500);
       } else {
         btn.textContent = 'Something went wrong — try again';
         btn.disabled    = false;
