@@ -1,2 +1,10 @@
 # Redirect apex domain to www (canonical domain)
 https://oslobiketours.no/*  https://www.oslobiketours.no/:splat  301!
+
+# Redirect old no-slash tour URLs to canonical trailing-slash versions
+/oslo-city-highlights     /oslo-city-highlights/     301!
+/bygdoy-peninsula         /bygdoy-peninsula/         301!
+/nordmarka-forest         /nordmarka-forest/         301!
+/epic-marka-endurance     /epic-marka-endurance/     301!
+/oslo-coffee-tour         /oslo-coffee-tour/         301!
+/oslo-architecture-tour   /oslo-architecture-tour/   301!
