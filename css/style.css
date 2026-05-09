@@ -877,6 +877,26 @@ textarea { resize: vertical; }
   margin-top: 10px;
 }
 
+.form__payment-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: rgba(26,58,42,.04);
+  border: 1px solid rgba(26,58,42,.1);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: .78rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+.form__payment-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--green-mid);
+}
+
 .book__form-wrap {
   position: relative;
 }
