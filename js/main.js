@@ -71,12 +71,17 @@ const nav = document.getElementById('nav');
   const heroEl = document.querySelector('.hero, .tour-hero');
 
   if (heroEl && 'IntersectionObserver' in window) {
+    // Sentinel: a 1px invisible element placed 80px down inside the hero.
+    // It leaves the viewport when scrollY > 80, triggering the nav to go opaque.
+    // Observing the sentinel (not the full hero) fires at the right scroll depth.
+    const sentinel = document.createElement('div');
+    sentinel.setAttribute('aria-hidden', 'true');
+    sentinel.style.cssText = 'position:absolute;top:80px;height:1px;width:1px;pointer-events:none';
+    heroEl.appendChild(sentinel);
     new IntersectionObserver(
       ([entry]) => nav.classList.toggle('scrolled', !entry.isIntersecting),
-      // rootMargin shrinks the root by 80px at top: nav becomes opaque once
-      // the hero's top edge has scrolled 80px above the viewport.
-      { rootMargin: '-80px 0px 0px 0px', threshold: 0 }
-    ).observe(heroEl);
+      { threshold: 0 }
+    ).observe(sentinel);
   } else {
     // Fallback: scroll event for non-hero pages or older browsers
     const updateNav = () => nav.classList.toggle('scrolled', window.scrollY > 40);
