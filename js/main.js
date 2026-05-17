@@ -1,13 +1,5 @@
 /* ── Scroll restoration ──────────────────────────────────────── */
-// Prevent the browser restoring a mid-page scroll position from a previous
-// visit, which would make the nav appear in its "scrolled" (opaque) state
-// on load even though the user is visually at the top of the page.
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
-// Temporarily override CSS scroll-behavior:smooth so the jump to y=0
-// is instant — an animated scroll leaves scrollY>40 when updateNav()
-// first runs, permanently locking the nav into its opaque scrolled state.
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 document.documentElement.style.scrollBehavior = 'auto';
 window.scrollTo(0, 0);
 document.documentElement.style.scrollBehavior = '';
@@ -71,12 +63,36 @@ const GALLERY_COUNT = 7; // photos shown per visit (6–8)
 /* ── Nav: scroll state ───────────────────────────────────────── */
 const nav = document.getElementById('nav');
 
-const updateNav = () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-};
+// IntersectionObserver watches a thin sentinel just below the hero.
+// Unlike scroll events, it fires immediately on setup AND on BFCache
+// restoration (back/forward navigation), so the nav background is always
+// correct regardless of how the page was loaded or what scrollY was cached.
+(function initNavState() {
+  const heroEl = document.querySelector('.hero, .tour-hero');
 
-window.addEventListener('scroll', updateNav, { passive: true });
-updateNav();
+  if (heroEl && 'IntersectionObserver' in window) {
+    new IntersectionObserver(
+      ([entry]) => nav.classList.toggle('scrolled', !entry.isIntersecting),
+      // rootMargin shrinks the root by 80px at top: nav becomes opaque once
+      // the hero's top edge has scrolled 80px above the viewport.
+      { rootMargin: '-80px 0px 0px 0px', threshold: 0 }
+    ).observe(heroEl);
+  } else {
+    // Fallback: scroll event for non-hero pages or older browsers
+    const updateNav = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+  }
+
+  // BFCache: when iOS restores the page from back/forward cache JS
+  // doesn't re-run, so scroll position and nav state can be stale.
+  window.addEventListener('pageshow', e => {
+    if (!e.persisted) return;
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    document.documentElement.style.scrollBehavior = '';
+  });
+})();
 
 /* ── Nav: mobile toggle ──────────────────────────────────────── */
 const toggle = document.getElementById('navToggle');
