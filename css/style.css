@@ -25,7 +25,10 @@
   --nav-h: 96px;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* Prevent horizontal scroll — on html, not body, to avoid iOS Safari fixed-positioning bug */
+}
 
 body {
   font-family: var(--font-sans);
@@ -33,7 +36,6 @@ body {
   line-height: 1.65;
   color: var(--text);
   background: var(--bg);
-  overflow-x: hidden;
   -webkit-tap-highlight-color: transparent; /* ① remove iOS blue flash on tap */
 }
 
