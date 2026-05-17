@@ -16,6 +16,20 @@ const GALLERY_POOL = [
   { src: 'images/IMG_6911.jpg',                              alt: 'Oslo landscape' },
   { src: 'images/IMG_6871.jpg',                              alt: 'Norwegian scenery' },
   { src: 'images/IMG_6869.jpg',                              alt: 'Bike tour Oslo' },
+  { src: 'images/IMG_0255.JPG',                              alt: 'Gravel bike at Norwegian lake, autumn' },
+  { src: 'images/IMG_1489.JPG',                              alt: 'Gravel bike by lake in summer' },
+  { src: 'images/IMG_6630.jpg',                              alt: 'Bike stop by forest lake and red cabin' },
+  { src: 'images/IMG_8053.jpeg',                             alt: 'Rest stop at remote lakeside cabin' },
+  { src: 'images/IMG_8056.jpeg',                             alt: 'View from Nordmarka forest over the Oslofjord' },
+  { src: 'images/christoffer-engstrom-tjguVu0GoEM-unsplash.jpg', alt: 'Oslo city skyline reflected at dusk' },
+  { src: 'images/delia-giandeini--yz2HFg6WYo-unsplash.jpg', alt: 'Bygdøy fjord shore in summer' },
+  { src: 'images/hana-clarinda-o0i_hR68r0o-unsplash.jpg',   alt: 'Bronze sculpture overlooking Oslo City Hall at golden hour' },
+  { src: 'images/hans-joachim-kaiser-_eqvDs2vt1Q-unsplash.jpg', alt: 'Traditional wooden boats at Bygdøy harbour' },
+  { src: 'images/marius-tandberg--pG0RZ36pXE-unsplash.jpg', alt: 'Vigeland Monolith and sculptures, Frogner Park' },
+  { src: 'images/nick-night-NY1CGpvtDl4-unsplash.jpg',      alt: 'Vigeland Sculpture Park in summer' },
+  { src: 'images/lawrence-krowdeed-QhgueME61_M-unsplash.jpg', alt: 'Rocky Oslofjord shoreline' },
+  { src: 'images/lawrence-krowdeed-zXcYUETehx4-unsplash.jpg', alt: 'Oslofjord island with white boathouse' },
+  { src: 'images/theo-eilertsen-photography-ax6fKJRUMlo-unsplash.jpg', alt: 'Oslo City Hall on a winter night' },
 ];
 
 const GALLERY_COUNT = 7; // photos shown per visit (6–8)
