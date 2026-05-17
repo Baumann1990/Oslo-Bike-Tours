@@ -4,6 +4,16 @@ document.documentElement.style.scrollBehavior = 'auto';
 window.scrollTo(0, 0);
 document.documentElement.style.scrollBehavior = '';
 
+// Belt-and-suspenders: browsers may restore scroll position asynchronously
+// after DOMContentLoaded (especially on iOS). Scroll back to top if that happens.
+window.addEventListener('DOMContentLoaded', () => {
+  if (window.scrollY !== 0) {
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    document.documentElement.style.scrollBehavior = '';
+  }
+});
+
 /* ── Gallery rotation ────────────────────────────────────────── */
 const GALLERY_POOL = [
   { src: 'images/IMG_2864.jpg',                              alt: 'Cyclists overlooking Oslo' },
@@ -89,10 +99,12 @@ const nav = document.getElementById('nav');
     updateNav();
   }
 
-  // BFCache: when iOS restores the page from back/forward cache JS
-  // doesn't re-run, so scroll position and nav state can be stale.
+  // BFCache: iOS restores the frozen page instantly — the nav may have .scrolled
+  // from when the user navigated away. Remove it immediately so there's no flash,
+  // then scroll to top so the IntersectionObserver confirms the correct state.
   window.addEventListener('pageshow', e => {
     if (!e.persisted) return;
+    nav.classList.remove('scrolled');              // instant — no visible flash
     document.documentElement.style.scrollBehavior = 'auto';
     window.scrollTo(0, 0);
     document.documentElement.style.scrollBehavior = '';
