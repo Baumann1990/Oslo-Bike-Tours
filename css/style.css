@@ -162,11 +162,14 @@ ul { list-style: none; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  height: var(--nav-h);
+  /* Grow the bar to cover the iOS status-bar / notch / Dynamic Island */
+  height: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 32px;
+  padding-left: 32px;
+  padding-right: 32px;
   transition: background .3s, box-shadow .3s;
 }
 
@@ -263,6 +266,7 @@ ul { list-style: none; }
 .hero {
   position: relative;
   height: 100vh;
+  height: 100svh; /* iOS Safari: svh excludes browser chrome so content is never clipped */
   min-height: 640px;
   display: flex;
   align-items: center;
@@ -1353,7 +1357,7 @@ textarea { resize: vertical; }
 
   .nav__menu {
     position: fixed;
-    top: var(--nav-h);
+    top: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
     left: 0; right: 0;
     background: rgba(247,244,239,.97);
     backdrop-filter: blur(12px);
