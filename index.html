@@ -221,7 +221,9 @@
   </script>
   <link rel="icon" href="images/Faviconupdate.png" type="image/png" />
   <link rel="apple-touch-icon" href="images/Faviconupdate.png" />
-  <link rel="preload" as="image" href="images/IMG_2864.jpg" />
+  <link rel="preload" as="image" href="images/IMG_2864.jpg"
+        imagesrcset="images/IMG_2864-800w.jpg 800w, images/IMG_2864-1200w.jpg 1200w, images/IMG_2864.jpg 5712w"
+        imagesizes="100vw" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -256,6 +258,10 @@
     <div class="hero__bg">
       <img
         src="images/IMG_2864.jpg"
+        srcset="images/IMG_2864-800w.jpg 800w,
+                images/IMG_2864-1200w.jpg 1200w,
+                images/IMG_2864.jpg 5712w"
+        sizes="100vw"
         alt="Guided bike tour group overlooking Oslo"
         class="hero__img"
         width="5712" height="4284"
@@ -264,7 +270,7 @@
     </div>
     <div class="hero__content">
       <span class="tag tag--light">Oslo, Norway</span>
-      <h1 class="hero__title">Explore Oslo<br>on Two Wheels</h1>
+      <h1 class="hero__title">Explore Oslo<span class="hero__title-break"></span>on Two Wheels</h1>
       <p class="hero__sub">
         Guided gravel bike tours through the city, fjord hills, and forest
         trails of Oslo — for every pace and every rider.

@@ -34,6 +34,7 @@ body {
   color: var(--text);
   background: var(--bg);
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent; /* ① remove iOS blue flash on tap */
 }
 
 img { display: block; max-width: 100%; height: auto; }
@@ -78,9 +79,15 @@ ul { list-style: none; }
 }
 
 .section-sub {
-  font-size: 1.05rem;
+  font-size: clamp(.95rem, 1.5vw + .5rem, 1.05rem); /* ④ fluid typography */
   color: var(--text-muted);
   max-width: 520px;
+}
+
+/* ④ H1 line-break: visible block on wide screens, collapses on small screens */
+.hero__title-break { display: block; }
+@media (max-width: 480px) {
+  .hero__title-break { display: inline; }
 }
 
 .section-header {
@@ -132,6 +139,7 @@ ul { list-style: none; }
   background: var(--amber);
   color: var(--green-deep);
   padding: 10px 22px;
+  min-height: 44px; /* ③ 44 px touch target */
   font-size: .85rem;
 }
 
@@ -139,6 +147,7 @@ ul { list-style: none; }
 
 .btn--sm {
   padding: 9px 20px;
+  min-height: 44px; /* ③ 44 px touch target (iOS HIG) */
   font-size: .82rem;
   background: var(--green-deep);
   color: var(--white);
@@ -1407,7 +1416,24 @@ textarea { resize: vertical; }
 
   .section { padding: 48px 0; }
 
-  .section-title { font-size: 1.7rem; }
+  /* ④ section-title: let clamp() handle it; floor already set to 2rem */
+  .section-title { font-size: clamp(1.65rem, 6vw, 2rem); }
+
+  /* ① iOS input zoom fix — font-size must be ≥ 16px to prevent Safari auto-zoom */
+  input, select, textarea { font-size: 1rem; }
+
+  /* ⑥ Modal full-screen bottom sheet on small phones */
+  .modal {
+    padding: 0;
+    align-items: flex-end;
+  }
+  .modal__panel {
+    max-width: 100%;
+    max-height: 92dvh;
+    overflow-y: auto;
+    border-radius: var(--radius) var(--radius) 0 0;
+    animation: modalSlideUp .3s ease both;
+  }
 
   .hero { min-height: 460px; }
 
@@ -1497,6 +1523,12 @@ textarea { resize: vertical; }
 @keyframes modalIn {
   from { opacity: 0; transform: translateY(24px) scale(.98); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ⑥ used on small phones for bottom-sheet entry */
+@keyframes modalSlideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
 }
 
 .modal__close {
