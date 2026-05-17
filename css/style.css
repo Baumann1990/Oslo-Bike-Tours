@@ -164,11 +164,16 @@ ul { list-style: none; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  height: var(--nav-h);
+  /* Height grows to absorb the iOS status-bar / notch / Dynamic Island */
+  height: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
+  /* Push nav content (logo, links) below the status bar */
+  padding-top:    env(safe-area-inset-top, 0px);
+  padding-bottom: 0px;
+  padding-left:   32px;
+  padding-right:  32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 32px;
   transition: background .3s, box-shadow .3s;
 }
 
@@ -1345,7 +1350,9 @@ textarea { resize: vertical; }
 @media (max-width: 768px) {
   :root { --nav-h: 60px; }
 
-  .nav { padding: 0 20px; }
+  /* Only override left/right padding — never use the shorthand here,
+     as it would reset padding-top: env(safe-area-inset-top) */
+  .nav { padding-left: 20px; padding-right: 20px; }
 
   /* Scale logo down to fit the 60px nav bar */
   .nav__logo {
@@ -1356,7 +1363,7 @@ textarea { resize: vertical; }
 
   .nav__menu {
     position: fixed;
-    top: var(--nav-h);
+    top: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
     left: 0; right: 0;
     background: rgba(247,244,239,.97);
     backdrop-filter: blur(12px);
