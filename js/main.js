@@ -1,3 +1,12 @@
+/* ── Scroll restoration ──────────────────────────────────────── */
+// Prevent the browser restoring a mid-page scroll position from a previous
+// visit, which would make the nav appear in its "scrolled" (opaque) state
+// on load even though the user is visually at the top of the page.
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 /* ── Gallery rotation ────────────────────────────────────────── */
 const GALLERY_POOL = [
   { src: 'images/IMG_2864.jpg',                              alt: 'Cyclists overlooking Oslo' },
