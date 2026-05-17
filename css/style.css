@@ -1888,3 +1888,27 @@ textarea { resize: vertical; }
     gap: 40px;
   }
 }
+
+/* ── Mobile sticky Book Now button ──────────────────────────── */
+.sticky-book {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 12px 20px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  background: rgba(247,244,239,.97);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 20px rgba(0,0,0,.1);
+  transform: translateY(100%);
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+}
+
+.sticky-book.is-visible {
+  transform: translateY(0);
+}
+
+/* Desktop: never show */
+@media (min-width: 769px) {
+  .sticky-book { display: none; }
+}

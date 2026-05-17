@@ -175,6 +175,69 @@ document.addEventListener('keydown', e => {
   document.querySelectorAll('.modal:not([hidden])').forEach(closeModal);
 });
 
+/* ── Sticky booking button (mobile only) ────────────────────── */
+(function initStickyBook() {
+  // Inject the element
+  const bar = document.createElement('div');
+  bar.className = 'sticky-book';
+
+  // On tour sub-pages link to /#book; on the homepage link to #book
+  const isHome = window.location.pathname === '/' ||
+                 window.location.pathname === '/index.html';
+  const href   = isHome ? '#book' : '/#book';
+
+  bar.innerHTML = `
+    <a href="${href}" class="btn btn--primary btn--full">
+      Book a Tour
+    </a>`;
+  document.body.appendChild(bar);
+
+  // Detect the element we want to scroll past before showing the bar.
+  // On the homepage that's the hero; on tour pages it's the tour hero.
+  const hero = document.querySelector('.hero, .tour-hero');
+
+  // On the homepage also hide the bar when the booking section is visible.
+  const bookSection = isHome ? document.getElementById('book') : null;
+
+  let ticking = false;
+
+  const update = () => {
+    ticking = false;
+
+    // Only act if there is a hero element to measure
+    if (!hero) {
+      bar.classList.add('is-visible');
+      return;
+    }
+
+    const heroBelowFold = hero.getBoundingClientRect().bottom <= 0;
+
+    if (!heroBelowFold) {
+      bar.classList.remove('is-visible');
+      return;
+    }
+
+    // Hide the bar when the booking section itself is on screen
+    if (bookSection) {
+      const bookRect = bookSection.getBoundingClientRect();
+      const bookVisible = bookRect.top < window.innerHeight && bookRect.bottom > 0;
+      bar.classList.toggle('is-visible', !bookVisible);
+    } else {
+      bar.classList.add('is-visible');
+    }
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Run once on load in case the page opens mid-scroll
+  update();
+})();
+
 /* ── Booking form ────────────────────────────────────────────── */
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 
