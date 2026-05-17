@@ -1346,7 +1346,7 @@ textarea { resize: vertical; }
 @media (max-width: 768px) {
   :root { --nav-h: 60px; }
 
-  .nav { padding: 0 20px; }
+  .nav { padding-left: 20px; padding-right: 20px; }
 
   /* Scale logo down to fit the 60px nav bar */
   .nav__logo {
