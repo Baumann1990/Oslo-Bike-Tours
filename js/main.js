@@ -5,7 +5,12 @@
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
+// Temporarily override CSS scroll-behavior:smooth so the jump to y=0
+// is instant — an animated scroll leaves scrollY>40 when updateNav()
+// first runs, permanently locking the nav into its opaque scrolled state.
+document.documentElement.style.scrollBehavior = 'auto';
 window.scrollTo(0, 0);
+document.documentElement.style.scrollBehavior = '';
 
 /* ── Gallery rotation ────────────────────────────────────────── */
 const GALLERY_POOL = [
