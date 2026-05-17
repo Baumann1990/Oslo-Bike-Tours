@@ -4,15 +4,6 @@ document.documentElement.style.scrollBehavior = 'auto';
 window.scrollTo(0, 0);
 document.documentElement.style.scrollBehavior = '';
 
-// Belt-and-suspenders: browsers may restore scroll position asynchronously
-// after DOMContentLoaded (especially on iOS). Scroll back to top if that happens.
-window.addEventListener('DOMContentLoaded', () => {
-  if (window.scrollY !== 0) {
-    document.documentElement.style.scrollBehavior = 'auto';
-    window.scrollTo(0, 0);
-    document.documentElement.style.scrollBehavior = '';
-  }
-});
 
 /* ── Gallery rotation ────────────────────────────────────────── */
 const GALLERY_POOL = [
@@ -80,31 +71,43 @@ const nav = document.getElementById('nav');
 (function initNavState() {
   const heroEl = document.querySelector('.hero, .tour-hero');
 
-  if (heroEl && 'IntersectionObserver' in window) {
-    // Sentinel: a 1px invisible element placed 80px down inside the hero.
-    // It leaves the viewport when scrollY > 80, triggering the nav to go opaque.
-    // Observing the sentinel (not the full hero) fires at the right scroll depth.
-    const sentinel = document.createElement('div');
-    sentinel.setAttribute('aria-hidden', 'true');
-    sentinel.style.cssText = 'position:absolute;top:80px;height:1px;width:1px;pointer-events:none';
-    heroEl.appendChild(sentinel);
-    new IntersectionObserver(
-      ([entry]) => nav.classList.toggle('scrolled', !entry.isIntersecting),
-      { threshold: 0 }
-    ).observe(sentinel);
-  } else {
-    // Fallback: scroll event for non-hero pages or older browsers
-    const updateNav = () => nav.classList.toggle('scrolled', window.scrollY > 40);
-    window.addEventListener('scroll', updateNav, { passive: true });
-    updateNav();
-  }
+  // Defer observer setup to the next animation frame.
+  // By then, any browser scroll-restoration has already fired and our
+  // scrollTo(0,0) above has overridden it — so the observer's first
+  // fire is guaranteed to see scrollY = 0 and leave the nav transparent.
+  requestAnimationFrame(() => {
+    // One extra insurance: if scroll somehow isn't 0 yet, snap it now.
+    if (window.scrollY !== 0) {
+      document.documentElement.style.scrollBehavior = 'auto';
+      window.scrollTo(0, 0);
+      document.documentElement.style.scrollBehavior = '';
+    }
 
-  // BFCache: iOS restores the frozen page instantly — the nav may have .scrolled
-  // from when the user navigated away. Remove it immediately so there's no flash,
-  // then scroll to top so the IntersectionObserver confirms the correct state.
+    if (heroEl && 'IntersectionObserver' in window) {
+      // Sentinel: 1 px element at y=80 inside the hero.
+      // Leaves viewport when scrollY > 80 → nav turns opaque.
+      const sentinel = document.createElement('div');
+      sentinel.setAttribute('aria-hidden', 'true');
+      sentinel.style.cssText = 'position:absolute;top:80px;height:1px;width:1px;pointer-events:none';
+      heroEl.appendChild(sentinel);
+      new IntersectionObserver(
+        ([entry]) => nav.classList.toggle('scrolled', !entry.isIntersecting),
+        { threshold: 0 }
+      ).observe(sentinel);
+    } else {
+      // Fallback: scroll event for non-hero pages or older browsers
+      const updateNav = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+      window.addEventListener('scroll', updateNav, { passive: true });
+      updateNav();
+    }
+  });
+
+  // BFCache: iOS restores the frozen page instantly — nav may have .scrolled
+  // from when the user navigated away. Remove it immediately (no flash),
+  // then scroll to top so the observer re-evaluates from a clean state.
   window.addEventListener('pageshow', e => {
     if (!e.persisted) return;
-    nav.classList.remove('scrolled');              // instant — no visible flash
+    nav.classList.remove('scrolled');
     document.documentElement.style.scrollBehavior = 'auto';
     window.scrollTo(0, 0);
     document.documentElement.style.scrollBehavior = '';
