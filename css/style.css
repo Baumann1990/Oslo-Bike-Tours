@@ -28,6 +28,9 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden; /* Prevent horizontal scroll — on html, not body, to avoid iOS Safari fixed-positioning bug */
+  /* With viewport-fit=cover the html background fills the safe-area region
+     (behind the status bar). Keep it dark so it blends with the hero. */
+  background-color: #1a3a2a;
 }
 
 body {
@@ -272,6 +275,7 @@ ul { list-style: none; }
   height: 100vh;
   height: 100svh; /* iOS Safari: svh excludes browser chrome so content is never clipped */
   min-height: 640px;
+  background-color: #1a3a2a; /* dark fallback until hero image loads */
   display: flex;
   align-items: center;
 }
@@ -1092,6 +1096,7 @@ textarea { resize: vertical; }
   height: 65vh;
   min-height: 400px;
   overflow: hidden;
+  background-color: #1a3a2a; /* dark fallback until hero image loads */
 }
 
 .tour-hero__img {
