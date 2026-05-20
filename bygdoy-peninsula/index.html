@@ -42,71 +42,104 @@
   <meta property="og:description" content="A private guided 28 km bike tour along the Bygdøy Peninsula. Fjord views, Viking Ship Museum, Folk Museum. Medium difficulty, from NOK 1 050." />
   <meta property="og:image"       content="https://www.oslobiketours.no/images/delia-giandeini--yz2HFg6WYo-unsplash.jpg" />
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "TouristTrip",
-        "name": "Bygdøy Peninsula Bike Tour",
-        "description": "A private guided 28 km bike tour along the Bygdøy Peninsula covering fjord views, the Viking Ship Museum, Fram Museum and Norwegian Folk Museum. One moderate climb, otherwise flat. Suitable for all riders.",
-        "url": "https://www.oslobiketours.no/bygdoy-peninsula",
-        "image": "https://www.oslobiketours.no/images/delia-giandeini--yz2HFg6WYo-unsplash.jpg",
-        "touristType": "Cyclists",
-        "availableLanguage": "English",
-        "provider": {
-          "@type": "LocalBusiness",
-          "name": "Oslo Bike Tours",
-          "url": "https://www.oslobiketours.no"
-        },
-        "offers": {
-          "@type": "Offer",
-          "price": "1050",
-          "priceCurrency": "NOK",
-          "availability": "https://schema.org/InStock"
-        }
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TouristTrip",
+      "name": "Bygdøy Peninsula Bike Tour",
+      "description": "A private guided 28 km bike tour along the Bygdøy Peninsula covering fjord views, the Viking Ship Museum, Fram Museum and Norwegian Folk Museum. One moderate climb, otherwise flat. Suitable for all riders.",
+      "url": "https://www.oslobiketours.no/bygdoy-peninsula",
+      "image": "https://www.oslobiketours.no/images/delia-giandeini--yz2HFg6WYo-unsplash.jpg",
+      "touristType": "Cyclists",
+      "availableLanguage": "English",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Oslo Bike Tours",
+        "url": "https://www.oslobiketours.no"
       },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.oslobiketours.no/" },
-          { "@type": "ListItem", "position": 2, "name": "Tours", "item": "https://www.oslobiketours.no/#tours" },
-          { "@type": "ListItem", "position": 3, "name": "Bygdøy Peninsula" }
-        ]
+      "offers": {
+        "@type": "Offer",
+        "price": "1050",
+        "priceCurrency": "NOK",
+        "availability": "https://schema.org/InStock",
+        "url": "https://www.oslobiketours.no/bygdoy-peninsula/#book"
+      },
+      "duration": "PT5H",
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "target": "https://www.oslobiketours.no/bygdoy-peninsula/#book"
       }
-      ,{
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Which museums are on the Bygdøy Peninsula route?",
-            "acceptedAnswer": { "@type": "Answer", "text": "The route passes the Norwegian Folk Museum, the Viking Ship Museum and the Fram Museum. The focus of the tour is the ride itself — the fjord views, the peninsula roads and the surroundings — rather than the museums. If you want to visit any of them, that is best done independently before or after the tour." }
-          },
-          {
-            "@type": "Question",
-            "name": "Do we go inside the museums on the Bygdøy Peninsula tour?",
-            "acceptedAnswer": { "@type": "Answer", "text": "No — the bike tour rides past the museum buildings with guided commentary rather than going inside. This keeps the momentum of the ride and lets your guide connect the sites as part of a wider story about Oslo and Norway. Museum entry is easy to arrange independently if you want to explore further." }
-          },
-          {
-            "@type": "Question",
-            "name": "How hilly is the Bygdøy Peninsula bike tour?",
-            "acceptedAnswer": { "@type": "Answer", "text": "There is one moderate climb as the route ascends onto the peninsula — it is short and manageable for most riders. The rest of the route is flat or gently rolling along the fjord shore and through the tree-lined peninsula roads. It is not classified as a challenging tour." }
-          },
-          {
-            "@type": "Question",
-            "name": "What is the best season for the Bygdøy Peninsula bike tour?",
-            "acceptedAnswer": { "@type": "Answer", "text": "The tour runs year-round, but late spring through early autumn is the best time for fjord views and comfortable cycling. The peninsula's chestnut trees are in full leaf from May onwards, the bathing beaches along Frognerkilen come alive in summer, and the water views on the return leg are particularly beautiful on clear days." }
-          },
-          {
-            "@type": "Question",
-            "name": "Is the Bygdøy Peninsula tour a good option for someone visiting Oslo for the first time?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes, though it pairs especially well with the Oslo City Highlights tour if you have more than one day. City Highlights covers the urban landmarks — the Opera House, Vigeland Park, the Palace — while Bygdøy adds the fjord, the peninsula roads and Norway's maritime and Viking history. Together they give a thorough picture of Oslo." }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.oslobiketours.no/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tours",
+          "item": "https://www.oslobiketours.no/#tours"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Bygdøy Peninsula"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Which museums are on the Bygdøy Peninsula route?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The route passes the Norwegian Folk Museum, the Viking Ship Museum and the Fram Museum. The focus of the tour is the ride itself — the fjord views, the peninsula roads and the surroundings — rather than the museums. If you want to visit any of them, that is best done independently before or after the tour."
           }
-        ]
-      }
-    ]
-  }
-  </script>
+        },
+        {
+          "@type": "Question",
+          "name": "Do we go inside the museums on the Bygdøy Peninsula tour?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No — the bike tour rides past the museum buildings with guided commentary rather than going inside. This keeps the momentum of the ride and lets your guide connect the sites as part of a wider story about Oslo and Norway. Museum entry is easy to arrange independently if you want to explore further."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How hilly is the Bygdøy Peninsula bike tour?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "There is one moderate climb as the route ascends onto the peninsula — it is short and manageable for most riders. The rest of the route is flat or gently rolling along the fjord shore and through the tree-lined peninsula roads. It is not classified as a challenging tour."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the best season for the Bygdøy Peninsula bike tour?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The tour runs year-round, but late spring through early autumn is the best time for fjord views and comfortable cycling. The peninsula's chestnut trees are in full leaf from May onwards, the bathing beaches along Frognerkilen come alive in summer, and the water views on the return leg are particularly beautiful on clear days."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the Bygdøy Peninsula tour a good option for someone visiting Oslo for the first time?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, though it pairs especially well with the Oslo City Highlights tour if you have more than one day. City Highlights covers the urban landmarks — the Opera House, Vigeland Park, the Palace — while Bygdøy adds the fjord, the peninsula roads and Norway's maritime and Viking history. Together they give a thorough picture of Oslo."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
 
   <link rel="icon" href="../images/Faviconupdate.png" type="image/png" />
   <link rel="apple-touch-icon" href="../images/Faviconupdate.png" />
@@ -199,7 +232,7 @@
             </div>
             <div class="tour-page__price">NOK 1 050 <em>/ person</em></div>
             <p class="tour-page__price-note">Private tour — no strangers in your group</p>
-            <a href="/#book" class="btn btn--primary btn--full">Book this tour</a>
+            <a href="#book" class="btn btn--primary btn--full">Book this tour</a>
           </div>
         </aside>
 
@@ -240,6 +273,66 @@
   </section>
 
   <!-- ─── Footer ────────────────────────────────────────────────── -->
+  <!-- ─── Book ────────────────────────────────────── -->
+  <section id="book" class="book section">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">Enquire</span>
+        <h2 class="section-title">Book the Bygdøy Peninsula Tour</h2>
+        <p class="section-sub">Private &amp; flexible — choose your date and we confirm within 24 hours.</p>
+      </div>
+      <form class="book__form" id="bookForm" style="max-width:640px;margin:0 auto" novalidate>
+        <input type="hidden" name="access_key" value="9e6a75d8-a6cc-45cc-a734-9561109735c9" />
+        <input type="hidden" name="subject" value="New tour enquiry — Bygdøy Peninsula" />
+        <input type="hidden" name="from_name" value="Oslo Bike Tours Website" />
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required />
+            <span class="field-error" id="error-name"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            <span class="field-error" id="error-email"></span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="tour">Tour</label>
+            <select id="tour" name="tour" required>
+              <option value="">Select a tour…</option>
+              <option>Oslo City Highlights</option>
+              <option selected>Bygdøy Peninsula</option>
+              <option>Nordmarka Forest (Ring 4)</option>
+              <option>Epic Marka Endurance</option>
+              <option>Oslo Coffee Tour</option>
+              <option>Oslo Architecture Tour</option>
+            </select>
+            <span class="field-error" id="error-tour"></span>
+          </div>
+          <div class="form-group">
+            <label for="date">Preferred Date</label>
+            <input type="date" id="date" name="date" required />
+            <span class="field-error" id="error-date"></span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="riders">Number of Riders</label>
+            <input type="number" id="riders" name="riders" min="1" max="8" placeholder="1–8" required />
+            <span class="field-error" id="error-riders"></span>
+          </div>
+          <div class="form-group">
+            <label for="message">Message <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
+            <textarea id="message" name="message" rows="3" placeholder="Questions, special requests…"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full">Send Enquiry</button>
+      </form>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">

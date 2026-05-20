@@ -42,71 +42,104 @@
   <meta property="og:description" content="Ride through Oslo's legendary coffee neighbourhoods with a local guide. Tim Wendelboe, Fuglen, Supreme Roastworks. Easy, 22 km, from NOK 1 190." />
   <meta property="og:image"       content="https://www.oslobiketours.no/images/fuglen.jpg" />
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "TouristTrip",
-        "name": "Oslo Coffee Tour",
-        "description": "A private guided 22 km bike tour through Oslo's world-class specialty coffee scene, visiting Tim Wendelboe, Fuglen, Supreme Roastworks and Java — four of the cafés that put Oslo on the global coffee map. Easy city riding with genuine sit-down coffee stops. Hotel pickup included.",
-        "url": "https://www.oslobiketours.no/oslo-coffee-tour",
-        "image": "https://www.oslobiketours.no/images/christoffer-engstrom-tjguVu0GoEM-unsplash.jpg",
-        "touristType": "Cyclists",
-        "availableLanguage": "English",
-        "provider": {
-          "@type": "LocalBusiness",
-          "name": "Oslo Bike Tours",
-          "url": "https://www.oslobiketours.no"
-        },
-        "offers": {
-          "@type": "Offer",
-          "price": "1190",
-          "priceCurrency": "NOK",
-          "availability": "https://schema.org/InStock"
-        }
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TouristTrip",
+      "name": "Oslo Coffee Tour",
+      "description": "A private guided 22 km bike tour through Oslo's world-class specialty coffee scene, visiting Tim Wendelboe, Fuglen, Supreme Roastworks and Java — four of the cafés that put Oslo on the global coffee map. Easy city riding with genuine sit-down coffee stops. Hotel pickup included.",
+      "url": "https://www.oslobiketours.no/oslo-coffee-tour",
+      "image": "https://www.oslobiketours.no/images/christoffer-engstrom-tjguVu0GoEM-unsplash.jpg",
+      "touristType": "Cyclists",
+      "availableLanguage": "English",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Oslo Bike Tours",
+        "url": "https://www.oslobiketours.no"
       },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.oslobiketours.no/" },
-          { "@type": "ListItem", "position": 2, "name": "Tours", "item": "https://www.oslobiketours.no/#tours" },
-          { "@type": "ListItem", "position": 3, "name": "Oslo Coffee Tour" }
-        ]
+      "offers": {
+        "@type": "Offer",
+        "price": "1190",
+        "priceCurrency": "NOK",
+        "availability": "https://schema.org/InStock",
+        "url": "https://www.oslobiketours.no/oslo-coffee-tour/#book"
+      },
+      "duration": "PT3H",
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "target": "https://www.oslobiketours.no/oslo-coffee-tour/#book"
       }
-      ,{
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Which coffee shops does the Oslo Coffee Tour visit, and in what order?",
-            "acceptedAnswer": { "@type": "Answer", "text": "The tour visits four Oslo specialty coffee institutions: Tim Wendelboe in Grünerløkka (World Barista Champion 2004, and one of the world's most influential roasters), Supreme Roastworks at Vulkan by the Akerselva river, Fuglen in Frogner (mid-century interior, global cult following), and Java in Frogner (Oslo's original specialty coffee shop, open since 1997). The exact order follows a logical route through the city." }
-          },
-          {
-            "@type": "Question",
-            "name": "Is the coffee and food included in the Oslo Coffee Tour price?",
-            "acceptedAnswer": { "@type": "Answer", "text": "No. The NOK 1,190 price covers your guide, hotel pickup and the route. Coffee and food at each stop are paid for by you directly — this keeps the tour price honest and lets you order exactly what you want at each place." }
-          },
-          {
-            "@type": "Question",
-            "name": "Do I need to be a coffee enthusiast to enjoy the Oslo Coffee Tour?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Not at all. The tour is as much about cycling through Oslo's best neighbourhoods and sitting down in great spaces as it is about coffee. You will visit four well-regarded places and enjoy a proper stop at each — what you take from it is up to you." }
-          },
-          {
-            "@type": "Question",
-            "name": "What kind of bike do I need for the Oslo Coffee Tour?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Any bike is suitable — the route is entirely on flat, paved urban roads. If you have your own road or hybrid bike, bring it. If not, e-bike and gravel bike rentals are available on request. The 22 km distance and relaxed pace also make it one of the few tours where a slower e-bike is just as enjoyable as a road bike." }
-          },
-          {
-            "@type": "Question",
-            "name": "Can the Oslo Coffee Tour be combined with another tour on the same day?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes, easily. At 22 km and 3 hours, the Coffee Tour is the lightest in the programme. It pairs well with the Oslo City Highlights tour in the morning followed by Coffee in the afternoon, or vice versa. Some guests also combine it with the Architecture Tour, which covers similar neighbourhoods from a different angle." }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.oslobiketours.no/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tours",
+          "item": "https://www.oslobiketours.no/#tours"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Oslo Coffee Tour"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Which coffee shops does the Oslo Coffee Tour visit, and in what order?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The tour visits four Oslo specialty coffee institutions: Tim Wendelboe in Grünerløkka (World Barista Champion 2004, and one of the world's most influential roasters), Supreme Roastworks at Vulkan by the Akerselva river, Fuglen in Frogner (mid-century interior, global cult following), and Java in Frogner (Oslo's original specialty coffee shop, open since 1997). The exact order follows a logical route through the city."
           }
-        ]
-      }
-    ]
-  }
-  </script>
+        },
+        {
+          "@type": "Question",
+          "name": "Is the coffee and food included in the Oslo Coffee Tour price?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The NOK 1,190 price covers your guide, hotel pickup and the route. Coffee and food at each stop are paid for by you directly — this keeps the tour price honest and lets you order exactly what you want at each place."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to be a coffee enthusiast to enjoy the Oslo Coffee Tour?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not at all. The tour is as much about cycling through Oslo's best neighbourhoods and sitting down in great spaces as it is about coffee. You will visit four well-regarded places and enjoy a proper stop at each — what you take from it is up to you."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What kind of bike do I need for the Oslo Coffee Tour?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Any bike is suitable — the route is entirely on flat, paved urban roads. If you have your own road or hybrid bike, bring it. If not, e-bike and gravel bike rentals are available on request. The 22 km distance and relaxed pace also make it one of the few tours where a slower e-bike is just as enjoyable as a road bike."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the Oslo Coffee Tour be combined with another tour on the same day?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, easily. At 22 km and 3 hours, the Coffee Tour is the lightest in the programme. It pairs well with the Oslo City Highlights tour in the morning followed by Coffee in the afternoon, or vice versa. Some guests also combine it with the Architecture Tour, which covers similar neighbourhoods from a different angle."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
 
   <link rel="icon" href="../images/Faviconupdate.png" type="image/png" />
   <link rel="apple-touch-icon" href="../images/Faviconupdate.png" />
@@ -200,7 +233,7 @@
             </div>
             <div class="tour-page__price">NOK 1 190 <em>/ person</em></div>
             <p class="tour-page__price-note">Coffee and pastry at each stop included</p>
-            <a href="/#book" class="btn btn--primary btn--full">Book this tour</a>
+            <a href="#book" class="btn btn--primary btn--full">Book this tour</a>
           </div>
         </aside>
 
@@ -241,6 +274,66 @@
   </section>
 
   <!-- ─── Footer ────────────────────────────────────────────────── -->
+  <!-- ─── Book ────────────────────────────────────── -->
+  <section id="book" class="book section">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">Enquire</span>
+        <h2 class="section-title">Book the Oslo Coffee Tour</h2>
+        <p class="section-sub">Private &amp; flexible — choose your date and we confirm within 24 hours.</p>
+      </div>
+      <form class="book__form" id="bookForm" style="max-width:640px;margin:0 auto" novalidate>
+        <input type="hidden" name="access_key" value="9e6a75d8-a6cc-45cc-a734-9561109735c9" />
+        <input type="hidden" name="subject" value="New tour enquiry — Oslo Coffee Tour" />
+        <input type="hidden" name="from_name" value="Oslo Bike Tours Website" />
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required />
+            <span class="field-error" id="error-name"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            <span class="field-error" id="error-email"></span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="tour">Tour</label>
+            <select id="tour" name="tour" required>
+              <option value="">Select a tour…</option>
+              <option>Oslo City Highlights</option>
+              <option>Bygdøy Peninsula</option>
+              <option>Nordmarka Forest (Ring 4)</option>
+              <option>Epic Marka Endurance</option>
+              <option selected>Oslo Coffee Tour</option>
+              <option>Oslo Architecture Tour</option>
+            </select>
+            <span class="field-error" id="error-tour"></span>
+          </div>
+          <div class="form-group">
+            <label for="date">Preferred Date</label>
+            <input type="date" id="date" name="date" required />
+            <span class="field-error" id="error-date"></span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="riders">Number of Riders</label>
+            <input type="number" id="riders" name="riders" min="1" max="8" placeholder="1–8" required />
+            <span class="field-error" id="error-riders"></span>
+          </div>
+          <div class="form-group">
+            <label for="message">Message <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
+            <textarea id="message" name="message" rows="3" placeholder="Questions, special requests…"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full">Send Enquiry</button>
+      </form>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
