@@ -388,7 +388,7 @@
               <span class="tour-card__price">NOK 890 <em>/ person</em></span>
               <div class="tour-card__actions">
                 <button class="btn btn--outline btn--sm" data-modal="modal-city">Details</button>
-                <a href="#book" class="btn btn--sm">Book</a>
+                <a href="#book" class="btn btn--sm" data-tour="Oslo City Highlights">Book</a>
               </div>
             </div>
           </div>
@@ -424,7 +424,7 @@
               <span class="tour-card__price">NOK 1 050 <em>/ person</em></span>
               <div class="tour-card__actions">
                 <button class="btn btn--outline btn--sm" data-modal="modal-bygdoy">Details</button>
-                <a href="#book" class="btn btn--sm">Book</a>
+                <a href="#book" class="btn btn--sm" data-tour="Bygdøy Peninsula">Book</a>
               </div>
             </div>
           </div>
@@ -460,7 +460,7 @@
               <span class="tour-card__price">NOK 1 450 <em>/ person</em></span>
               <div class="tour-card__actions">
                 <button class="btn btn--outline btn--sm" data-modal="modal-nordmarka">Details</button>
-                <a href="#book" class="btn btn--sm">Book</a>
+                <a href="#book" class="btn btn--sm" data-tour="Nordmarka Forest (Ring 4)">Book</a>
               </div>
             </div>
           </div>
@@ -496,7 +496,7 @@
               <span class="tour-card__price">NOK 2 475 <em>/ person</em></span>
               <div class="tour-card__actions">
                 <button class="btn btn--outline btn--sm" data-modal="modal-epic">Details</button>
-                <a href="#book" class="btn btn--sm">Book</a>
+                <a href="#book" class="btn btn--sm" data-tour="Epic Marka Endurance">Book</a>
               </div>
             </div>
           </div>
@@ -532,7 +532,7 @@
               <span class="tour-card__price">NOK 1 190 <em>/ person</em></span>
               <div class="tour-card__actions">
                 <button class="btn btn--outline btn--sm" data-modal="modal-coffee">Details</button>
-                <a href="#book" class="btn btn--sm">Book</a>
+                <a href="#book" class="btn btn--sm" data-tour="Oslo Coffee Tour">Book</a>
               </div>
             </div>
           </div>
@@ -568,7 +568,7 @@
               <span class="tour-card__price">NOK 1 310 <em>/ person</em></span>
               <div class="tour-card__actions">
                 <button class="btn btn--outline btn--sm" data-modal="modal-architecture">Details</button>
-                <a href="#book" class="btn btn--sm">Book</a>
+                <a href="#book" class="btn btn--sm" data-tour="Oslo Architecture Tour">Book</a>
               </div>
             </div>
           </div>
@@ -1342,6 +1342,23 @@
         setConsent('denied');
       });
     })();
+  </script>
+
+  <script>
+    // Pre-select tour in booking form when clicking a card's Book button
+    document.querySelectorAll('a[data-tour]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        var tourName = this.getAttribute('data-tour');
+        var sel = document.getElementById('tour');
+        if (!sel) return;
+        for (var i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].text === tourName) {
+            sel.selectedIndex = i;
+            break;
+          }
+        }
+      });
+    });
   </script>
 </body>
 </html>
