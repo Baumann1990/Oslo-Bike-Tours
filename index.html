@@ -658,12 +658,14 @@
         <div class="book__info">
           <span class="tag">Reservations</span>
           <h2 class="section-title">Ready to ride?</h2>
-          <ul class="book__includes">
-            <li><strong>No payment now.</strong> Send an enquiry — we confirm availability within 24 hours.</li>
-            <li><strong>Fully private.</strong> Your guide picks you up at your hotel or Airbnb.</li>
-            <li><strong>Pay after confirmation.</strong> Payment is handled securely once we've confirmed your date.</li>
-            <li>Free cancellation up to 48 hours before the tour.</li>
-          </ul>
+          <p style="color:var(--text-muted);margin:.25rem 0 2rem;font-size:.95rem">Private tours for your group. We pick you up at your hotel or Airbnb.</p>
+          <p style="font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin:0 0 .9rem">How it works</p>
+          <ol style="margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:.85rem;font-size:.95rem;color:var(--text)">
+            <li>Send your preferred date and group size.</li>
+            <li>We reply within 24 hours with availability and your guide's details.</li>
+            <li>Pay securely via PayPal to confirm your spot.</li>
+          </ol>
+          <p style="margin:2rem 0 0;font-size:.85rem;color:var(--text-muted)">Free cancellation up to 48 hours before the tour.</p>
         </div>
         <div class="book__form-wrap">
           <form class="book__form" id="bookForm" novalidate>
@@ -749,7 +751,6 @@
               <textarea id="message" name="message" rows="3" placeholder="Special requests, questions…"></textarea>
             </div>
             <button type="submit" class="btn btn--primary btn--full">Send Enquiry</button>
-            <p class="form__note">No payment now — we'll reply within 24 hours to confirm your date.</p>
           </form>
 
           <div class="form__confirm" id="formConfirm" style="display:none">
