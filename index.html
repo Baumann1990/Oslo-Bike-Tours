@@ -133,6 +133,24 @@
         "offers": { "@type": "Offer", "price": "1310", "priceCurrency": "NOK" }
       },
       {
+        "@type": "TouristTrip",
+        "name": "Oslo Gravel Short",
+        "url": "https://www.oslobiketours.no/oslo-gravel-short/",
+        "image": "https://www.oslobiketours.no/images/IMG_4894.jpg",
+        "description": "A private guided 13 km gravel bike tour through the Nordmarka forest north of Oslo. Easy climbing, pine and birch woodland, two hours. Our shortest forest tour and the ideal introduction to the Marka.",
+        "touristType": "Cyclists",
+        "offers": { "@type": "Offer", "price": "890", "priceCurrency": "NOK" }
+      },
+      {
+        "@type": "TouristTrip",
+        "name": "Oslo Gravel Loop",
+        "url": "https://www.oslobiketours.no/oslo-gravel-loop/",
+        "image": "https://www.oslobiketours.no/images/IMG_4910.jpg",
+        "description": "A private guided 25 km gravel bike tour through the Nordmarka forest north of Oslo. Rolling terrain, real climbing, mixed birch and pine. Three hours in the forest — deeper than the Short tour without a full-day commitment.",
+        "touristType": "Cyclists",
+        "offers": { "@type": "Offer", "price": "1090", "priceCurrency": "NOK" }
+      },
+      {
         "@type": "FAQPage",
         "mainEntity": [
           {
@@ -319,7 +337,7 @@
           </ul>
           <div class="stats">
             <a href="#tours" class="stat" style="text-decoration:none;color:inherit">
-              <span class="stat__num">6</span>
+              <span class="stat__num">8</span>
               <span class="stat__label">Routes</span>
             </a>
             <a href="/hotel-pickup/" class="stat" style="text-decoration:none;color:inherit">
@@ -358,7 +376,63 @@
 
       <div class="tours__grid" id="toursGrid">
 
-        <!-- Tour 1 -->
+        <!-- Tour 1: Oslo Gravel Short -->
+        <article class="tour-card" data-surface="gravel" data-level="easy">
+          <div class="tour-card__img-wrap">
+            <a href="oslo-gravel-short" aria-label="Oslo Gravel Short — full tour page">
+              <img src="images/IMG_4894.jpg" alt="Rocky lakeside with birch forest in Oslo" class="tour-card__img" loading="lazy" />
+            </a>
+            <span class="tour-card__badge tour-card__badge--gravel">Gravel</span>
+            <span class="tour-card__badge tour-card__badge--new">New</span>
+          </div>
+          <div class="tour-card__body">
+            <div class="tour-card__meta">
+              <span class="difficulty difficulty--easy">Easy</span>
+              <span class="tour-card__duration"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" aria-hidden="true" style="vertical-align:-1px"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 2 hrs</span>
+              <span class="tour-card__dist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="17" height="17" aria-hidden="true" style="vertical-align:-2px"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17h5M11 17L9 9h8M9 9L6 17M17 9l1 8"/><path d="M7 8.5h4"/><path d="M17 9l1-2M16 7h4"/></svg> 13 km</span>
+            </div>
+            <h3 class="tour-card__title"><a href="oslo-gravel-short" class="tour-card__title-link">Oslo Gravel Short</a></h3>
+            <p class="tour-card__desc">Two hours in the forest north of Oslo. Thirteen kilometres of pine and birch on good gravel. A proper first taste of the Marka.</p>
+            <p style="font-size:.78rem;color:var(--text-muted);margin:.1rem 0 .6rem;display:flex;align-items:center;gap:.3rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" aria-hidden="true"><path d="M12 21c-4-4.5-7-7.8-7-11a7 7 0 0 1 14 0c0 3.2-3 6.5-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><a href="/hotel-pickup/" style="color:inherit;text-decoration:none">Pickup included</a></p>
+            <div class="tour-card__footer">
+              <span class="tour-card__price">NOK 890 <em>/ person</em></span>
+              <div class="tour-card__actions">
+                <button class="btn btn--outline btn--sm" data-modal="modal-oslo-gravel-short">Details</button>
+                <a href="#book" class="btn btn--sm" data-tour="Oslo Gravel Short">Book</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tour 2: Oslo Gravel Loop -->
+        <article class="tour-card" data-surface="gravel" data-level="medium">
+          <div class="tour-card__img-wrap">
+            <a href="oslo-gravel-loop" aria-label="Oslo Gravel Loop — full tour page">
+              <img src="images/IMG_4910.jpg" alt="Forest lake with red cabin in the Oslo wilderness" class="tour-card__img" loading="lazy" />
+            </a>
+            <span class="tour-card__badge tour-card__badge--gravel">Gravel</span>
+            <span class="tour-card__badge tour-card__badge--new">New</span>
+          </div>
+          <div class="tour-card__body">
+            <div class="tour-card__meta">
+              <span class="difficulty difficulty--medium">Medium</span>
+              <span class="tour-card__duration"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" aria-hidden="true" style="vertical-align:-1px"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 3 hrs</span>
+              <span class="tour-card__dist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="17" height="17" aria-hidden="true" style="vertical-align:-2px"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17h5M11 17L9 9h8M9 9L6 17M17 9l1 8"/><path d="M7 8.5h4"/><path d="M17 9l1-2M16 7h4"/></svg> 25 km</span>
+            </div>
+            <h3 class="tour-card__title"><a href="oslo-gravel-loop" class="tour-card__title-link">Oslo Gravel Loop</a></h3>
+            <p class="tour-card__desc">Three hours deeper into the Marka forest. Twenty-five kilometres of rolling gravel, real climbs and forest quiet.</p>
+            <p style="font-size:.78rem;color:var(--text-muted);margin:.1rem 0 .6rem;display:flex;align-items:center;gap:.3rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" aria-hidden="true"><path d="M12 21c-4-4.5-7-7.8-7-11a7 7 0 0 1 14 0c0 3.2-3 6.5-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><a href="/hotel-pickup/" style="color:inherit;text-decoration:none">Pickup included</a></p>
+            <div class="tour-card__footer">
+              <span class="tour-card__price">NOK 1 090 <em>/ person</em></span>
+              <div class="tour-card__actions">
+                <button class="btn btn--outline btn--sm" data-modal="modal-oslo-gravel-loop">Details</button>
+                <a href="#book" class="btn btn--sm" data-tour="Oslo Gravel Loop">Book</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tour 3 -->
         <article class="tour-card" data-surface="road" data-level="easy">
           <div class="tour-card__img-wrap">
             <a href="oslo-city-highlights" aria-label="Oslo City Highlights — full tour page">
@@ -514,7 +588,6 @@
               />
             </a>
             <span class="tour-card__badge tour-card__badge--road">Road</span>
-            <span class="tour-card__badge tour-card__badge--new">New</span>
           </div>
           <div class="tour-card__body">
             <div class="tour-card__meta">
@@ -550,7 +623,6 @@
               />
             </a>
             <span class="tour-card__badge tour-card__badge--road">Road</span>
-            <span class="tour-card__badge tour-card__badge--new">New</span>
           </div>
           <div class="tour-card__body">
             <div class="tour-card__meta">
@@ -573,6 +645,7 @@
             </div>
           </div>
         </article>
+
 
       </div><!-- /tours__grid -->
     </div>
@@ -691,6 +764,8 @@
                   <option value="">Select a tour…</option>
                   <option>Oslo City Highlights</option>
                   <option>Bygdøy Peninsula</option>
+                  <option>Oslo Gravel Short</option>
+                  <option>Oslo Gravel Loop</option>
                   <option>Nordmarka Forest (Ring 4)</option>
                   <option>Epic Marka Endurance</option>
                   <option>Oslo Coffee Tour</option>
@@ -896,8 +971,8 @@
           <div class="modal__stat"><span>👥</span> Max 8 riders</div>
         </div>
         <h2 id="modal-nordmarka-title">Nordmarka Forest (Ring 4)</h2>
-        <p>Ring 4 is one of Oslo's great cycling institutions — a classic loop through Nordmarka that local riders have been doing for generations. The name refers to the fourth ring of trails radiating out from the city, and it's the one that strikes the perfect balance between wild forest riding and manageable distance.</p>
-        <p>We ride out to Sognsvann lake, where the forest begins immediately. The route heads north through stands of pine and silver birch, following gravel forest roads that are smooth enough to roll at speed but varied enough to keep things interesting. Expect a couple of proper climbs — both well rewarded with long, flowing descents.</p>
+        <p>Ring 4 is one of Oslo's great cycling institutions — a classic loop through the Nordmarka forest that local riders have been doing for generations. The name refers to the fourth ring of trails radiating out from the city, and it's the one that strikes the perfect balance between wild forest riding and manageable distance.</p>
+        <p>Your guide takes you to the forest, where the trees close in immediately. The route heads north through stands of pine and silver birch, following gravel forest roads that are smooth enough to roll at speed but varied enough to keep things interesting. Expect a couple of proper climbs — both well rewarded with long, flowing descents.</p>
         <p>Halfway around you'll pass Kikutstua, a traditional Norwegian mountain cabin that serves waffles and coffee. We stop here for a well-earned break before looping back south through the Maridalen valley, one of the few agricultural landscapes left within Oslo's city limits, and finishing back at the lake.</p>
         <h3>Highlights</h3>
         <ul class="modal__list">
@@ -905,13 +980,13 @@
           <li>Classic Ring 4 loop — a local riding institution</li>
           <li>Waffle and coffee stop at Kikutstua cabin</li>
           <li>Maridalen valley — Oslo's rural heartland</li>
-          <li>Sognsvann lake — gateway to the forest</li>
+          <li>Forest immersion from the first kilometre</li>
         </ul>
         <h3>Good to know</h3>
         <ul class="modal__list">
           <li>~800 m of total elevation gain — suitable for recreational riders</li>
           <li>Gravel forest roads throughout — no technical singletrack</li>
-          <li>Guide picks you up at your hotel and drops you back after the ride</li>
+          <li>Guide picks you up at your hotel. Drop-off point agreed with your guide.</li>
           <li>Optional café stop along the route; bring extra layers</li>
           <li>Gravel bike rentals available on request</li>
         </ul>
@@ -951,7 +1026,7 @@
         </div>
         <h2 id="modal-epic-title">Epic Marka Endurance</h2>
         <p>This is Nordmarka as few visitors — and even many Osloites — ever get to see it. A full-day push into the deep forest, far beyond the day-tripper trails, through a landscape of remote lakes and ancient logging roads that haven't changed in a century.</p>
-        <p>The route heads north from Sognsvann into sustained climbing through the trees, then threads between lakes — Store Sandungen, Fyllingen, Hakkloa — on gravel roads that shift between fast and open and slow and rocky. Somewhere in the middle of it all, you stop — the exact spot decided by you and your guide on the day. The return takes a different line home: more climbing, more rocky stretches, more forest. By the end your legs will know about it. So will your face — from smiling.</p>
+        <p>The route heads north into sustained climbing through the trees, then threads between lakes — Store Sandungen, Fyllingen, Hakkloa — on gravel roads that shift between fast and open and slow and rocky. Somewhere in the middle of it all, you stop — the exact spot decided by you and your guide on the day. The return takes a different line home: more climbing, more rocky stretches, more forest. By the end your legs will know about it. So will your face — from smiling.</p>
         <h3>Highlights</h3>
         <ul class="modal__list">
           <li>Long, sustained climbs deep into the Nordmarka forest</li>
@@ -1082,6 +1157,103 @@
     </div>
   </div>
 
+  <!-- Modal: Oslo Gravel Short -->
+  <div class="modal" id="modal-oslo-gravel-short" role="dialog" aria-modal="true" aria-labelledby="modal-oslo-gravel-short-title" hidden>
+    <div class="modal__backdrop"></div>
+    <div class="modal__panel">
+      <button class="modal__close" aria-label="Close">&times;</button>
+      <div class="modal__hero modal__hero--slideshow">
+        <img src="images/IMG_4894.jpg" alt="Rocky lakeside with birch forest in Oslo" />
+        <img src="images/IMG_6630.jpg" alt="Forest lake and gravel road in Nordmarka" />
+        <img src="images/IMG_5843.jpg" alt="Cyclists on a gravel trail in Nordmarka forest" />
+        <div class="modal__hero-badges">
+          <span class="tour-card__badge tour-card__badge--gravel">Gravel</span>
+          <span class="difficulty difficulty--easy">Easy</span>
+        </div>
+      </div>
+      <div class="modal__body">
+        <div class="modal__stats">
+          <div class="modal__stat"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" aria-hidden="true" style="vertical-align:-1px"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span> 2 hours</div>
+          <div class="modal__stat"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="17" height="17" aria-hidden="true" style="vertical-align:-2px"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17h5M11 17L9 9h8M9 9L6 17M17 9l1 8"/><path d="M7 8.5h4"/><path d="M17 9l1-2M16 7h4"/></svg></span> 13 km</div>
+          <div class="modal__stat"><span>📍</span> Pickup from your hotel</div>
+          <div class="modal__stat"><span>👥</span> Max 8 riders</div>
+        </div>
+        <h2 id="modal-oslo-gravel-short-title">Oslo Gravel Short</h2>
+        <p>Two hours in the Oslo forest. Your guide picks you up at your hotel. Fifteen minutes later, the city is behind you and the trees are already closing in. Thirteen kilometres of pine and birch on good gravel — enough climbing to feel genuinely in the forest, nothing that asks for a high fitness level. Quiet. Unhurried. A proper first taste.</p>
+        <h3>Highlights</h3>
+        <ul class="modal__list">
+          <li>Pine and birch forest from the first kilometre</li>
+          <li>Easy gravel — no technical sections</li>
+          <li>Good fit for families and first-time forest riders</li>
+          <li>Optional stop at a forest café</li>
+        </ul>
+        <h3>Good to know</h3>
+        <ul class="modal__list">
+          <li>Guide picks you up at your hotel. Drop-off point agreed with your guide.</li>
+          <li>Good gravel throughout — no exposed roots or technical trail sections</li>
+          <li>Gravel bike and e-bike rentals available on request</li>
+          <li>Suitable for riders comfortable on light gravel</li>
+        </ul>
+        <div class="modal__gallery">
+          <img src="images/IMG_4894.jpg" alt="Rocky lakeside with birch forest in Oslo" loading="lazy" />
+          <img src="images/IMG_6630.jpg" alt="Forest lake and gravel road in Nordmarka" loading="lazy" />
+        </div>
+        <div class="modal__footer">
+          <span class="modal__price">NOK 890 <em>/ person</em></span>
+          <a href="#book" class="btn btn--primary modal__book" data-tour="Oslo Gravel Short">Book this tour</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Oslo Gravel Loop -->
+  <div class="modal" id="modal-oslo-gravel-loop" role="dialog" aria-modal="true" aria-labelledby="modal-oslo-gravel-loop-title" hidden>
+    <div class="modal__backdrop"></div>
+    <div class="modal__panel">
+      <button class="modal__close" aria-label="Close">&times;</button>
+      <div class="modal__hero modal__hero--slideshow">
+        <img src="images/IMG_4910.jpg" alt="Forest lake with red cabin in the Oslo wilderness" />
+        <img src="images/IMG_6647.jpg" alt="Gravel bike by a forest lake with wooden cabin" />
+        <img src="images/IMG_5843.jpg" alt="Cyclists on a gravel trail in Nordmarka forest" />
+        <div class="modal__hero-badges">
+          <span class="tour-card__badge tour-card__badge--gravel">Gravel</span>
+          <span class="difficulty difficulty--medium">Medium</span>
+        </div>
+      </div>
+      <div class="modal__body">
+        <div class="modal__stats">
+          <div class="modal__stat"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" aria-hidden="true" style="vertical-align:-1px"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span> 3 hours</div>
+          <div class="modal__stat"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="17" height="17" aria-hidden="true" style="vertical-align:-2px"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17h5M11 17L9 9h8M9 9L6 17M17 9l1 8"/><path d="M7 8.5h4"/><path d="M17 9l1-2M16 7h4"/></svg></span> 25 km</div>
+          <div class="modal__stat"><span>📍</span> Pickup from your hotel</div>
+          <div class="modal__stat"><span>👥</span> Max 8 riders</div>
+        </div>
+        <h2 id="modal-oslo-gravel-loop-title">Oslo Gravel Loop</h2>
+        <p>Three hours in the Oslo forest. Your guide picks you up at your hotel. Fifteen minutes later, the city is behind you and the forest begins. Twenty-five kilometres of rolling gravel — through birch and into denser pine, across ridges, through terrain that shifts between fast and open and slower and enclosed. Real climbs. Mixed woodland. Enough distance to feel like you have actually explored something.</p>
+        <h3>Highlights</h3>
+        <ul class="modal__list">
+          <li>Deep pine and birch forest — quieter than the Short route</li>
+          <li>Rolling terrain with real climbs and long descents</li>
+          <li>Forest lakes visible from the ridge</li>
+          <li>Varied gravel — fast open sections, slower enclosed stretches</li>
+        </ul>
+        <h3>Good to know</h3>
+        <ul class="modal__list">
+          <li>Guide picks you up at your hotel. Drop-off point agreed with your guide.</li>
+          <li>Gravel throughout — rougher in sections, still well-maintained</li>
+          <li>Gravel bike and e-bike rentals available on request</li>
+        </ul>
+        <div class="modal__gallery">
+          <img src="images/IMG_4910.jpg" alt="Forest lake with red cabin in the Oslo wilderness" loading="lazy" />
+          <img src="images/IMG_6647.jpg" alt="Gravel bike by a forest lake with wooden cabin" loading="lazy" />
+        </div>
+        <div class="modal__footer">
+          <span class="modal__price">NOK 1 090 <em>/ person</em></span>
+          <a href="#book" class="btn btn--primary modal__book" data-tour="Oslo Gravel Loop">Book this tour</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ─── FAQ ──────────────────────────────────────────────────── -->
   <section class="faq section" id="faq">
     <div class="container">
@@ -1103,7 +1275,7 @@
 
         <details class="faq__item">
           <summary class="faq__question">Are there gravel bike tours near Oslo?</summary>
-          <p class="faq__answer">Yes. We offer two gravel routes: Nordmarka Forest Ring 4, a 45 km loop through pine and birch forest north of the city, and Epic Marka Endurance, a full-day 85 km ride deep into the Nordmarka wilderness.</p>
+          <p class="faq__answer">Yes. We offer four gravel tours: Oslo Gravel Short (13 km, 2 hrs), Oslo Gravel Loop (25 km, 3 hrs), Nordmarka Forest (45 km, 4 hrs) and Epic Marka Endurance — a full-day 85 km ride deep into the Nordmarka wilderness.</p>
         </details>
 
         <details class="faq__item">
