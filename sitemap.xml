@@ -61,6 +61,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.oslobiketours.no/private-bike-tours-oslo/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.oslobiketours.no/gravel-bike-tours-oslo/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.oslobiketours.no/hotel-pickup/</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>monthly</changefreq>
@@ -74,6 +86,24 @@
   </url>
   <url>
     <loc>https://www.oslobiketours.no/blog/nordmarka-forest-oslo/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.oslobiketours.no/blog/best-way-to-see-oslo-in-one-day/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.oslobiketours.no/blog/what-to-do-in-oslo-before-after-cruise/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.oslobiketours.no/blog/oslo-by-bike-best-routes/</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
