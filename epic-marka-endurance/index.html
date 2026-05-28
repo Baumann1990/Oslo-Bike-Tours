@@ -170,6 +170,8 @@
   <link rel="apple-touch-icon" href="../images/Faviconupdate.png" />
   <link rel="preload" as="image" href="../images/IMG_5813.jpg" fetchpriority="high" />
   <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
 </head>
 <body>
 
@@ -209,7 +211,7 @@
           <span class="tour-card__badge" style="background:rgba(180,30,30,.75);color:#fff;border:1px solid rgba(255,100,100,.35)">Advanced riders only</span>
         </div>
         <h1 class="tour-hero__title">Epic Marka Endurance</h1>
-        <p style="font-size:.8rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.75);margin:.5rem 0 0">Full-Day Gravel Ride · 85 km · 1,500 m elevation</p>
+        <p class="tour-hero__subtitle">Full-Day Gravel Ride · 85 km · 1,500 m elevation</p>
       </div>
     </div>
   </section>
@@ -235,16 +237,6 @@
             <li>A full day away from the city — completely unplugged</li>
           </ul>
 
-          <h3>Good to know</h3>
-          <ul class="modal__list">
-            <li><strong>Advanced riders only</strong> — 85 km and ~1,500 m of elevation is a serious day out. Everyone in the group should be comfortable riding for 6+ hours on rough terrain.</li>
-            <li>Mix of hardpack gravel, loose stone and rougher forest tracks</li>
-            <li>Mid-ride break taken at a spot agreed on the day</li>
-            <li>Maximum 8 riders</li>
-            <li>Bring waterproofs — weather changes quickly in Marka</li>
-            <li>A gravel bike is required — rentals from NOK 349. E-bike not available on this route (insufficient range for 85 km remote terrain).</li>
-          </ul>
-
           <div style="margin:1.5rem 0;padding:1rem 1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;font-size:.9rem;color:var(--text)">
             <strong>Not the right fit?</strong> If you want Nordmarka on an e-bike, the <a href="/nordmarka-forest/" style="color:var(--accent)">Nordmarka Forest Ring 4</a> (45 km, e-bike available) is our next-level gravel tour. For a gentler day, the <a href="/bygdoy-peninsula/" style="color:var(--accent)">Bygdøy Peninsula</a> tour suits all abilities and e-bikes are welcome.
           </div>
@@ -256,16 +248,20 @@
           </div>
 
           <h3>The route</h3>
-          <div style="margin:.75rem 0 .5rem;border-radius:12px;overflow:hidden;border:1px solid var(--border)">
-            <iframe
-              src="https://www.openstreetmap.org/export/embed.html?bbox=10.50%2C59.88%2C10.83%2C60.28&layer=mapnik"
-              width="100%" height="360" style="border:0;display:block"
-              allowfullscreen="" loading="lazy"
-              title="Epic Marka Endurance route map — Nordmarka forest">
-            </iframe>
-          </div>
+          <div id="map-epic" style="height:360px;border-radius:12px;border:1px solid var(--border);margin:.75rem 0 .5rem"></div>
+          <script>
+          (function(){
+            var m = L.map('map-epic', {scrollWheelZoom:false}).setView([60.06,10.62],10);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+              attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+              maxZoom:18
+            }).addTo(m);
+            L.polyline([[59.982,10.674],[59.995,10.652],[60.01,10.637],[60.025,10.612],[60.042,10.597],[60.06,10.583],[60.078,10.571],[60.095,10.562],[60.112,10.568],[60.13,10.578],[60.148,10.605],[60.155,10.635],[60.148,10.655],[60.13,10.662],[60.108,10.66],[60.085,10.66],[60.06,10.663],[60.035,10.668],[60.01,10.672],[59.99,10.675],[59.982,10.674]],{color:'#2d6a4f',weight:5,opacity:.85}).addTo(m);
+          })();
+          </script>
           <p style="font-size:.85rem;color:var(--text-muted);margin:0 0 1.75rem">North from Oslo into Nordmarka — past Fyllingen, Hakkloa and Sandungen lakes, returning by a different line. Exact path adjusted by guide on the day based on conditions.</p>
 
+          <hr class="tour-section-divider" />
           <h3>Who this tour is for</h3>
           <ul class="modal__list">
             <li>Strong, experienced cyclists looking for a genuine challenge</li>
@@ -273,19 +269,8 @@
             <li>Anyone wanting a full-day wilderness ride in Norway</li>
             <li>Those who have already ridden the Ring 4 and want more</li>
           </ul>
+          <p class="tour-body__note">Your guide meets you outside your hotel or apartment at the agreed time. No meeting points to find, no transport to organise. The tour normally ends back at your starting point, or another central location by agreement.</p>
 
-          <h3>What's included</h3>
-          <ul class="modal__list">
-            <li>Private local guide</li>
-            <li>Pickup at your hotel, Airbnb or apartment</li>
-            <li>Helmet</li>
-            <li>Route planning and live commentary</li>
-            <li>Café stops available on all tours</li>
-          </ul>
-          <p style="margin:.75rem 0 0;font-size:.9rem;color:var(--text-muted)"><strong>Gravel bike rental:</strong> from NOK 349. E-bike not available on this route — the remote terrain and 85 km distance exceeds current e-bike range.</p>
-
-          <h3>How it works</h3>
-          <p>Your guide meets you outside your hotel or apartment at the agreed time. No meeting points to find, no transport to organise. The tour normally ends back at your starting point, or another central location by agreement.</p>
         </div>
 
         <!-- Sidebar -->
@@ -301,6 +286,26 @@
             <p class="tour-page__price-note">Private tour — no strangers in your group</p>
             <a href="#book" class="btn btn--primary btn--full">Book Epic Marka Endurance</a>
           </div>
+          <div class="tour-page__includes-card">
+            <h4>Good to know</h4>
+                      <ul class="modal__list">
+                        <li><strong>Advanced riders only</strong> — 85 km and ~1,500 m of elevation is a serious day out. Everyone in the group should be comfortable riding for 6+ hours on rough terrain.</li>
+                        <li>Mix of hardpack gravel, loose stone and rougher forest tracks</li>
+                        <li>Mid-ride break taken at a spot agreed on the day</li>
+                        <li>Maximum 8 riders</li>
+                        <li>Bring waterproofs — weather changes quickly in Marka</li>
+                        <li>A gravel bike is required — rentals from NOK 349. E-bike not available on this route (insufficient range for 85 km remote terrain).</li>
+                      </ul>
+            <h4>What's included</h4>
+                      <ul class="modal__list">
+                        <li>Private local guide</li>
+                        <li>Pickup at your hotel, Airbnb or apartment</li>
+                        <li>Helmet</li>
+                        <li>Route planning and live commentary</li>
+                        <li>Café stops available on all tours</li>
+                      </ul>
+                      <p style="margin:.75rem 0 0;font-size:.9rem;color:var(--text-muted)"><strong>Gravel bike rental:</strong> from NOK 349. E-bike not available on this route — the remote terrain and 85 km distance exceeds current e-bike range.</p>
+          </div>
         </aside>
 
       </div>
@@ -309,18 +314,71 @@
 
 
   <!-- ─── Why us ──────────────────────────────────────────────── -->
-  <section class="section" style="padding-top:0">
+  <section class="tour-why">
     <div class="container">
-      <div style="max-width:740px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem 1.75rem">
-        <h3 style="margin:0 0 1rem;font-size:1.05rem">Why Oslo Bike Tours</h3>
-        <ul class="modal__list" style="margin:0;columns:2;column-gap:2rem">
-          <li>Private tours only — no strangers in your group</li>
-          <li>Guide picks you up at your hotel, Airbnb or apartment</li>
-          <li>Local guides who ride these routes every week</li>
-          <li>Gravel bikes and e-bikes from NOK 349</li>
-          <li>Your pace, your stops — the route adjusts to you</li>
-          <li>More of Oslo, less planning</li>
-        </ul>
+      <p class="tour-why__eyebrow">Why Oslo Bike Tours</p>
+      <div class="tour-why__grid">
+
+        <div class="tour-why__item">
+          <span class="tour-why__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          <div class="tour-why__text">
+            <strong>Private tours only</strong>
+            <span>No strangers in your group — ever</span>
+          </div>
+        </div>
+
+        <div class="tour-why__item">
+          <span class="tour-why__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M12 21c-4-4.5-7-7.8-7-11a7 7 0 0 1 14 0c0 3.2-3 6.5-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          </span>
+          <div class="tour-why__text">
+            <strong>Guide picks you up</strong>
+            <span>At your hotel, Airbnb or apartment</span>
+          </div>
+        </div>
+
+        <div class="tour-why__item">
+          <span class="tour-why__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+          <div class="tour-why__text">
+            <strong>Local guides</strong>
+            <span>Riding these routes every week</span>
+          </div>
+        </div>
+
+        <div class="tour-why__item">
+          <span class="tour-why__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17h5M11 17L9 9h8M9 9L6 17M17 9l1 8"/><path d="M7 8.5h4"/><path d="M17 9l1-2M16 7h4"/></svg>
+          </span>
+          <div class="tour-why__text">
+            <strong>Bikes from NOK 349</strong>
+            <span>Gravel bikes and e-bikes available</span>
+          </div>
+        </div>
+
+        <div class="tour-why__item">
+          <span class="tour-why__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </span>
+          <div class="tour-why__text">
+            <strong>Your pace, your stops</strong>
+            <span>The route adjusts to you</span>
+          </div>
+        </div>
+
+        <div class="tour-why__item">
+          <span class="tour-why__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+          </span>
+          <div class="tour-why__text">
+            <strong>More of Oslo</strong>
+            <span>Less planning</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>

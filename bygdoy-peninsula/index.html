@@ -170,6 +170,8 @@
   <link rel="apple-touch-icon" href="../images/Faviconupdate.png" />
   <link rel="preload" as="image" href="../images/IMG_7981.jpg" fetchpriority="high" />
   <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
 </head>
 <body>
 
@@ -208,6 +210,7 @@
           <span class="difficulty difficulty--medium">Medium</span>
         </div>
         <h1 class="tour-hero__title">Bygdøy Peninsula Bike Tour</h1>
+        <p class="tour-hero__subtitle">Fjord views and Viking history — Oslo's quietest peninsula by bike</p>
       </div>
     </div>
   </section>
@@ -232,21 +235,27 @@
             <li>Dronningberget viewpoint over the fjord</li>
           </ul>
 
-          <h3>Good to know</h3>
-          <ul class="modal__list">
-            <li>One moderate climb onto the peninsula — otherwise flat</li>
-            <li>Mix of cycle paths and quiet tarmac roads</li>
-            <li>Optional café stop with fjord view along the route</li>
-            <li>Museum stops available — mention it in your enquiry and we'll tailor the ride</li>
-            <li>Suitable for all riders</li>
-          </ul>
-
           <div class="tour-page__gallery">
             <img src="../images/lawrence-krowdeed-zXcYUETehx4-unsplash.jpg" alt="White boathouse on a small island in the Oslofjord" loading="lazy" />
             <img src="../images/lawrence-krowdeed-QhgueME61_M-unsplash.jpg" alt="Rocky Bygdøy shoreline with the Oslofjord beyond" loading="lazy" />
             <img src="../images/delia-giandeini--yz2HFg6WYo-unsplash.jpg" alt="Couple by the Bygdøy fjord in summer" loading="lazy" />
           </div>
 
+          <h3>The route</h3>
+          <div id="map-bygdoy" style="height:360px;border-radius:12px;border:1px solid var(--border);margin:.75rem 0 .5rem"></div>
+          <script>
+          (function(){
+            var m = L.map('map-bygdoy', {scrollWheelZoom:false}).setView([59.905,10.698],13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+              attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+              maxZoom:18
+            }).addTo(m);
+            L.polyline([[59.91,10.727],[59.908,10.72],[59.906,10.711],[59.904,10.703],[59.901,10.695],[59.899,10.69],[59.903,10.682],[59.898,10.675],[59.9,10.669],[59.904,10.67],[59.908,10.678],[59.912,10.685],[59.91,10.7],[59.91,10.715],[59.91,10.727]],{color:'#2d6a4f',weight:5,opacity:.85}).addTo(m);
+          })();
+          </script>
+          <p style="font-size:.85rem;color:var(--text-muted);margin:0 0 1.75rem">From Aker Brygge along the fjord to the museum peninsula — past Dronningen, Huk beach and the open-air Folk Museum, looping back via Frognerstranda.</p>
+
+          <hr class="tour-section-divider" />
           <h3>Who this tour is for</h3>
           <ul class="modal__list">
             <li>Visitors interested in Norwegian history and fjord scenery</li>
@@ -254,19 +263,8 @@
             <li>Museum-goers who want context and a local guide</li>
             <li>Couples or small groups wanting a relaxed half-day on the water</li>
           </ul>
+          <p class="tour-body__note">Your guide meets you outside your hotel or apartment at the agreed time. No meeting points to find, no transport to organise. The tour normally ends back at your starting point, or another central location by agreement.</p>
 
-          <h3>What's included</h3>
-          <ul class="modal__list">
-            <li>Private local guide</li>
-            <li>Pickup at your hotel, Airbnb or apartment</li>
-            <li>Helmet</li>
-            <li>Route planning and live commentary</li>
-            <li>Café stops available on all tours</li>
-          </ul>
-          <p style="margin:.75rem 0 0;font-size:.9rem;color:var(--text-muted)"><strong>Available on request:</strong> gravel bike or e-bike from NOK 349, custom route adjustments.</p>
-
-          <h3>How it works</h3>
-          <p>Your guide meets you outside your hotel or apartment at the agreed time. No meeting points to find, no transport to organise. The tour normally ends back at your starting point, or another central location by agreement.</p>
         </div>
 
         <!-- Sidebar -->
@@ -282,6 +280,25 @@
             <p class="tour-page__price-note">Private tour — no strangers in your group</p>
             <a href="#book" class="btn btn--primary btn--full">Book Bygdøy Peninsula</a>
           </div>
+          <div class="tour-page__includes-card">
+            <h4>Good to know</h4>
+                      <ul class="modal__list">
+                        <li>One moderate climb onto the peninsula — otherwise flat</li>
+                        <li>Mix of cycle paths and quiet tarmac roads</li>
+                        <li>Optional café stop with fjord view along the route</li>
+                        <li>Museum stops available — mention it in your enquiry and we'll tailor the ride</li>
+                        <li>Suitable for all riders</li>
+                      </ul>
+            <h4>What's included</h4>
+                      <ul class="modal__list">
+                        <li>Private local guide</li>
+                        <li>Pickup at your hotel, Airbnb or apartment</li>
+                        <li>Helmet</li>
+                        <li>Route planning and live commentary</li>
+                        <li>Café stops available on all tours</li>
+                      </ul>
+                      <p style="margin:.75rem 0 0;font-size:.9rem;color:var(--text-muted)"><strong>Available on request:</strong> gravel bike or e-bike from NOK 349, custom route adjustments.</p>
+          </div>
         </aside>
 
       </div>
@@ -290,18 +307,71 @@
 
 
   <!-- ─── Why us ──────────────────────────────────────────────── -->
-  <section class="section" style="padding-top:0">
+  <section class="tour-why">
     <div class="container">
-      <div style="max-width:740px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem 1.75rem">
-        <h3 style="margin:0 0 1rem;font-size:1.05rem">Why Oslo Bike Tours</h3>
-        <ul class="modal__list" style="margin:0;columns:2;column-gap:2rem">
-          <li>Private tours only — no strangers in your group</li>
-          <li>Guide picks you up at your hotel, Airbnb or apartment</li>
-          <li>Local guides who ride these routes every week</li>
-          <li>Gravel bikes and e-bikes from NOK 349</li>
-          <li>Your pace, your stops — the route adjusts to you</li>
-          <li>More of Oslo, less planning</li>
-        </ul>
+      <p class="tour-why__eyebrow">Why Oslo Bike Tours</p>
+      <div class="tour-why__grid">
+
+        <div class="tour-why__item">
+          <span class="tour-why__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          <div class="tour-why__text">
+            <strong>Private tours only</strong>
+            <span>No strangers in your group — ever</span>
+          </div>
+        </div>
+
+        <div class="tour-why__item">
+          <span class="tour-why__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M12 21c-4-4.5-7-7.8-7-11a7 7 0 0 1 14 0c0 3.2-3 6.5-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          </span>
+          <div class="tour-why__text">
+            <strong>Guide picks you up</strong>
+            <span>At your hotel, Airbnb or apartment</span>
+          </div>
+        </div>
+
+        <div class="tour-why__item">
+          <span class="tour-why__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+          <div class="tour-why__text">
+            <strong>Local guides</strong>
+            <span>Riding these routes every week</span>
+          </div>
+        </div>
+
+        <div class="tour-why__item">
+          <span class="tour-why__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17h5M11 17L9 9h8M9 9L6 17M17 9l1 8"/><path d="M7 8.5h4"/><path d="M17 9l1-2M16 7h4"/></svg>
+          </span>
+          <div class="tour-why__text">
+            <strong>Bikes from NOK 349</strong>
+            <span>Gravel bikes and e-bikes available</span>
+          </div>
+        </div>
+
+        <div class="tour-why__item">
+          <span class="tour-why__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </span>
+          <div class="tour-why__text">
+            <strong>Your pace, your stops</strong>
+            <span>The route adjusts to you</span>
+          </div>
+        </div>
+
+        <div class="tour-why__item">
+          <span class="tour-why__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+          </span>
+          <div class="tour-why__text">
+            <strong>More of Oslo</strong>
+            <span>Less planning</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
