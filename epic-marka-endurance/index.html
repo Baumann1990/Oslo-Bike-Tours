@@ -251,12 +251,22 @@
           <div id="map-epic" style="height:360px;border-radius:12px;border:1px solid var(--border);margin:.75rem 0 .5rem"></div>
           <script>
           (function(){
-            var m = L.map('map-epic', {scrollWheelZoom:false}).setView([60.06,10.62],10);
+            var m = L.map('map-epic', {scrollWheelZoom:false}).setView([60.058,10.618],9);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
               attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
               maxZoom:18
             }).addTo(m);
-            L.polyline([[59.982,10.674],[59.995,10.652],[60.01,10.637],[60.025,10.612],[60.042,10.597],[60.06,10.583],[60.078,10.571],[60.095,10.562],[60.112,10.568],[60.13,10.578],[60.148,10.605],[60.155,10.635],[60.148,10.655],[60.13,10.662],[60.108,10.66],[60.085,10.66],[60.06,10.663],[60.035,10.668],[60.01,10.672],[59.99,10.675],[59.982,10.674]],{color:'#2d6a4f',weight:5,opacity:.85}).addTo(m);
+            L.polyline([
+              [59.983,10.674],[59.991,10.658],[60.000,10.643],
+              [60.006,10.631],[60.011,10.613],[60.016,10.583],
+              [60.024,10.570],[60.035,10.561],[60.048,10.558],
+              [60.062,10.562],[60.073,10.574],[60.085,10.567],
+              [60.098,10.558],[60.112,10.553],[60.122,10.557],
+              [60.128,10.578],[60.120,10.603],[60.108,10.625],
+              [60.095,10.640],[60.080,10.648],[60.065,10.654],
+              [60.050,10.658],[60.035,10.660],[60.020,10.661],
+              [60.008,10.662],[59.993,10.666],[59.983,10.674]
+            ],{color:'#2d6a4f',weight:4,opacity:.85}).addTo(m);
           })();
           </script>
           <p style="font-size:.85rem;color:var(--text-muted);margin:0 0 1.75rem">North from Oslo into Nordmarka — past Fyllingen, Hakkloa and Sandungen lakes, returning by a different line. Exact path adjusted by guide on the day based on conditions.</p>
