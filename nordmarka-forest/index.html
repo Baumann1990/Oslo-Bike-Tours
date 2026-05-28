@@ -245,12 +245,20 @@
           <div id="map-nordmarka" style="height:360px;border-radius:12px;border:1px solid var(--border);margin:.75rem 0 .5rem"></div>
           <script>
           (function(){
-            var m = L.map('map-nordmarka', {scrollWheelZoom:false}).setView([59.978,10.650],12);
+            var m = L.map('map-nordmarka', {scrollWheelZoom:false}).setView([59.975,10.653],11);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
               attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
               maxZoom:18
             }).addTo(m);
-            L.polyline([[59.983,10.726],[59.988,10.710],[59.993,10.693],[59.997,10.675],[60.001,10.657],[60.005,10.640],[60.007,10.633],[60.005,10.620],[59.999,10.607],[59.989,10.597],[59.977,10.590],[59.964,10.588],[59.956,10.598],[59.950,10.622],[59.948,10.650],[59.948,10.672]],{color:'#2d6a4f',weight:5,opacity:.85}).addTo(m);
+            L.polyline([
+              [59.984,10.718],
+              [59.988,10.705],[59.993,10.688],[59.997,10.670],
+              [60.001,10.653],[60.005,10.638],[60.007,10.630],
+              [60.004,10.613],[59.997,10.600],
+              [59.985,10.595],[59.972,10.592],[59.960,10.590],
+              [59.951,10.590],[59.948,10.608],
+              [59.947,10.635],[59.948,10.658],[59.948,10.672]
+            ],{color:'#2d6a4f',weight:5,opacity:.85}).addTo(m);
           })();
           </script>
           <p style="font-size:.85rem;color:var(--text-muted);margin:0 0 1.75rem">Sognsvann → Kikutstua → Sørkedalen → Røa. Climbs from the lake into Nordmarka, waffle stop at Kikutstua cabin, then descends through the valley and back to the city.</p>
