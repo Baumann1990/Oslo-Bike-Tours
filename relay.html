@@ -1,0 +1,35 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>OBT image relay</title>
+<body style="font-family:system-ui;padding:24px"><pre id="out">starting…</pre></body>
+<script>
+const out = document.getElementById('out');
+function log(msg) { out.innerText += '\n' + msg; }
+window.__obt_relay_done = null;
+(async () => {
+  try {
+    const raw = window.name || '';
+    if (!raw.startsWith('OBT_RELAY|')) {
+      log('no payload in window.name (got ' + raw.length + ' chars, prefix=' + raw.substring(0,20) + ')');
+      window.__obt_relay_done = JSON.stringify({ ok: false, error: 'no payload' });
+      return;
+    }
+    const idx1 = raw.indexOf('|', 10);
+    const filename = raw.substring(10, idx1);
+    const b64 = raw.substring(idx1 + 1);
+    window.name = ''; // clear immediately so it can't be read by other pages
+    log('filename=' + filename + ' b64.length=' + b64.length);
+    const r = await fetch('http://localhost:3456/upload', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ filename: filename, b64: b64 })
+    });
+    const j = await r.json();
+    log('upload response: ' + JSON.stringify(j));
+    window.__obt_relay_done = JSON.stringify(j);
+  } catch(err) {
+    log('error: ' + err.message);
+    window.__obt_relay_done = JSON.stringify({ ok: false, error: err.message });
+  }
+})();
+</script>

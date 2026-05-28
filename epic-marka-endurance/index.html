@@ -37,7 +37,7 @@
   <!-- Open Graph -->
   <meta property="og:type"        content="website" />
   <meta property="og:site_name"   content="Oslo Bike Tours" />
-  <meta property="og:url"         content="https://www.oslobiketours.no/epic-marka-endurance" />
+  <meta property="og:url"         content="https://www.oslobiketours.no/epic-marka-endurance/" />
   <meta property="og:title"       content="Epic Marka Endurance | Full-Day Gravel Tour in Nordmarka" />
   <meta property="og:description" content="A private guided 85 km full-day gravel tour deep into the Nordmarka wilderness. Remote lakes, long sustained climbs, rocky forest roads. Challenging, from NOK 2 475." />
   <meta property="og:image"       content="https://www.oslobiketours.no/images/IMG_5813.jpg" />
@@ -48,7 +48,7 @@
     {
       "@type": "Service",
       "name": "Epic Marka Endurance Bike Tour",
-      "description": "A private guided 85 km full-day gravel tour into the deep Nordmarka wilderness. Long sustained climbs, rocky forest roads, lakes Hakkloa and Sandungen, ancient logging roads. About 1,500 m of elevation gain. Good fitness recommended. Maximum 8 riders.",
+      "description": "A private guided 85 km full-day gravel tour into the deep Nordmarka wilderness. Long sustained climbs, rocky forest roads, lakes Hakkloa and Sandungen, ancient logging roads. About 1,500 m of elevation gain. Advanced riders only — not available on e-bike. Maximum 8 riders.",
       "url": "https://www.oslobiketours.no/epic-marka-endurance/",
       "image": "https://www.oslobiketours.no/images/IMG_5813.jpg",
       "provider": {
@@ -72,10 +72,10 @@
     {
       "@type": "TouristTrip",
       "name": "Epic Marka Endurance Bike Tour",
-      "description": "A private guided 85 km full-day gravel tour into the deep Nordmarka wilderness. Long sustained climbs, rocky forest roads, lakes Hakkloa and Sandungen, ancient logging roads. About 1,500 m of elevation gain. Good fitness recommended. Maximum 8 riders.",
-      "url": "https://www.oslobiketours.no/epic-marka-endurance",
+      "description": "A private guided 85 km full-day gravel tour into the deep Nordmarka wilderness. Long sustained climbs, rocky forest roads, lakes Hakkloa and Sandungen, ancient logging roads. About 1,500 m of elevation gain. Advanced riders only — not available on e-bike. Maximum 8 riders.",
+      "url": "https://www.oslobiketours.no/epic-marka-endurance/",
       "image": "https://www.oslobiketours.no/images/IMG_5813.jpg",
-      "touristType": "Cyclists",
+      "touristType": ["Cyclists", "Advanced riders", "Endurance cyclists"],
       "availableLanguage": "English",
       "provider": {
         "@type": "LocalBusiness",
@@ -149,7 +149,7 @@
           "name": "Is the Epic Marka Endurance tour available on an e-bike?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. The route is mostly well-maintained gravel with moderate climbs, but at 85 km it is simply too long for current e-bike range — there is nowhere to charge in the forest. We offer e-bike rentals on our shorter city and fjord tours if that suits better."
+            "text": "No. At 85 km with 1,500 m of elevation in remote terrain with no charging points, this route exceeds current e-bike range. If you want Nordmarka on an e-bike, the Nordmarka Forest Ring 4 (45 km, oslobiketours.no/nordmarka-forest/) is our next-level gravel tour and e-bike rental is available. For something easier still, the Bygdøy Peninsula tour (oslobiketours.no/bygdoy-peninsula/) is e-bike-friendly and suitable for all abilities."
           }
         },
         {
@@ -157,7 +157,7 @@
           "name": "Can a group of mixed abilities do the Epic Marka Endurance tour together?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, in most cases. The terrain is predominantly gravel with moderate climbs, so significant technical ability is not required. The main consideration is stamina — it is a long day, and everyone in the group should be comfortable riding for six hours. Stronger riders may find the climbs easier, but no one will be left struggling on technical ground."
+            "text": "Only if everyone in the group is a strong, experienced cyclist. The terrain is not technically demanding, but 85 km with 1,500 m of climbing is genuinely hard. If some riders are less fit or experienced, consider the Nordmarka Forest Ring 4 (45 km) instead — it covers similar terrain and is achievable for recreational riders. Mixing ability levels on the Epic Marka route tends to make the day harder for everyone."
           }
         }
       ]
@@ -205,9 +205,10 @@
         <div class="tour-hero__badges">
           <span class="tour-card__badge tour-card__badge--gravel">Gravel</span>
           <span class="difficulty difficulty--hard">Challenging</span>
+          <span class="tour-card__badge" style="background:rgba(180,30,30,.75);color:#fff;border:1px solid rgba(255,100,100,.35)">Advanced riders only</span>
         </div>
         <h1 class="tour-hero__title">Epic Marka Endurance</h1>
-        <p style="font-size:.8rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.75);margin:.5rem 0 0">Full-Day Gravel Ride</p>
+        <p style="font-size:.8rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.75);margin:.5rem 0 0">Full-Day Gravel Ride · 85 km · 1,500 m elevation</p>
       </div>
     </div>
   </section>
@@ -235,19 +236,34 @@
 
           <h3>Good to know</h3>
           <ul class="modal__list">
-            <li>~1,500 m of total elevation — good fitness recommended</li>
-            <li>Mix of gravel roads and rougher forest tracks</li>
+            <li><strong>Advanced riders only</strong> — 85 km and ~1,500 m of elevation is a serious day out. Everyone in the group should be comfortable riding for 6+ hours on rough terrain.</li>
+            <li>Mix of hardpack gravel, loose stone and rougher forest tracks</li>
             <li>Mid-ride break taken at a spot agreed on the day</li>
             <li>Maximum 8 riders</li>
-            <li>Bring waterproofs — weather can change quickly in Marka</li>
-            <li>A gravel bike is required — rentals from NOK 349</li>
+            <li>Bring waterproofs — weather changes quickly in Marka</li>
+            <li>A gravel bike is required — rentals from NOK 349. E-bike not available on this route (insufficient range for 85 km remote terrain).</li>
           </ul>
+
+          <div style="margin:1.5rem 0;padding:1rem 1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;font-size:.9rem;color:var(--text)">
+            <strong>Not the right fit?</strong> If you want Nordmarka on an e-bike, the <a href="/nordmarka-forest/" style="color:var(--accent)">Nordmarka Forest Ring 4</a> (45 km, e-bike available) is our next-level gravel tour. For a gentler day, the <a href="/bygdoy-peninsula/" style="color:var(--accent)">Bygdøy Peninsula</a> tour suits all abilities and e-bikes are welcome.
+          </div>
 
           <div class="tour-page__gallery">
             <img src="../images/IMG_5813.jpg" alt="Forest rest stop at golden hour" loading="lazy" />
             <img src="../images/IMG_8055.JPG" alt="Deep in the Marka forest" loading="lazy" />
             <img src="../images/IMG_6647.jpg" alt="Remote lakeside cabin in Nordmarka" loading="lazy" />
           </div>
+
+          <h3>The route</h3>
+          <div style="margin:.75rem 0 .5rem;border-radius:12px;overflow:hidden;border:1px solid var(--border)">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=10.50%2C59.88%2C10.83%2C60.28&layer=mapnik"
+              width="100%" height="360" style="border:0;display:block"
+              allowfullscreen="" loading="lazy"
+              title="Epic Marka Endurance route map — Nordmarka forest">
+            </iframe>
+          </div>
+          <p style="font-size:.85rem;color:var(--text-muted);margin:0 0 1.75rem">North from Oslo into Nordmarka — past Fyllingen, Hakkloa and Sandungen lakes, returning by a different line. Exact path adjusted by guide on the day based on conditions.</p>
 
           <h3>Who this tour is for</h3>
           <ul class="modal__list">
@@ -265,7 +281,7 @@
             <li>Route planning and live commentary</li>
             <li>Café stops available on all tours</li>
           </ul>
-          <p style="margin:.75rem 0 0;font-size:.9rem;color:var(--text-muted)"><strong>Available on request:</strong> gravel bike or e-bike from NOK 349, custom route adjustments.</p>
+          <p style="margin:.75rem 0 0;font-size:.9rem;color:var(--text-muted)"><strong>Gravel bike rental:</strong> from NOK 349. E-bike not available on this route — the remote terrain and 85 km distance exceeds current e-bike range.</p>
 
           <h3>How it works</h3>
           <p>Your guide meets you outside your hotel or apartment at the agreed time. No meeting points to find, no transport to organise. The tour normally ends back at your starting point, or another central location by agreement.</p>
@@ -330,11 +346,11 @@
         </details>
         <details class="faq__item">
           <summary class="faq__question">Is the Epic Marka Endurance tour available on an e-bike?</summary>
-          <p class="faq__answer">No. The route is mostly well-maintained gravel with moderate climbs, but at 85 km it is simply too long for current e-bike range — there is nowhere to charge in the forest. We offer e-bike rentals on our shorter city and fjord tours if that suits better.</p>
+          <p class="faq__answer">No. At 85 km with 1,500 m of elevation in remote terrain — no charging points, no bailout options — this route exceeds current e-bike range. If you want Nordmarka on an e-bike, the <a href="/nordmarka-forest/">Nordmarka Forest Ring 4</a> (45 km) is our next-level gravel tour and e-bike rental is available. For something easier still, the <a href="/bygdoy-peninsula/">Bygdøy Peninsula</a> tour is e-bike-friendly and suitable for all abilities.</p>
         </details>
         <details class="faq__item">
           <summary class="faq__question">Can a group of mixed abilities do the Epic Marka Endurance tour together?</summary>
-          <p class="faq__answer">Yes, in most cases. The terrain is predominantly gravel with moderate climbs, so significant technical ability is not required. The main consideration is stamina — it is a long day, and everyone in the group should be comfortable riding for six hours. Stronger riders may find the climbs easier, but no one will be left struggling on technical ground.</p>
+          <p class="faq__answer">Only if everyone in the group is a strong, experienced cyclist. The terrain is not technically demanding, but 85 km with 1,500 m of climbing over a full day is genuinely hard. If some riders are less fit or experienced, consider booking the <a href="/nordmarka-forest/">Nordmarka Forest Ring 4</a> instead — it covers similar terrain at 45 km and is achievable for recreational riders. Mixing ability levels on the Epic Marka route tends to make the day harder for everyone.</p>
         </details>
       </div>
     </div>
