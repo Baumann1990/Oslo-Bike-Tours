@@ -37,6 +37,13 @@ const GALLERY_POOL = [
   { src: 'images/lawrence-krowdeed-QhgueME61_M-unsplash.jpg', alt: 'Rocky Oslofjord shoreline' },
   { src: 'images/lawrence-krowdeed-zXcYUETehx4-unsplash.jpg', alt: 'Oslofjord island with white boathouse' },
   { src: 'images/theo-eilertsen-photography-ax6fKJRUMlo-unsplash.jpg', alt: 'Oslo City Hall on a winter night' },
+  { src: 'images/IMG_4956.jpeg',       alt: 'Oslo bike tour — update this alt text' },
+  { src: 'images/IMG_4957.jpeg',       alt: 'Oslo bike tour — update this alt text' },
+  { src: 'images/IMG_5024.jpeg',       alt: 'Oslo bike tour — update this alt text' },
+  { src: 'images/IMG_5028.jpeg',       alt: 'Oslo bike tour — update this alt text' },
+  { src: 'images/IMG_5050.jpeg',       alt: 'Oslo bike tour — update this alt text' },
+  { src: 'images/oslo-tour-photo-a.jpg', alt: 'Oslo bike tour — update this alt text' },
+  { src: 'images/oslo-tour-photo-b.jpg', alt: 'Oslo bike tour — update this alt text' },
 ];
 
 const GALLERY_COUNT = 7; // photos shown per visit (6–8)
