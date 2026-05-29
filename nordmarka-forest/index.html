@@ -223,8 +223,8 @@
         <!-- Body -->
         <div class="tour-page__body">
           <p>Ring 4 is one of Oslo's great cycling institutions — a classic loop through the Nordmarka forest that local riders have been doing for generations. The name refers to the fourth ring of trails radiating out from the city, and it's the one that strikes the perfect balance between wild forest riding and manageable distance.</p>
-          <p>Your guide picks you up at your hotel and takes you to the forest, where the trees close in immediately. The route heads north through stands of pine and silver birch, following gravel forest roads that are smooth enough to roll at speed but varied enough to keep things interesting. Expect a couple of proper climbs — both well rewarded with long, flowing descents.</p>
-          <p>Halfway around you'll pass Kikutstua, a traditional Norwegian mountain cabin that serves waffles and coffee. We stop here for a well-earned break before looping back south through the Maridalen valley, one of the few agricultural landscapes left within Oslo's city limits, and finishing back at the lake.</p>
+          <p>Your guide picks you up at your hotel and rides with you to the forest — the entry point into Nordmarka depends on where you're staying, so the route adjusts accordingly. Once in, the trees close in immediately. The route heads north through stands of pine and silver birch, following gravel forest roads that are smooth enough to roll at speed but varied enough to keep things interesting. Expect a couple of proper climbs — both well rewarded with long, flowing descents.</p>
+          <p>Halfway around you'll pass Kikutstua, a traditional Norwegian mountain cabin that serves waffles and coffee. We stop here for a well-earned break before descending south through Sørkedalen and finishing back in the city.</p>
 
           <h3>Highlights</h3>
           <ul class="modal__list">
@@ -245,7 +245,7 @@
           <div id="map-nordmarka" style="height:360px;border-radius:12px;border:1px solid var(--border);margin:.75rem 0 .5rem"></div>
           <script>
           (function(){
-            var m = L.map('map-nordmarka', {scrollWheelZoom:false}).setView([59.975,10.653],11);
+            var m = L.map('map-nordmarka', {scrollWheelZoom:false}).setView([59.972,10.648],10);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
               attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
               maxZoom:18
@@ -261,7 +261,7 @@
             ],{color:'#2d6a4f',weight:5,opacity:.85}).addTo(m);
           })();
           </script>
-          <p style="font-size:.85rem;color:var(--text-muted);margin:0 0 1.75rem">Sognsvann → Kikutstua → Sørkedalen → Røa. Climbs from the lake into Nordmarka, waffle stop at Kikutstua cabin, then descends through the valley and back to the city.</p>
+          <p style="font-size:.85rem;color:var(--text-muted);margin:0 0 1.75rem">Illustrative route — the forest entry point shifts depending on your hotel pickup location. The loop always takes in Kikutstua and descends via Sørkedalen back to the city.</p>
 
           <hr class="tour-section-divider" />
           <h3>Who this tour is for</h3>
@@ -293,7 +293,7 @@
                       <ul class="modal__list">
                         <li>~800 m of total elevation gain — suitable for recreational riders</li>
                         <li>Gravel forest roads throughout — no technical singletrack</li>
-                        <li>Guide picks you up at your hotel in Oslo</li>
+                        <li>Forest entry point adjusted to your hotel pickup location</li>
                         <li>Optional café stop along the route; bring extra layers</li>
                         <li>Gravel bike rentals from NOK 349</li>
                       </ul>
