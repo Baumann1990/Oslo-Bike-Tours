@@ -1526,6 +1526,7 @@ textarea { resize: vertical; }
   .nav__toggle { display: flex; }
 
   .hero {
+    height: 85svh;
     min-height: 520px;
   }
 
