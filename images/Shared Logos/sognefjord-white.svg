@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="170" viewBox="0 0 640 170" role="img" aria-label="Sognefjord Adventure Tours logo">
+  <g transform="translate(34,38) scale(0.95)">
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 52 L42 18 L58 42 L70 28 L94 52" stroke="#ffffff" stroke-width="7"/>
+      <path d="M31 52 C42 44 53 44 64 52 C75 60 86 60 97 52" stroke="rgba(255,255,255,.7)" stroke-width="5"/>
+      <path d="M19 68 C36 60 53 60 70 68 C87 76 104 76 121 68" stroke="rgba(255,255,255,.5)" stroke-width="4"/>
+    </g>
+  </g>
+  <text x="185" y="82" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="700" letter-spacing="1.6">SOGNEFJORD</text>
+  <text x="187" y="116" fill="rgba(255,255,255,.8)" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" letter-spacing="3.4">ADVENTURE TOURS</text>
+  <line x1="188" y1="132" x2="520" y2="132" stroke="rgba(255,255,255,.4)" stroke-width="2" stroke-linecap="round"/>
+</svg>
