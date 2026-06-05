@@ -354,10 +354,10 @@
         <h2 class="section-title">Book your shore excursion</h2>
         <p class="section-sub">Guide availability is limited. Include your ship name, arrival time and all-aboard time — we'll confirm within 24 hours.</p>
       </div>
-      <form class="book-form" id="bookForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+      <form class="book__form" id="bookForm" style="max-width:640px;margin:0 auto" novalidate>
         <input type="hidden" name="access_key" value="9e6a75d8-a6cc-45cc-a734-9561109735c9" />
         <input type="hidden" name="subject" value="New shore excursion enquiry — Oslo Bike Tours" />
-        <input type="hidden" name="redirect" value="https://www.oslobiketours.no/thank-you.html" />
+        <input type="hidden" name="from_name" value="Oslo Bike Tours Website" />
         <div class="form-row">
           <div class="form-group">
             <label for="name">Name</label>
@@ -424,9 +424,12 @@
           <textarea id="message" name="message" rows="4" placeholder="e.g. MS Viking Jupiter, arrives 08:00, all-aboard 17:30. Any other details or questions welcome."></textarea>
         </div>
         <button type="submit" class="btn btn--primary btn--full" id="submitBtn">Send Enquiry</button>
-        <p class="book-form__note">We reply within 24 hours. No payment is required until we confirm guide and bike availability. If the tour cannot go ahead as agreed, your payment is fully refundable.</p>
-        <div class="form-success" id="formSuccess" hidden>
+        <p style="margin:1rem 0 0;font-size:.85rem;color:var(--text-muted);text-align:center">No payment is required until we confirm guide and bike availability. If the tour cannot go ahead as agreed, your payment is fully refundable.</p>
+        <div class="form__confirm" id="formConfirm" style="display:none">
+          <div class="form__confirm-icon">✓</div>
+          <h3>You're on your way!</h3>
           <p>Thanks for reaching out. We'll be in touch within 24 hours to confirm your booking and share everything you need to know before the ride.</p>
+          <p class="form__confirm-email">Questions in the meantime? <a href="mailto:post@oslobiketours.no">post@oslobiketours.no</a></p>
         </div>
       </form>
     </div>
