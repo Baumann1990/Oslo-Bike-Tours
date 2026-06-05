@@ -385,11 +385,12 @@ if (form) {
       const data = await res.json();
 
       if (data.success) {
-        // Fire Google Ads conversion event, then redirect
+        // Fire Google Ads conversion event, then show confirmation panel
         if (typeof gtag === 'function') {
           gtag('event', 'conversion_event_submit_lead_form_1');
         }
-        setTimeout(() => { window.location.href = '/thank-you'; }, 500);
+        form.style.display = 'none';
+        if (confirmPanel) confirmPanel.style.display = 'block';
       } else {
         btn.textContent = 'Something went wrong — try again';
         btn.disabled    = false;
