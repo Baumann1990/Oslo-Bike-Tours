@@ -59,11 +59,11 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "LocalBusiness",
+      "@type": ["LocalBusiness", "TouristAttraction", "SportsActivityLocation"],
       "@id": "https://www.oslobiketours.no",
       "name": "Oslo Bike Tours",
       "url": "https://www.oslobiketours.no",
-      "image": "https://www.oslobiketours.no/images/arsene-m-ovrejorde-BovGw4div6U-unsplash.jpg",
+      "image": "https://www.oslobiketours.no/images/social_card_1200x630.png",
       "description": "Private guided bike tours in Oslo for small groups. Hotel pickup, local guides Eivind and Haakon. Road and gravel tours from NOK 890.",
       "address": {
         "@type": "PostalAddress",
@@ -80,7 +80,47 @@
         "@type": "City",
         "name": "Oslo",
         "sameAs": "https://www.wikidata.org/wiki/Q585"
-      }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1",
+        "reviewCount": "5",
+        "ratingCount": "5"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Ole" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "Didn't realise you could be deep in the forest 15 minutes from the city centre. 25 km of gravel, proper climbs, great descents — our guide was fantastic and knew the route inside out. If you're in Oslo and like riding, just do this one."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Jessica" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "The highlight of my trip to Oslo! I wanted to experience Ring 4, but needed to preserve my legs for an upcoming trail race. Anton suggested e-bikes as an alternative — I'm so grateful for the experience. Our guide Eivind was kind and understanding, and confidently took us through the city and into the magical, peaceful forest."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Benjamin" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "An amazing gravel ride into Nordmarka. The route was beautiful, peaceful and very different from the usual city sightseeing experience. Our guide knew the forest roads extremely well and adapted the pace to suit us, while still giving us a proper adventure."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Mari" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "Loved every part of this tour! We booked the coffee tour — such a great way to see the city and taste its speciality coffee scene, which is world class. Would definitely book again!"
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Kristin" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "Great bike tour into Nordmarka! A challenging but very rewarding ride with beautiful forest scenery just outside Oslo. The guide was friendly and kept a comfortable pace, and the waffle stop was a perfect break along the way. Exhausting at times, but absolutely worth it — highly recommended!"
+        }
+      ]
     },
     {
       "@type": "Organization",
