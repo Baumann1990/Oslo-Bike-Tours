@@ -891,6 +891,12 @@ textarea { resize: vertical; }
 
 .book__form .btn--primary { margin-top: 8px; }
 
+.blog-cta .btn {
+  border-radius: var(--radius);
+  display: inline-flex;
+  padding: 12px 32px;
+}
+
 .form__note {
   text-align: center;
   font-size: .78rem;
