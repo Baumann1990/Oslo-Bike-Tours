@@ -169,6 +169,8 @@
   <link rel="icon" href="../images/Faviconupdate.png" type="image/png" />
   <link rel="apple-touch-icon" href="../images/Faviconupdate.png" />
   <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
 </head>
 <body>
 
@@ -237,6 +239,30 @@
             <img src="../images/IMG_6630.jpg" alt="Forest lake and gravel road in Nordmarka" loading="lazy" />
             <img src="../images/IMG_5843.jpg" alt="Cyclists on a gravel trail in Nordmarka forest" loading="lazy" />
           </div>
+
+          <h3>The route</h3>
+          <div id="map-gravel-short" style="height:360px;border-radius:12px;border:1px solid var(--border);margin:.75rem 0 .5rem"></div>
+          <script>
+          (function(){
+            var m = L.map('map-gravel-short', {scrollWheelZoom:false}).setView([59.980,10.718],13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+              attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+              maxZoom:18
+            }).addTo(m);
+            L.polyline([
+              [59.969365,10.7364709],
+              [59.9790014,10.7350479],
+              [59.9856626,10.7145836],
+              [59.994725,10.7179987],
+              [59.9906923,10.7025356],
+              [59.9782357,10.7081277],
+              [59.9692163,10.7216935],
+              [59.9680169,10.7253233],
+              [59.968919,10.7315845]
+            ],{color:'#2d6a4f',weight:5,opacity:.85}).addTo(m);
+          })();
+          </script>
+          <p style="font-size:.85rem;color:var(--text-muted);margin:0 0 1.75rem">A short loop into the Nordmarka forest north of Oslo — 13 km of gravel. Route is illustrative — exact path varies with your starting location and may be adapted on the day.</p>
 
           <hr class="tour-section-divider" />
           <h3>Who this tour is for</h3>
