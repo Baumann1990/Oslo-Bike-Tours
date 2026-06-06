@@ -999,14 +999,23 @@ textarea { resize: vertical; }
 
 /* ── E-bike tag ──────────────────────────────────────────────── */
 .ebike-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-size: .68rem;
-  font-weight: 700;
-  color: #7a4c00;
-  background: rgba(224,159,62,.18);
-  border: 1px solid rgba(224,159,62,.45);
-  padding: 3px 8px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: rgba(255,255,255,.92);
+  background: rgba(20,40,30,.62);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 4px 9px;
   border-radius: 100px;
   white-space: nowrap;
+  pointer-events: none;
 }
 
 /* ── Leaflet maps — prevent z-index bleed over nav ────────────── */
