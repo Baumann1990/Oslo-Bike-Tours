@@ -1374,6 +1374,117 @@ textarea { resize: vertical; }
   .tour-why__grid { grid-template-columns: 1fr; gap: 20px; }
 }
 
+/* ── Blog articles ───────────────────────────────────────────── */
+.blog-hero {
+  height: 55vh;
+  min-height: 400px;
+}
+
+.blog-article {
+  background: var(--white);
+  padding: 72px 0 96px;
+}
+
+.blog-post {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.blog-meta {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-bottom: 1.75rem;
+  margin-bottom: 2.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.blog-post p {
+  margin: 0 0 1.3rem;
+  line-height: 1.85;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.blog-post > p:first-of-type {
+  font-size: 1.08rem;
+  line-height: 1.9;
+  color: var(--text);
+}
+
+.blog-post h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  color: var(--green-deep);
+  line-height: 1.25;
+  margin: 3rem 0 .9rem;
+}
+
+.blog-post h3 {
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  margin: 2.25rem 0 .65rem;
+}
+
+.blog-post a {
+  color: var(--green-mid);
+  text-decoration: underline;
+  text-decoration-color: rgba(45,106,79,.3);
+  text-underline-offset: 3px;
+  transition: color .2s, text-decoration-color .2s;
+}
+
+.blog-post a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+.blog-post ul {
+  margin: 0 0 1.3rem 1.4rem;
+}
+
+.blog-post ul li {
+  margin-bottom: .55rem;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.blog-post img {
+  width: 100%;
+  border-radius: var(--radius);
+  margin: 2rem 0;
+  display: block;
+}
+
+.blog-cta {
+  background: rgba(45,106,79,.05);
+  border: 1px solid rgba(45,106,79,.2);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  margin: 4rem 0 0;
+  text-align: center;
+}
+
+.blog-cta h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: var(--green-deep);
+  margin: 0 0 .75rem;
+  font-weight: 700;
+}
+
+.blog-cta p {
+  margin: 0 0 1.5rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
 /* ── FAQ ─────────────────────────────────────────────────────── */
 .faq__list {
   max-width: 760px;
