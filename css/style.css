@@ -891,6 +891,12 @@ textarea { resize: vertical; }
 
 .book__form .btn--primary { margin-top: 8px; }
 
+/* ── Leaflet maps — prevent z-index bleed over nav ────────────── */
+[id^="map-"] {
+  isolation: isolate;
+  overflow: hidden;
+}
+
 .blog-cta .btn {
   border-radius: var(--radius);
   display: inline-flex;
