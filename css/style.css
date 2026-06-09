@@ -1786,6 +1786,21 @@ textarea { resize: vertical; }
 
   .tours__grid { grid-template-columns: 1fr; }
 
+  /* Filter strip — horizontal scroll instead of wrapping */
+  .tours__filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tours__filters::-webkit-scrollbar { display: none; }
+  .filter { flex-shrink: 0; }
+
+  /* Stats row — tighten label so it doesn't wrap */
+  .stat__label { font-size: .72rem; letter-spacing: .05em; }
+
   .guide-card { grid-template-columns: 1fr; }
   .guide-card__img-wrap { max-width: 160px; }
 

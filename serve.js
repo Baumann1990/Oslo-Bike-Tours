@@ -65,7 +65,7 @@ http.createServer((req, res) => {
   }
 
   // Static file serving
-  let urlPath = req.url.split('?')[0];
+  let urlPath = decodeURIComponent(req.url.split('?')[0]);
   if (urlPath === '/') urlPath = '/index.html';
   const filePath = path.join(ROOT, urlPath);
   const ext = path.extname(filePath);
