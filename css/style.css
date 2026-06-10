@@ -2317,3 +2317,53 @@ textarea { resize: vertical; }
 @media (min-width: 769px) {
   .sticky-book { display: none; }
 }
+
+/* ── Related tours chip row ──────────────────────────────────── */
+.related-tours { background: var(--bg); padding-top: 0; }
+
+.related-tours__label {
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.related-tours__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.related-tours__chip {
+  padding: 10px 18px;
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  font-size: .88rem;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all .2s;
+}
+
+.related-tours__chip:hover {
+  border-color: var(--green-mid);
+  color: var(--green-mid);
+}
+
+/* ── Booking rating line ─────────────────────────────────────── */
+.rating-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  margin: .9rem 0 0;
+  font-size: .85rem;
+  color: var(--text-muted);
+}
+
+.rating-line__stars { color: var(--amber); letter-spacing: 2px; }
+
+.rating-line strong { color: var(--text); font-weight: 600; }
