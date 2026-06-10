@@ -66,7 +66,7 @@ http.createServer((req, res) => {
 
   // Static file serving
   let urlPath = decodeURIComponent(req.url.split('?')[0]);
-  if (urlPath === '/') urlPath = '/index.html';
+  if (urlPath.endsWith('/')) urlPath = urlPath + 'index.html';
   const filePath = path.join(ROOT, urlPath);
   const ext = path.extname(filePath);
   const contentType = MIME[ext] || 'text/plain';
