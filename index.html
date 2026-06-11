@@ -450,7 +450,6 @@
               <img src="images/IMG_4894.jpg" srcset="images/IMG_4894-800w.jpg 800w, images/IMG_4894.jpg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 380px" alt="Rocky lakeside with birch forest in Oslo" class="tour-card__img" loading="lazy" />
             </a>
             <span class="tour-card__badge tour-card__badge--gravel">Gravel</span>
-            <span class="tour-card__badge tour-card__badge--new">New</span>
           </div>
           <div class="tour-card__body">
             <div class="tour-card__meta">
@@ -478,7 +477,6 @@
               <img src="images/IMG_4910.jpg" srcset="images/IMG_4910-800w.jpg 800w, images/IMG_4910.jpg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 380px" alt="Forest lake with red cabin in the Oslo wilderness" class="tour-card__img" loading="lazy" />
             </a>
             <span class="tour-card__badge tour-card__badge--gravel">Gravel</span>
-            <span class="tour-card__badge tour-card__badge--new">New</span>
             <span class="ebike-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" aria-hidden="true" style="vertical-align:-1px"><path d="M13 2L4.5 13.5H12L11 22L19.5 10.5H12L13 2z"/></svg> Easy on e-bike</span>
           </div>
           <div class="tour-card__body">
@@ -1025,6 +1023,11 @@
             <div class="form-group form-group--full">
               <label for="message">Anything else?</label>
               <textarea id="message" name="message" rows="3" placeholder="Special requests, questions…"></textarea>
+            </div>
+            <div class="rf-estimate" id="homeEstimate" style="display:none">
+              <span class="rf-estimate__label">Estimated total</span>
+              <span class="rf-estimate__price" id="homeEstimatePrice"></span>
+              <span class="rf-estimate__note" id="homeEstimateNote"></span>
             </div>
             <button type="submit" class="btn btn--primary btn--full">Send Enquiry</button>
           <p style="margin:1rem 0 0;font-size:.85rem;color:var(--text-muted);text-align:center">No payment is required until we confirm guide and bike availability. If the tour cannot go ahead as agreed, your payment is fully refundable.</p>

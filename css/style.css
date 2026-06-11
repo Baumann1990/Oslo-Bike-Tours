@@ -1128,7 +1128,12 @@ textarea { resize: vertical; }
   min-height: calc(100vh - var(--nav-h) - 260px);
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 80px 0;
+}
+
+.thankyou .container {
+  width: 100%;
 }
 
 .thankyou__inner {
@@ -2448,9 +2453,9 @@ textarea { resize: vertical; }
 }
 
 .rf-stepper-btn {
-  width: 44px;
-  height: 44px;
-  font-size: 1.2rem;
+  width: 36px;
+  height: 38px;
+  font-size: 1.1rem;
   background: none;
   border: none;
   cursor: pointer;
@@ -2461,7 +2466,7 @@ textarea { resize: vertical; }
 .rf-stepper-btn:hover { background: var(--bg); }
 
 .rf-stepper-val {
-  min-width: 44px;
+  min-width: 56px;
   text-align: center;
   font-size: 1rem;
   font-weight: 600;
@@ -2581,6 +2586,9 @@ textarea { resize: vertical; }
 
 .rf-estimate span { opacity: .7; }
 .rf-estimate strong { opacity: 1; font-weight: 700; }
+.rf-estimate__label { opacity: .75; font-size: .82rem; margin-right: .6rem; text-transform: uppercase; letter-spacing: .04em; }
+.rf-estimate__price { opacity: 1 !important; font-size: 1.25rem; font-weight: 700; margin-right: .75rem; }
+.rf-estimate__note  { opacity: .7; font-size: .82rem; }
 
 @media (max-width: 480px) {
   .rf-bike-grid { grid-template-columns: 1fr 1fr; }

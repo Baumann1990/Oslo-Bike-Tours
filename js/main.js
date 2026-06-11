@@ -445,3 +445,63 @@ if (form) {
     }
   });
 }
+
+// ── Homepage live price estimate ─────────────────────────────────
+(function () {
+  const estimateEl   = document.getElementById('homeEstimate');
+  if (!estimateEl) return;
+
+  const priceMap = {
+    'Oslo City Highlights':      890,
+    'Bygdøy Peninsula':         1090,
+    'Oslo Gravel Short':         890,
+    'Oslo Gravel Loop':         1050,
+    'Nordmarka Forest (Ring 4)':1450,
+    'Epic Marka Endurance':     2475,
+    'Oslo Coffee Tour':         1190,
+    'Oslo Architecture Tour':   1310,
+  };
+
+  const tourInput      = document.getElementById('tour');
+  const ridersInput    = document.getElementById('riders');
+  const rentalInput    = document.getElementById('rental');
+  const bikeTypeInput  = document.getElementById('bike-type');
+  const priceEl        = document.getElementById('homeEstimatePrice');
+  const noteEl         = document.getElementById('homeEstimateNote');
+
+  function fmt(n) {
+    return 'NOK ' + n.toLocaleString('nb-NO');
+  }
+
+  function update() {
+    const tour      = tourInput    ? tourInput.value    : '';
+    const riders    = ridersInput  ? parseInt(ridersInput.value)  || 1 : 1;
+    const rentalQty = rentalInput  ? parseInt(rentalInput.value)  || 0 : 0;
+    const bikeType  = bikeTypeInput ? bikeTypeInput.value : '';
+
+    const tourPrice = priceMap[tour] || 0;
+    if (!tourPrice) { estimateEl.style.display = 'none'; return; }
+
+    const rentalPrice = rentalQty > 0
+      ? rentalQty * (bikeType === 'E-bike' ? 450 : 350)
+      : 0;
+
+    const total = tourPrice * riders + rentalPrice;
+
+    priceEl.textContent = fmt(total);
+
+    const parts = [fmt(tourPrice) + ' × ' + riders + (riders === 1 ? ' person' : ' people')];
+    if (rentalPrice > 0) {
+      parts.push(fmt(rentalQty * (bikeType === 'E-bike' ? 450 : 350)) + ' rental');
+    }
+    noteEl.textContent = parts.join(' + ');
+
+    estimateEl.style.display = '';
+  }
+
+  [tourInput, ridersInput, rentalInput, bikeTypeInput].forEach(el => {
+    if (el) el.addEventListener('input', update);
+  });
+
+  update();
+})();
