@@ -1299,6 +1299,8 @@ textarea { resize: vertical; }
 }
 
 .tour-page { background: var(--white); }
+.tour-page__body a { color: var(--green-mid); }
+.tour-page__body a:hover { text-decoration: underline; }
 
 .tour-page__inner {
   display: grid;
