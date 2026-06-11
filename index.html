@@ -955,63 +955,66 @@
                 <span class="field-error" id="error-email"></span>
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="tour">Tour</label>
-                <select id="tour" name="tour" required>
-                  <option value="">Select a tour…</option>
-                  <option>Oslo City Highlights</option>
-                  <option>Bygdøy Peninsula</option>
-                  <option>Oslo Gravel Short</option>
-                  <option>Oslo Gravel Loop</option>
-                  <option>Nordmarka Forest (Ring 4)</option>
-                  <option>Epic Marka Endurance</option>
-                  <option>Oslo Coffee Tour</option>
-                  <option>Oslo Architecture Tour</option>
-                </select>
-                <span class="field-error" id="error-tour"></span>
+            <div class="form-group form-group--full">
+              <label>Tour</label>
+              <input type="hidden" id="tour" name="tour" value="" />
+              <div class="rf-bike-grid" data-btn-group="tour">
+                <button type="button" class="rf-bike-btn" data-value="Oslo City Highlights"><span class="rf-bike-name">Oslo City Highlights</span><span class="rf-bike-price">2h · Landmarks &amp; viewpoints</span></button>
+                <button type="button" class="rf-bike-btn" data-value="Bygdøy Peninsula"><span class="rf-bike-name">Bygdøy Peninsula</span><span class="rf-bike-price">2h · Fjord shoreline</span></button>
+                <button type="button" class="rf-bike-btn" data-value="Oslo Gravel Short"><span class="rf-bike-name">Oslo Gravel Short</span><span class="rf-bike-price">2h · 13 km forest gravel</span></button>
+                <button type="button" class="rf-bike-btn" data-value="Oslo Gravel Loop"><span class="rf-bike-name">Oslo Gravel Loop</span><span class="rf-bike-price">3h · 25 km Nordmarka loop</span></button>
+                <button type="button" class="rf-bike-btn" data-value="Nordmarka Forest (Ring 4)"><span class="rf-bike-name">Nordmarka Forest</span><span class="rf-bike-price">3–4h · Ring 4, 45+ km deep forest</span></button>
+                <button type="button" class="rf-bike-btn" data-value="Epic Marka Endurance"><span class="rf-bike-name">Epic Marka Endurance</span><span class="rf-bike-price">4–6h · 85+ km deep forest</span></button>
+                <button type="button" class="rf-bike-btn" data-value="Oslo Coffee Tour"><span class="rf-bike-name">Oslo Coffee Tour</span><span class="rf-bike-price">3h · Specialty coffee &amp; culture</span></button>
+                <button type="button" class="rf-bike-btn" data-value="Oslo Architecture Tour"><span class="rf-bike-name">Oslo Architecture Tour</span><span class="rf-bike-price">3h · Functionalism Oslo</span></button>
               </div>
+              <span class="field-error" id="error-tour"></span>
+            </div>
+            <div class="form-row">
               <div class="form-group">
                 <label for="date">Preferred Date</label>
                 <input type="date" id="date" name="date" required />
                 <span class="field-error" id="error-date"></span>
               </div>
-            </div>
-            <div class="form-row">
               <div class="form-group">
-                <label for="riders">Number of Riders</label>
-                <input type="number" id="riders" name="riders" min="1" max="8" placeholder="1–8" required />
+                <label>Number of Riders</label>
+                <input type="hidden" id="riders" name="riders" value="1" />
+                <div class="rf-stepper" data-stepper="riders" data-min="1" data-max="8">
+                  <button type="button" class="rf-stepper-btn" data-stepper-down aria-label="Decrease">−</button>
+                  <span class="rf-stepper-val" data-stepper-val>1</span>
+                  <button type="button" class="rf-stepper-btn" data-stepper-up aria-label="Increase">+</button>
+                </div>
                 <span class="field-error" id="error-riders"></span>
               </div>
+            </div>
+            <div class="form-row">
               <div class="form-group">
-                <label for="level">Fitness Level</label>
-                <select id="level" name="level">
-                  <option value="">Tell us your level…</option>
-                  <option>Beginner — occasional rides</option>
-                  <option>Intermediate — regular cyclist</option>
-                  <option>Advanced — fit and experienced</option>
-                </select>
+                <label>Fitness Level</label>
+                <input type="hidden" id="level" name="level" value="" />
+                <div class="rf-bike-grid" data-btn-group="level" style="grid-template-columns:repeat(3,1fr)">
+                  <button type="button" class="rf-bike-btn" data-value="Beginner"><span class="rf-bike-name">Beginner</span></button>
+                  <button type="button" class="rf-bike-btn" data-value="Intermediate"><span class="rf-bike-name">Intermediate</span></button>
+                  <button type="button" class="rf-bike-btn" data-value="Advanced"><span class="rf-bike-name">Advanced</span></button>
+                </div>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="rental">Bike Rental <span style="font-weight:400;color:var(--text-muted)">(from NOK 349)</span></label>
-                <select id="rental" name="rental">
-                  <option value="none">No rental needed — bringing my own</option>
-                  <option value="1">1 rental bike</option>
-                  <option value="2">2 rental bikes</option>
-                  <option value="3">3 rental bikes</option>
-                  <option value="4">4 rental bikes</option>
-                  <option value="5+">5 or more rental bikes</option>
-                </select>
+                <label>Bike Rental <span style="font-weight:400;color:var(--text-muted)">(from NOK 349)</span></label>
+                <input type="hidden" id="rental" name="rental" value="none" />
+                <div class="rf-stepper" data-stepper="rental" data-min="0" data-max="8" data-initial="0" data-zero-label="None" data-zero-value="none">
+                  <button type="button" class="rf-stepper-btn" data-stepper-down aria-label="Decrease">−</button>
+                  <span class="rf-stepper-val" data-stepper-val>None</span>
+                  <button type="button" class="rf-stepper-btn" data-stepper-up aria-label="Increase">+</button>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="bike-type">Bike Type Preference</label>
-                <select id="bike-type" name="bike_type">
-                  <option value="">No preference</option>
-                  <option>Gravel bike</option>
-                  <option>E-bike</option>
-                </select>
+              <div class="form-group" id="bikeTypeGroup" style="display:none">
+                <label>Bike Type Preference</label>
+                <input type="hidden" id="bike-type" name="bike_type" value="" />
+                <div class="rf-bike-grid" data-btn-group="bike-type" style="grid-template-columns:repeat(2,1fr)">
+                  <button type="button" class="rf-bike-btn" data-value="Gravel bike"><span class="rf-bike-name">Gravel bike</span></button>
+                  <button type="button" class="rf-bike-btn" data-value="E-bike"><span class="rf-bike-name">E-bike</span></button>
+                </div>
               </div>
             </div>
             <div class="form-group form-group--full">

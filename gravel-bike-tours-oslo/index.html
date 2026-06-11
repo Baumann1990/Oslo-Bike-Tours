@@ -364,16 +364,16 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group">
-            <label for="tour">Route</label>
-            <select id="tour" name="tour" required>
-              <option value="">Select a route…</option>
-              <option>Oslo Gravel Short (13 km, 2 hrs, easy)</option>
-              <option>Oslo Gravel Loop (25 km, 3 hrs, medium)</option>
-              <option>Nordmarka Forest Ring 4 (45 km, 4 hrs, medium)</option>
-              <option>Epic Marka Endurance (85 km, 6 hrs, challenging)</option>
-              <option>Not sure — help me choose</option>
-            </select>
+                    <div class="form-group form-group--full">
+            <label>Route</label>
+            <input type="hidden" id="tour" name="tour" value="" />
+            <div class="rf-bike-grid" data-btn-group="tour">
+              <button type="button" class="rf-bike-btn" data-value="Oslo Gravel Short (13 km, 2 hrs, easy)"><span class="rf-bike-name">Oslo Gravel Short</span><span class="rf-bike-price">13 km · 2 hrs · easy</span></button>
+              <button type="button" class="rf-bike-btn" data-value="Oslo Gravel Loop (25 km, 3 hrs, medium)"><span class="rf-bike-name">Oslo Gravel Loop</span><span class="rf-bike-price">25 km · 3 hrs · medium</span></button>
+              <button type="button" class="rf-bike-btn" data-value="Nordmarka Forest Ring 4 (45 km, 4 hrs, medium)"><span class="rf-bike-name">Nordmarka Forest</span><span class="rf-bike-price">45 km · 4 hrs · medium</span></button>
+              <button type="button" class="rf-bike-btn" data-value="Epic Marka Endurance (85 km, 6 hrs, challenging)"><span class="rf-bike-name">Epic Marka Endurance</span><span class="rf-bike-price">85 km · 6 hrs · challenging</span></button>
+              <button type="button" class="rf-bike-btn" data-value="Not sure — help me choose"><span class="rf-bike-name">Not sure — help me choose</span></button>
+            </div>
             <span class="field-error" id="error-tour"></span>
           </div>
           <div class="form-group">
@@ -383,33 +383,24 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group">
-            <label for="riders">Number of Riders</label>
-            <select id="riders" name="riders" required>
-              <option value="">Select…</option>
-              <option>1 rider</option>
-              <option>2 riders</option>
-              <option>3 riders</option>
-              <option>4 riders</option>
-              <option>5 riders</option>
-              <option>6 riders</option>
-              <option>7 riders</option>
-              <option>8 riders</option>
-            </select>
+                    <div class="form-group">
+            <label>Number of Riders</label>
+            <input type="hidden" id="riders" name="riders" value="1" />
+            <div class="rf-stepper" data-stepper="riders" data-min="1" data-max="8">
+              <button type="button" class="rf-stepper-btn" data-stepper-down aria-label="Decrease">−</button>
+              <span class="rf-stepper-val" data-stepper-val>1</span>
+              <button type="button" class="rf-stepper-btn" data-stepper-up aria-label="Increase">+</button>
+            </div>
             <span class="field-error" id="error-riders"></span>
           </div>
-          <div class="form-group">
-            <label for="rental">Bike Rental <span style="font-weight:400;color:var(--text-muted)">(from NOK 349)</span></label>
-            <select id="rental" name="rental">
-              <option value="none">No rental needed — bringing my own</option>
-              <option value="ebike-1">1 e-bike</option>
-              <option value="ebike-2">2 e-bikes</option>
-              <option value="ebike-3+">3 or more e-bikes</option>
-              <option value="gravel-1">1 gravel bike</option>
-              <option value="gravel-2">2 gravel bikes</option>
-              <option value="gravel-3+">3 or more gravel bikes</option>
-              <option value="mix">Mix of e-bikes and gravel bikes</option>
-            </select>
+                    <div class="form-group">
+            <label>Bike Rental <span style="font-weight:400;color:var(--text-muted)">(from NOK 349)</span></label>
+            <input type="hidden" id="rental" name="rental" value="none" />
+            <div class="rf-stepper" data-stepper="rental" data-min="0" data-max="8" data-initial="0" data-zero-label="None" data-zero-value="none">
+              <button type="button" class="rf-stepper-btn" data-stepper-down aria-label="Decrease">−</button>
+              <span class="rf-stepper-val" data-stepper-val>None</span>
+              <button type="button" class="rf-stepper-btn" data-stepper-up aria-label="Increase">+</button>
+            </div>
           </div>
         </div>
         <div class="form-group">

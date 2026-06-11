@@ -618,19 +618,19 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group">
-            <label for="tour">Tour</label>
-            <select id="tour" name="tour" required>
-              <option value="">Select a tour…</option>
-              <option>Oslo City Highlights</option>
-              <option>Bygdøy Peninsula</option>
-              <option>Oslo Gravel Short</option>
-              <option>Oslo Gravel Loop</option>
-              <option>Nordmarka Forest (Ring 4)</option>
-              <option>Epic Marka Endurance</option>
-              <option>Oslo Coffee Tour</option>
-              <option>Oslo Architecture Tour</option>
-            </select>
+                    <div class="form-group form-group--full">
+            <label>Tour</label>
+            <input type="hidden" id="tour" name="tour" value="" />
+            <div class="rf-bike-grid" data-btn-group="tour">
+              <button type="button" class="rf-bike-btn" data-value="Oslo City Highlights"><span class="rf-bike-name">Oslo City Highlights</span><span class="rf-bike-price">2h · Landmarks &amp; viewpoints</span></button>
+              <button type="button" class="rf-bike-btn" data-value="Bygdøy Peninsula"><span class="rf-bike-name">Bygdøy Peninsula</span><span class="rf-bike-price">2h · Fjord shoreline</span></button>
+              <button type="button" class="rf-bike-btn" data-value="Oslo Gravel Short"><span class="rf-bike-name">Oslo Gravel Short</span><span class="rf-bike-price">2h · 13 km forest gravel</span></button>
+              <button type="button" class="rf-bike-btn" data-value="Oslo Gravel Loop"><span class="rf-bike-name">Oslo Gravel Loop</span><span class="rf-bike-price">3h · 25 km Nordmarka loop</span></button>
+              <button type="button" class="rf-bike-btn" data-value="Nordmarka Forest (Ring 4)"><span class="rf-bike-name">Nordmarka Forest</span><span class="rf-bike-price">3–4h · Ring 4, 45+ km deep forest</span></button>
+              <button type="button" class="rf-bike-btn" data-value="Epic Marka Endurance"><span class="rf-bike-name">Epic Marka Endurance</span><span class="rf-bike-price">4–6h · 85+ km deep forest</span></button>
+              <button type="button" class="rf-bike-btn" data-value="Oslo Coffee Tour"><span class="rf-bike-name">Oslo Coffee Tour</span><span class="rf-bike-price">3h · Specialty coffee &amp; culture</span></button>
+              <button type="button" class="rf-bike-btn" data-value="Oslo Architecture Tour"><span class="rf-bike-name">Oslo Architecture Tour</span><span class="rf-bike-price">3h · Functionalism Oslo</span></button>
+            </div>
             <span class="field-error" id="error-tour"></span>
           </div>
           <div class="form-group">

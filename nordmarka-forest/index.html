@@ -489,21 +489,7 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group">
-            <label for="tour">Tour</label>
-            <select id="tour" name="tour" required>
-              <option value="">Select a tour…</option>
-              <option>Oslo City Highlights</option>
-              <option>Bygdøy Peninsula</option>
-              <option>Oslo Gravel Short</option>
-              <option>Oslo Gravel Loop</option>
-              <option selected>Nordmarka Forest (Ring 4)</option>
-              <option>Epic Marka Endurance</option>
-              <option>Oslo Coffee Tour</option>
-              <option>Oslo Architecture Tour</option>
-            </select>
-            <span class="field-error" id="error-tour"></span>
-          </div>
+          <input type="hidden" id="tour" name="tour" value="Nordmarka Forest (Ring 4)" />
           <div class="form-group">
             <label for="date">Preferred Date</label>
             <input type="date" id="date" name="date" required />
@@ -512,8 +498,13 @@
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="riders">Number of Riders</label>
-            <input type="number" id="riders" name="riders" min="1" max="8" placeholder="1–8" required />
+            label>Number of Riders</label>
+            <input type="hidden" id="riders" name="riders" value="1" />
+            <div class="rf-stepper" data-stepper="riders" data-min="1" data-max="8">
+              <button type="button" class="rf-stepper-btn" data-stepper-down aria-label="Decrease">−</button>
+              <span class="rf-stepper-val" data-stepper-val>1</span>
+              <button type="button" class="rf-stepper-btn" data-stepper-up aria-label="Increase">+</button>
+            </div>
             <span class="field-error" id="error-riders"></span>
           </div>
           <div class="form-group">

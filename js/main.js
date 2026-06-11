@@ -295,6 +295,50 @@ document.addEventListener('keydown', e => {
   update();
 })();
 
+/* ── Form: button groups ─────────────────────────────────────── */
+document.querySelectorAll('[data-btn-group]').forEach(group => {
+  const hidden  = document.getElementById(group.dataset.btnGroup);
+  const buttons = group.querySelectorAll('[data-value]');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      if (hidden) { hidden.value = btn.dataset.value; hidden.dispatchEvent(new Event('input')); }
+    });
+  });
+  // Activate any pre-marked default
+  const pre = group.querySelector('.is-active');
+  if (pre && hidden && !hidden.value) hidden.value = pre.dataset.value;
+});
+
+/* ── Form: steppers ──────────────────────────────────────────── */
+document.querySelectorAll('[data-stepper]').forEach(stepper => {
+  const hidden     = document.getElementById(stepper.dataset.stepper);
+  const display    = stepper.querySelector('[data-stepper-val]');
+  const min        = parseInt(stepper.dataset.min  ?? '1');
+  const max        = parseInt(stepper.dataset.max  ?? '10');
+  const zeroLabel  = stepper.dataset.zeroLabel  || null;
+  const zeroValue  = stepper.dataset.zeroValue  || '0';
+  let   val        = parseInt(stepper.dataset.initial ?? min);
+
+  function sync() {
+    if (display) display.textContent = (val === 0 && zeroLabel) ? zeroLabel : val;
+    if (hidden)  { hidden.value = (val === 0) ? zeroValue : String(val); hidden.dispatchEvent(new Event('input')); }
+  }
+
+  function afterSync() {
+    if (stepper.dataset.stepper === 'rental') {
+      const bikeTypeGroup = document.getElementById('bikeTypeGroup');
+      if (bikeTypeGroup) bikeTypeGroup.style.display = val > 0 ? '' : 'none';
+    }
+  }
+
+  stepper.querySelector('[data-stepper-down]').addEventListener('click', () => { if (val > min) { val--; sync(); afterSync(); } });
+  stepper.querySelector('[data-stepper-up]'  ).addEventListener('click', () => { if (val < max) { val++; sync(); afterSync(); } });
+  sync();
+  afterSync();
+});
+
 /* ── Booking form ────────────────────────────────────────────── */
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 

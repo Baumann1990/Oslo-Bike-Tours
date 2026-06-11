@@ -2440,6 +2440,7 @@ textarea { resize: vertical; }
   display: inline-flex;
   align-items: center;
   gap: 0;
+  width: fit-content;
   border: 1.5px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
@@ -2593,4 +2594,27 @@ textarea { resize: vertical; }
 
 @media (max-width: 540px) {
   .rf-location-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Locked tour pill ────────────────────────────────────────── */
+.rf-tour-locked {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.rf-tour-locked__label {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
