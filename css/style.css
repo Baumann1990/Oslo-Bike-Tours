@@ -1005,8 +1005,8 @@ textarea { resize: vertical; }
 /* ── E-bike tag ──────────────────────────────────────────────── */
 .ebike-tag {
   position: absolute;
-  bottom: 12px;
-  left: 14px;
+  top: 12px;
+  right: 14px;
   display: inline-flex;
   align-items: center;
   gap: 5px;
