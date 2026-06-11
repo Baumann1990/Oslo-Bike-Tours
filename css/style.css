@@ -576,9 +576,9 @@ ul { list-style: none; }
 
 .tour-card__badge--new {
   position: absolute;
-  top: 12px;
-  right: 14px;
-  left: auto;
+  top: 14px;
+  left: 14px;
+  right: auto;
   background: var(--amber);
   color: var(--green-deep);
   font-size: .68rem;
@@ -1005,8 +1005,8 @@ textarea { resize: vertical; }
 /* ── E-bike tag ──────────────────────────────────────────────── */
 .ebike-tag {
   position: absolute;
-  top: 12px;
-  right: 14px;
+  bottom: 12px;
+  left: 14px;
   display: inline-flex;
   align-items: center;
   gap: 5px;
