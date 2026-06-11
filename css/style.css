@@ -514,6 +514,11 @@ ul { list-style: none; }
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
 }
+.tours__grid--2col {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 900px;
+  margin: 0 auto;
+}
 
 .tour-card {
   background: var(--white);
