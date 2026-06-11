@@ -409,7 +409,7 @@
 
           <div style="background:var(--green-deep);border-radius:var(--radius);padding:2rem;margin:2.5rem 0;color:rgba(255,255,255,.85)">
             <p style="font-family:var(--font-serif);font-size:1.25rem;font-weight:700;color:var(--white);margin-bottom:.5rem">Rather not navigate yourself?</p>
-            <p style="font-size:.95rem;margin-bottom:1.25rem">Our private guided tours start from NOK 890 per person — hotel pickup, a local guide who knows every trail, and bike rental included from NOK 349. The guide is how you find the best of the forest on the first try.</p>
+            <p style="font-size:.95rem;margin-bottom:1.25rem;color:rgba(255,255,255,.85)">Our private guided tours start from NOK 890 per person — hotel pickup, a local guide who knows every trail, and bike rental included from NOK 349. The guide is how you find the best of the forest on the first try.</p>
             <a href="/private-bike-tours-oslo/" class="btn btn--primary">See guided tours</a>
           </div>
 
@@ -439,6 +439,7 @@
         <input type="hidden" id="h-qty"   name="bikes" />
         <input type="hidden" id="h-total"    name="estimated_total" />
         <input type="hidden" id="h-location" name="pickup_location" />
+        <input type="hidden" id="h-addons"   name="add_ons" />
 
         <!-- Step 1: Bike -->
         <div class="rf-block">
@@ -516,9 +517,32 @@
           <span id="rfEstimateText">Select a bike and dates to see price estimate</span>
         </div>
 
-        <!-- Step 5: Contact -->
+        <!-- Step 5: Add-ons -->
         <div class="rf-block">
-          <p class="rf-label">5. Your details</p>
+          <p class="rf-label">5. Add-ons <span class="rf-label-hint">— optional</span></p>
+          <div class="rf-addon-grid">
+            <button type="button" class="rf-addon-btn" data-addon="Baggage Trailer" data-price="250">
+              <span class="rf-addon-name">Baggage Trailer</span>
+              <span class="rf-addon-price">NOK 250</span>
+            </button>
+            <button type="button" class="rf-addon-btn" data-addon="Child Trailer" data-price="250">
+              <span class="rf-addon-name">Child Trailer</span>
+              <span class="rf-addon-price">NOK 250</span>
+            </button>
+            <button type="button" class="rf-addon-btn" data-addon="Bar Bag" data-price="75">
+              <span class="rf-addon-name">Bar Bag / Container</span>
+              <span class="rf-addon-price">NOK 75</span>
+            </button>
+            <button type="button" class="rf-addon-btn" data-addon="Frame Bag" data-price="75">
+              <span class="rf-addon-name">Frame Bag</span>
+              <span class="rf-addon-price">NOK 75</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 6: Contact -->
+        <div class="rf-block">
+          <p class="rf-label">6. Your details</p>
           <div class="form-row">
             <div class="form-group">
               <label for="name">Name</label>
@@ -776,6 +800,23 @@
     });
 
     /* ── Estimate ── */
+    /* ── Add-on toggle ── */
+    var addonTotal = 0;
+    var addonNames = [];
+    document.querySelectorAll('.rf-addon-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        btn.classList.toggle('is-active');
+        addonTotal = 0;
+        addonNames = [];
+        document.querySelectorAll('.rf-addon-btn.is-active').forEach(function (b) {
+          addonTotal += parseInt(b.dataset.price, 10);
+          addonNames.push(b.dataset.addon);
+        });
+        document.getElementById('h-addons').value = addonNames.join(', ') || '';
+        updateEstimate();
+      });
+    });
+
     function updateEstimate() {
       var el = document.getElementById('rfEstimateText');
       if (!selectedBike || !startDate || !endDate) {
@@ -783,13 +824,13 @@
         el.parentElement.style.opacity = '.6';
         return;
       }
-      var days  = daysBetween(startDate, endDate);
-      var total = selectedBike.price * qty * days;
+      var days     = daysBetween(startDate, endDate);
+      var bikeTotal = selectedBike.price * qty * days;
+      var total    = bikeTotal + addonTotal;
       var totalFmt = total.toLocaleString('nb-NO');
-      el.innerHTML =
-        '<strong>' + qty + ' × ' + selectedBike.name + ' × ' + days +
-        (days === 1 ? ' day' : ' days') +
-        ' = NOK ' + totalFmt + '</strong>';
+      var bikeLine = qty + ' × ' + selectedBike.name + ' × ' + days + (days === 1 ? ' day' : ' days') + ' = NOK ' + bikeTotal.toLocaleString('nb-NO');
+      var addonLine = addonTotal > 0 ? ' + NOK ' + addonTotal.toLocaleString('nb-NO') + ' add-ons' : '';
+      el.innerHTML = '<strong>NOK ' + totalFmt + '</strong> &nbsp;<span style="opacity:.75;font-size:.88rem">' + bikeLine + addonLine + '</span>';
       el.parentElement.style.opacity = '1';
 
       /* Populate hidden fields */
