@@ -277,7 +277,7 @@
             <div class="tour-card__footer">
               <span class="tour-card__price">NOK 800 <em>/ day</em></span>
               <div class="tour-card__actions">
-                <a href="#book" class="btn btn--sm rent-cta" data-bike="Gravel — aluminium (NOK 800/day)">Rent</a>
+                <a href="#book" class="btn btn--sm rent-cta" data-bike="Gravel">Rent</a>
               </div>
             </div>
           </div>
@@ -286,7 +286,7 @@
         <article class="tour-card">
           <div class="tour-card__img-wrap">
             <img src="../images/IMG_0255.JPG" srcset="../images/IMG_0255-800w.jpg 800w" sizes="(max-width: 768px) 100vw, 380px" alt="Gravel bike at a forest rest stop with Norwegian flag" class="tour-card__img" loading="lazy" style="object-position:center 88%" />
-            <span class="tour-card__badge tour-card__badge--new">Premium</span>
+            <span class="tour-card__badge tour-card__badge--new">Premium Gravel</span>
           </div>
           <div class="tour-card__body">
             <h3 class="tour-card__title">Premium Gravel</h3>
@@ -300,7 +300,7 @@
             <div class="tour-card__footer">
               <span class="tour-card__price">NOK 1 200 <em>/ day</em></span>
               <div class="tour-card__actions">
-                <a href="#book" class="btn btn--sm rent-cta" data-bike="Premium Gravel — carbon, tubeless (NOK 1 200/day)">Rent</a>
+                <a href="#book" class="btn btn--sm rent-cta" data-bike="Premium Gravel">Rent</a>
               </div>
             </div>
           </div>
@@ -337,7 +337,7 @@
             <div class="tour-card__footer">
               <span class="tour-card__price">NOK 800 <em>/ day</em></span>
               <div class="tour-card__actions">
-                <a href="#book" class="btn btn--sm rent-cta" data-bike="Premium E-Bike (NOK 800/day)">Rent</a>
+                <a href="#book" class="btn btn--sm rent-cta" data-bike="Premium E-Bike">Rent</a>
               </div>
             </div>
           </div>
@@ -361,7 +361,7 @@
             <div class="tour-card__footer">
               <span class="tour-card__price">NOK 1 200 <em>/ day</em></span>
               <div class="tour-card__actions">
-                <a href="#book" class="btn btn--sm rent-cta" data-bike="Long Range E-Bike (NOK 1 200/day)">Rent</a>
+                <a href="#book" class="btn btn--sm rent-cta" data-bike="Long Range E-Bike">Rent</a>
               </div>
             </div>
           </div>
@@ -427,71 +427,118 @@
         <p class="section-sub">Send your dates and bike choice — we confirm availability, size and the Sognsvann pickup time within 24 hours.</p>
         <p class="rating-line"><span class="rating-line__stars" aria-hidden="true">★★★★★</span> <strong>5.0</strong> on Google reviews</p>
       </div>
-      <form class="book__form" id="bookForm" style="max-width:640px;margin:0 auto" novalidate>
+      <form class="book__form rental-form" id="bookForm" style="max-width:720px;margin:0 auto" novalidate>
         <input type="hidden" name="access_key" value="9e6a75d8-a6cc-45cc-a734-9561109735c9" />
         <input type="hidden" name="subject" value="New bike rental enquiry — Oslo Bike Tours" />
         <input type="hidden" name="from_name" value="Oslo Bike Tours Website" />
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required />
-            <span class="field-error" id="error-name"></span>
+        <!-- hidden fields populated by JS -->
+        <input type="hidden" id="h-bike"  name="bike" />
+        <input type="hidden" id="h-start" name="start_date" />
+        <input type="hidden" id="h-end"   name="end_date" />
+        <input type="hidden" id="h-days"  name="days" />
+        <input type="hidden" id="h-qty"   name="bikes" />
+        <input type="hidden" id="h-total"    name="estimated_total" />
+        <input type="hidden" id="h-location" name="pickup_location" />
+
+        <!-- Step 1: Bike -->
+        <div class="rf-block">
+          <p class="rf-label">1. Choose your bike</p>
+          <div class="rf-bike-grid" id="rfBikeGrid">
+            <button type="button" class="rf-bike-btn" data-bike="Gravel" data-price="800">
+              <span class="rf-bike-name">Gravel</span>
+              <span class="rf-bike-price">NOK 800 / day</span>
+            </button>
+            <button type="button" class="rf-bike-btn" data-bike="Premium Gravel" data-price="1200">
+              <span class="rf-bike-name">Premium Gravel</span>
+              <span class="rf-bike-price">NOK 1 200 / day</span>
+            </button>
+            <button type="button" class="rf-bike-btn" data-bike="Premium E-Bike" data-price="800">
+              <span class="rf-bike-name">Premium E-Bike</span>
+              <span class="rf-bike-price">NOK 800 / day</span>
+            </button>
+            <button type="button" class="rf-bike-btn" data-bike="Long Range E-Bike" data-price="1200">
+              <span class="rf-bike-name">Long Range E-Bike</span>
+              <span class="rf-bike-price">NOK 1 200 / day</span>
+            </button>
           </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="your@email.com" required />
-            <span class="field-error" id="error-email"></span>
+          <span class="field-error" id="error-tour"></span>
+        </div>
+
+        <!-- Step 2: Pickup location -->
+        <div class="rf-block">
+          <p class="rf-label">2. Pickup location</p>
+          <div class="rf-location-grid" id="rfLocationGrid">
+            <button type="button" class="rf-bike-btn" data-location="Sognsvann">
+              <span class="rf-bike-name">Sognsvann</span>
+              <span class="rf-bike-price">End of metro line 5</span>
+            </button>
+            <button type="button" class="rf-bike-btn" data-location="Oslo Central Station">
+              <span class="rf-bike-name">Oslo Central Station</span>
+              <span class="rf-bike-price">City centre</span>
+            </button>
+            <button type="button" class="rf-bike-btn" data-location="Smestad Subway Station">
+              <span class="rf-bike-name">Smestad Subway Station</span>
+              <span class="rf-bike-price">Metro line 3 &amp; 6</span>
+            </button>
+          </div>
+          <span class="field-error" id="error-location"></span>
+        </div>
+
+        <!-- Step 3: Quantity -->
+        <div class="rf-block">
+          <p class="rf-label">3. Number of bikes</p>
+          <div class="rf-stepper">
+            <button type="button" class="rf-stepper-btn" id="rfQtyDown" aria-label="Decrease">−</button>
+            <span class="rf-stepper-val" id="rfQtyVal">1</span>
+            <button type="button" class="rf-stepper-btn" id="rfQtyUp" aria-label="Increase">+</button>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="tour">Bike</label>
-            <select id="tour" name="bike" required>
-              <option value="">Select a bike…</option>
-              <option>Premium Gravel — carbon, tubeless (NOK 1 200/day)</option>
-              <option>Gravel — aluminium (NOK 800/day)</option>
-              <option>Premium E-Bike (NOK 800/day)</option>
-              <option>Long Range E-Bike (NOK 1 200/day)</option>
-              <option>Mix of bikes — see message</option>
-            </select>
-            <span class="field-error" id="error-tour"></span>
+
+        <!-- Step 4: Calendar -->
+        <div class="rf-block">
+          <p class="rf-label">4. Select your dates <span class="rf-label-hint" id="rfDateHint">— click a start date</span></p>
+          <div class="rf-calendar" id="rfCalendar">
+            <div class="rf-cal-nav">
+              <button type="button" class="rf-cal-arrow" id="rfCalPrev" aria-label="Previous month">&#8249;</button>
+              <span class="rf-cal-month" id="rfCalMonth"></span>
+              <button type="button" class="rf-cal-arrow" id="rfCalNext" aria-label="Next month">&#8250;</button>
+            </div>
+            <div class="rf-cal-dow">
+              <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+            </div>
+            <div class="rf-cal-days" id="rfCalDays"></div>
+          </div>
+          <span class="field-error" id="error-date"></span>
+        </div>
+
+        <!-- Price estimate -->
+        <div class="rf-estimate" id="rfEstimate">
+          <span id="rfEstimateText">Select a bike and dates to see price estimate</span>
+        </div>
+
+        <!-- Step 5: Contact -->
+        <div class="rf-block">
+          <p class="rf-label">5. Your details</p>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+              <span class="field-error" id="error-name"></span>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required />
+              <span class="field-error" id="error-email"></span>
+            </div>
           </div>
           <div class="form-group">
-            <label for="date">Start Date</label>
-            <input type="date" id="date" name="date" required />
-            <span class="field-error" id="error-date"></span>
+            <label for="message">Anything else we should know?</label>
+            <textarea id="message" name="message" rows="3" placeholder="Your height (for frame size), planned route, anything useful."></textarea>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="riders">Number of Bikes</label>
-            <select id="riders" name="bikes" required>
-              <option value="">Select…</option>
-              <option>1 bike</option>
-              <option>2 bikes</option>
-              <option>3 bikes</option>
-              <option>4 bikes</option>
-              <option>5 bikes</option>
-              <option>6 or more bikes</option>
-            </select>
-            <span class="field-error" id="error-riders"></span>
-          </div>
-          <div class="form-group">
-            <label for="days">Number of Days</label>
-            <select id="days" name="days">
-              <option>1 day</option>
-              <option>2 days</option>
-              <option>3 days</option>
-              <option>4 or more days — see message</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="message">Anything else we should know?</label>
-          <textarea id="message" name="message" rows="4" placeholder="Your height (for frame size), planned route, exact dates if renting longer — anything useful."></textarea>
-        </div>
+
         <button type="submit" class="btn btn--primary btn--full" id="submitBtn">Send Enquiry</button>
-        <p style="margin:1rem 0 0;font-size:.85rem;color:var(--text-muted);text-align:center">No payment is required until we confirm bike availability. Payment is arranged on confirmation.</p>
+        <p style="margin:1rem 0 0;font-size:.85rem;color:var(--text-muted);text-align:center">No payment required until we confirm availability. Payment arranged on confirmation.</p>
         <div class="form__confirm" id="formConfirm" style="display:none">
           <div class="form__confirm-icon">✓</div>
           <h3>Enquiry sent!</h3>
@@ -604,15 +651,178 @@
 
   <script src="../js/main.js"></script>
   <script>
-    document.querySelectorAll('.rent-cta').forEach(function (btn) {
+  (function () {
+    /* ── State ── */
+    var selectedBike     = null;   // { name, price }
+    var selectedLocation = null;
+    var qty              = 1;
+    var startDate        = null;   // Date
+    var endDate          = null;   // Date
+    var pickingEnd       = false;
+
+    /* ── Helpers ── */
+    function fmt(d) {
+      return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate());
+    }
+    function fmtDisp(d) {
+      return d.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+    }
+    function pad(n) { return n < 10 ? '0'+n : ''+n; }
+    function daysBetween(a, b) {
+      return Math.round((b - a) / 86400000) + 1;
+    }
+    function today() {
+      var t = new Date(); t.setHours(0,0,0,0); return t;
+    }
+
+    /* ── Bike buttons ── */
+    var bikeBtns = document.querySelectorAll('.rf-bike-btn');
+    bikeBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
-        var select = document.getElementById('tour');
-        var wanted = btn.getAttribute('data-bike');
-        for (var i = 0; i < select.options.length; i++) {
-          if (select.options[i].text === wanted) { select.selectedIndex = i; break; }
-        }
+        bikeBtns.forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        selectedBike = { name: btn.dataset.bike, price: parseInt(btn.dataset.price) };
+        updateEstimate();
       });
     });
+
+    /* ── Location buttons ── */
+    var locationBtns = document.querySelectorAll('#rfLocationGrid .rf-bike-btn');
+    locationBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        locationBtns.forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        selectedLocation = btn.dataset.location;
+        document.getElementById('h-location').value = selectedLocation;
+      });
+    });
+
+    /* ── Stepper ── */
+    document.getElementById('rfQtyDown').addEventListener('click', function () {
+      if (qty > 1) { qty--; document.getElementById('rfQtyVal').textContent = qty; updateEstimate(); }
+    });
+    document.getElementById('rfQtyUp').addEventListener('click', function () {
+      if (qty < 10) { qty++; document.getElementById('rfQtyVal').textContent = qty; updateEstimate(); }
+    });
+
+    /* ── Calendar ── */
+    var calView = new Date(today().getFullYear(), today().getMonth(), 1);
+
+    function renderCal() {
+      var year  = calView.getFullYear();
+      var month = calView.getMonth();
+      var names = ['January','February','March','April','May','June',
+                   'July','August','September','October','November','December'];
+      document.getElementById('rfCalMonth').textContent = names[month] + ' ' + year;
+
+      var grid  = document.getElementById('rfCalDays');
+      grid.innerHTML = '';
+
+      var first = new Date(year, month, 1).getDay(); // 0=Sun
+      var offset = (first === 0) ? 6 : first - 1;    // Mon-based offset
+      var daysInMonth = new Date(year, month+1, 0).getDate();
+      var t = today();
+
+      for (var i = 0; i < offset; i++) {
+        var empty = document.createElement('div');
+        empty.className = 'rf-day rf-day--empty';
+        grid.appendChild(empty);
+      }
+
+      for (var d = 1; d <= daysInMonth; d++) {
+        var date = new Date(year, month, d);
+        var el   = document.createElement('div');
+        el.className = 'rf-day';
+        el.textContent = d;
+        el.dataset.ts  = date.getTime();
+
+        if (date < t) {
+          el.classList.add('rf-day--disabled');
+        } else {
+          if (startDate && date.getTime() === startDate.getTime()) el.classList.add('rf-day--start');
+          if (endDate   && date.getTime() === endDate.getTime())   el.classList.add('rf-day--end');
+          if (startDate && endDate && date > startDate && date < endDate) el.classList.add('rf-day--range');
+          el.addEventListener('click', onDayClick);
+        }
+        grid.appendChild(el);
+      }
+
+      document.getElementById('rfCalPrev').disabled =
+        (calView.getFullYear() === today().getFullYear() && calView.getMonth() === today().getMonth());
+    }
+
+    function onDayClick(e) {
+      var date = new Date(parseInt(e.target.dataset.ts));
+      if (!startDate || (startDate && endDate)) {
+        startDate = date; endDate = null; pickingEnd = true;
+        document.getElementById('rfDateHint').textContent = '— now click an end date';
+      } else {
+        if (date < startDate) { endDate = startDate; startDate = date; }
+        else if (date.getTime() === startDate.getTime()) { endDate = date; }
+        else { endDate = date; }
+        pickingEnd = false;
+        document.getElementById('rfDateHint').textContent =
+          '— ' + fmtDisp(startDate) + ' → ' + fmtDisp(endDate);
+      }
+      renderCal();
+      updateEstimate();
+    }
+
+    document.getElementById('rfCalPrev').addEventListener('click', function () {
+      calView.setMonth(calView.getMonth() - 1); renderCal();
+    });
+    document.getElementById('rfCalNext').addEventListener('click', function () {
+      calView.setMonth(calView.getMonth() + 1); renderCal();
+    });
+
+    /* ── Estimate ── */
+    function updateEstimate() {
+      var el = document.getElementById('rfEstimateText');
+      if (!selectedBike || !startDate || !endDate) {
+        el.innerHTML = 'Select a bike and dates to see price estimate';
+        el.parentElement.style.opacity = '.6';
+        return;
+      }
+      var days  = daysBetween(startDate, endDate);
+      var total = selectedBike.price * qty * days;
+      var totalFmt = total.toLocaleString('nb-NO');
+      el.innerHTML =
+        '<strong>' + qty + ' × ' + selectedBike.name + ' × ' + days +
+        (days === 1 ? ' day' : ' days') +
+        ' = NOK ' + totalFmt + '</strong>';
+      el.parentElement.style.opacity = '1';
+
+      /* Populate hidden fields */
+      document.getElementById('h-bike').value  = selectedBike.name;
+      document.getElementById('h-start').value = fmt(startDate);
+      document.getElementById('h-end').value   = fmt(endDate);
+      document.getElementById('h-days').value  = days;
+      document.getElementById('h-qty').value   = qty;
+      document.getElementById('h-total').value = 'NOK ' + totalFmt;
+    }
+
+    /* ── Card "Rent" buttons → pre-select bike ── */
+    document.querySelectorAll('.rent-cta').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var wanted = btn.getAttribute('data-bike');
+        bikeBtns.forEach(function (b) {
+          if (b.dataset.bike === wanted) b.click();
+        });
+      });
+    });
+
+    /* ── Validation hook (works alongside main.js) ── */
+    document.getElementById('bookForm').addEventListener('submit', function () {
+      /* ensure hidden fields are set even if estimate wasn't triggered */
+      if (selectedBike) document.getElementById('h-bike').value = selectedBike.name;
+      if (startDate)    document.getElementById('h-start').value = fmt(startDate);
+      if (endDate)      document.getElementById('h-end').value   = fmt(endDate);
+    }, true);
+
+    /* ── Init ── */
+    renderCal();
+    updateEstimate();
+  })();
   </script>
 
   <!-- ─── Cookie Consent Banner ─────────────────────────────── -->
