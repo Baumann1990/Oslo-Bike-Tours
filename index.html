@@ -968,14 +968,14 @@
               </div>
               <span class="field-error" id="error-tour"></span>
             </div>
-            <div class="form-row">
+            <div class="form-row form-row--3col">
               <div class="form-group">
                 <label for="date">Preferred Date</label>
                 <input type="date" id="date" name="date" required />
                 <span class="field-error" id="error-date"></span>
               </div>
               <div class="form-group">
-                <label>Number of Riders</label>
+                <label>Riders</label>
                 <input type="hidden" id="riders" name="riders" value="1" />
                 <div class="rf-stepper" data-stepper="riders" data-min="1" data-max="8">
                   <button type="button" class="rf-stepper-btn" data-stepper-down aria-label="Decrease">−</button>
@@ -984,10 +984,8 @@
                 </div>
                 <span class="field-error" id="error-riders"></span>
               </div>
-            </div>
-            <div class="form-row">
               <div class="form-group">
-                <label>Bike Rental <span style="font-weight:400;color:var(--text-muted)">(from NOK 349)</span></label>
+                <label>Bike Rental</label>
                 <input type="hidden" id="rental" name="rental" value="none" />
                 <div class="rf-stepper" data-stepper="rental" data-min="0" data-max="8" data-initial="0" data-zero-label="None" data-zero-value="none">
                   <button type="button" class="rf-stepper-btn" data-stepper-down aria-label="Decrease">−</button>
@@ -995,7 +993,9 @@
                   <button type="button" class="rf-stepper-btn" data-stepper-up aria-label="Increase">+</button>
                 </div>
               </div>
-              <div class="form-group" id="bikeTypeGroup" style="display:none">
+            </div>
+            <div class="form-row" id="bikeTypeGroup" style="display:none">
+              <div class="form-group">
                 <label>Bike Type Preference</label>
                 <input type="hidden" id="bike-type" name="bike_type" value="" />
                 <div class="rf-bike-grid" data-btn-group="bike-type" style="grid-template-columns:repeat(2,1fr)">
