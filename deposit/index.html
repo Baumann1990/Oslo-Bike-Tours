@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security Deposit — Oslo Bike Tours</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    body { background: var(--bg); }
+    .deposit-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    .deposit-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 440px;
+    }
+    .deposit-card__logo {
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--green-deep);
+      margin-bottom: 1.75rem;
+    }
+    .deposit-card h1 {
+      font-size: 1.35rem;
+      color: var(--green-deep);
+      margin: 0 0 .4rem;
+    }
+    .deposit-card__sub {
+      font-size: .88rem;
+      color: var(--text-muted);
+      margin: 0 0 2rem;
+    }
+    .deposit-amount {
+      display: flex;
+      align-items: baseline;
+      gap: .4rem;
+      margin-bottom: 2rem;
+      padding: 1rem 1.25rem;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border);
+    }
+    .deposit-amount__label {
+      font-size: .82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .deposit-amount__value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--green-deep);
+      margin-left: auto;
+    }
+    .deposit-amount__currency {
+      font-size: .88rem;
+      color: var(--text-muted);
+    }
+    #card-element {
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      margin-bottom: .5rem;
+    }
+    #card-element.StripeElement--focus {
+      border-color: var(--green-mid);
+      outline: none;
+    }
+    #card-element.StripeElement--invalid {
+      border-color: #c0392b;
+    }
+    #card-error {
+      font-size: .82rem;
+      color: #c0392b;
+      min-height: 1.2em;
+      margin-bottom: 1rem;
+    }
+    .deposit-note {
+      font-size: .78rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .deposit-success {
+      text-align: center;
+      display: none;
+    }
+    .deposit-success__icon {
+      width: 52px;
+      height: 52px;
+      background: var(--green-mid);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 1.25rem;
+    }
+    .deposit-success h2 {
+      color: var(--green-deep);
+      margin: 0 0 .5rem;
+    }
+    .deposit-success p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="deposit-wrap">
+    <div class="deposit-card">
+      <div class="deposit-card__logo">Oslo Bike Tours</div>
+
+      <div id="depositForm">
+        <h1>Security Deposit</h1>
+        <p class="deposit-card__sub">Your card will be authorised but not charged. The hold is released on return of the bike.</p>
+
+        <div class="deposit-amount">
+          <span class="deposit-amount__label">Deposit amount</span>
+          <span class="deposit-amount__value" id="displayAmount">2 000</span>
+          <span class="deposit-amount__currency">NOK</span>
+        </div>
+
+        <form id="paymentForm">
+          <div class="form-group form-group--full" style="margin-bottom:1rem">
+            <label for="customerName">Name</label>
+            <input type="text" id="customerName" name="name" placeholder="As it appears on your card" required />
+          </div>
+
+          <div class="form-group form-group--full" style="margin-bottom:.25rem">
+            <label>Card details</label>
+            <div id="card-element"></div>
+          </div>
+          <div id="card-error" role="alert"></div>
+
+          <button type="submit" class="btn btn--primary btn--full" id="submitBtn">Authorise deposit</button>
+        </form>
+
+        <p class="deposit-note">No money is taken. This is a temporary hold only — fully released when you return the bike.</p>
+      </div>
+
+      <div class="deposit-success" id="depositSuccess">
+        <div class="deposit-success__icon">✓</div>
+        <h2>Deposit authorised</h2>
+        <p>Your card has been authorised for the security deposit. No money has been taken. We'll release the hold when you return the bike.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Amount in NOK — can be set via URL param: ?amount=3000
+    const params = new URLSearchParams(window.location.search);
+    const amountNOK = parseInt(params.get('amount') || '2000', 10);
+    const amountOre = amountNOK * 100; // Stripe uses smallest currency unit
+
+    document.getElementById('displayAmount').textContent = amountNOK.toLocaleString('nb-NO');
+
+    const WORKER_URL = 'https://turboflekkefjord.workers.dev';
+    const stripe = Stripe('pk_test_51Thl3jFvDDG9RtMRug0PATIF3BOV12P1XPn4knUQEF8P59AZUCGH0c2e4ctrkAgMCUX6Yjd9oR8U0M22lxkcrsvG00fxyeO2kK');
+    const elements = stripe.elements();
+
+    const card = elements.create('card', {
+      style: {
+        base: {
+          fontFamily: 'system-ui, sans-serif',
+          fontSize: '14.4px',
+          color: '#1a1a1a',
+          '::placeholder': { color: '#aaa' }
+        }
+      }
+    });
+    card.mount('#card-element');
+
+    card.on('change', e => {
+      document.getElementById('card-error').textContent = e.error ? e.error.message : '';
+    });
+
+    const form = document.getElementById('paymentForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Authorising…';
+
+      try {
+        // 1. Create PaymentIntent on the server (card hold)
+        const res = await fetch(WORKER_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount: amountOre })
+        });
+        const { client_secret, error: serverError } = await res.json();
+
+        if (serverError) throw new Error(serverError);
+
+        // 2. Confirm card authorisation (no capture)
+        const { error } = await stripe.confirmCardPayment(client_secret, {
+          payment_method: {
+            card,
+            billing_details: { name: document.getElementById('customerName').value }
+          }
+        });
+
+        if (error) {
+          document.getElementById('card-error').textContent = error.message;
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Authorise deposit';
+        } else {
+          document.getElementById('depositForm').style.display = 'none';
+          document.getElementById('depositSuccess').style.display = 'block';
+        }
+      } catch (err) {
+        document.getElementById('card-error').textContent = 'Something went wrong. Please try again.';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Authorise deposit';
+      }
+    });
+  </script>
+</body>
+</html>
