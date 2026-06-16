@@ -434,7 +434,10 @@ if (form) {
           gtag('event', 'conversion_event_submit_lead_form_1');
         }
         form.style.display = 'none';
-        if (confirmPanel) confirmPanel.style.display = 'block';
+        if (confirmPanel) {
+          confirmPanel.style.display = 'flex';
+          confirmPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       } else {
         btn.textContent = 'Something went wrong — try again';
         btn.disabled    = false;
