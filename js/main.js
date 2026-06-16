@@ -385,19 +385,19 @@ if (form) {
     }
 
     const tour = form.querySelector('#tour');
-    if (!tour.value) {
+    if (tour && !tour.value) {
       setFieldError('tour', 'Please select a tour.');
       valid = false;
     }
 
     const date = form.querySelector('#date');
-    if (!date.value) {
+    if (date && !date.value) {
       setFieldError('date', 'Please pick a preferred date.');
       valid = false;
     }
 
     const riders = form.querySelector('#riders');
-    if (!riders.value) {
+    if (riders && !riders.value) {
       setFieldError('riders', 'Please enter the number of riders.');
       valid = false;
     }
