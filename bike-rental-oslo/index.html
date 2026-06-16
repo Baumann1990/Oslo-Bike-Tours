@@ -777,7 +777,7 @@
     }
 
     /* ── Bike buttons ── */
-    var bikeBtns = document.querySelectorAll('.rf-bike-btn');
+    var bikeBtns = document.querySelectorAll('.rf-bike-btn[data-bike]');
     bikeBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
         bikeBtns.forEach(function (b) { b.classList.remove('is-active'); });
