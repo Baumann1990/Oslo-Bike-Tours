@@ -1036,6 +1036,7 @@ textarea { resize: vertical; }
   border-radius: var(--radius);
   display: inline-flex;
   padding: 12px 32px;
+  text-decoration: none;
 }
 
 .form__note {
