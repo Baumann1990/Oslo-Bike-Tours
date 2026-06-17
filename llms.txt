@@ -20,7 +20,7 @@ Small groups (max 8 people), hotel pickup included, local guides Eivind and Haak
 - Guide picks you up at your hotel or accommodation in Oslo
 - Tours tailored to your pace and preferences
 - Optional café stops available on all tours
-- Gravel bike and e-bike rentals from NOK 349
+- Bike rental as a guided-tour add-on from NOK 349; standalone day and multi-day rentals from NOK 800/day (see Bike rental section)
 - Bike not included in base price
 - Helmet not included in base price
 - Languages: English and Norwegian
@@ -34,6 +34,26 @@ Small groups (max 8 people), hotel pickup included, local guides Eivind and Haak
 - Gravel bike tours overview: https://www.oslobiketours.no/gravel-bike-tours-oslo/
 - Shore excursions (cruise passengers): https://www.oslobiketours.no/oslo-shore-excursion-bike-tour/
 - Hotel pickup: https://www.oslobiketours.no/hotel-pickup/
+- Bike rental (day and multi-day): https://www.oslobiketours.no/bike-rental-oslo/
+
+## Bike rental (standalone, not part of a guided tour)
+
+- Oslo Bike Tours rents quality gravel bikes and e-bikes in Oslo, available for a single day or for multiple days
+- Multi-day rentals are a core part of the business and the best way to explore the Nordmarka forest at your own pace — there is no maximum rental length (a weekend, a week, or a whole trip)
+- Multi-day pricing is simply the daily rate multiplied by the number of days (e.g. a Gravel bike for 3 days is 3 × NOK 800 = NOK 2 400)
+- Bikes and daily rates:
+  - Gravel (aluminium frame, disc brakes) — NOK 800/day
+  - Premium Gravel (carbon frame, carbon wheels, tubeless, hydraulic disc brakes) — NOK 1 200/day
+  - Premium E-Bike — NOK 800/day
+  - Long Range E-Bike (largest battery, for full-day forest rides) — NOK 1 200/day
+- Helmet included with every rental
+- Pickup locations: Sognsvann (end of metro line 5, on the Nordmarka forest edge), Oslo Central Station, or Bogstad
+- Hotel, AirBnB or any-address delivery available for an extra NOK 250 (subject to availability and location)
+- Add-ons: baggage trailer (NOK 250), child trailer (NOK 250), bar bag (NOK 75), frame bag (NOK 75)
+- A refundable security deposit applies, arranged on confirmation
+- Payment via PayPal or Stripe
+- Rental page: https://www.oslobiketours.no/bike-rental-oslo/
+- Note: bike rental is also available as an add-on to guided tours from NOK 349
 
 ## Shore excursions (cruise passengers)
 
@@ -81,6 +101,9 @@ Small groups (max 8 people), hotel pickup included, local guides Eivind and Haak
 - Why Oslo Is One of the World's Best Coffee Cities — https://www.oslobiketours.no/blog/why-oslo-is-one-of-the-worlds-best-coffee-cities/
 - Best Specialty Coffee in Oslo by Bike — https://www.oslobiketours.no/blog/best-specialty-coffee-oslo-by-bike/
 - Oslo Coffee Guide for Visitors — https://www.oslobiketours.no/blog/oslo-coffee-guide-for-visitors/
+- Oslo Tourist Traps and How to Avoid the Crowds — https://www.oslobiketours.no/blog/oslo-tourist-traps-avoid-crowds/
+- How to Rent a Gravel Bike in Oslo — https://www.oslobiketours.no/blog/gravel-bike-rental-oslo/
+- How to Get to Sognsvann — https://www.oslobiketours.no/blog/how-to-get-to-sognsvann/
 
 ## Contact
 
