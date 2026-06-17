@@ -123,7 +123,6 @@ ul { list-style: none; }
 .btn--primary {
   background: var(--amber);
   color: var(--green-deep);
-  box-shadow: 0 4px 20px rgba(224,159,62,.35);
 }
 
 .btn--primary:hover {
