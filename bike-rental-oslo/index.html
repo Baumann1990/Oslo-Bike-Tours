@@ -661,6 +661,15 @@
           </div>
         </div>
 
+        <!-- Terms acceptance (click-wrap) -->
+        <div class="rf-block" style="margin-top:8px">
+          <label for="acceptTerms" style="display:flex;align-items:flex-start;gap:.65rem;cursor:pointer;font-size:.88rem;line-height:1.55;color:var(--text)">
+            <input type="checkbox" id="acceptTerms" name="terms_accepted" value="Yes — terms accepted" style="margin-top:.25rem;flex-shrink:0;width:18px;height:18px" />
+            <span>I have read and accept the <a href="/bike-rental-terms/" target="_blank" rel="noopener" style="color:var(--green-mid);text-decoration:underline">Bike Rental Terms and Conditions</a>.</span>
+          </label>
+          <span class="field-error" id="error-terms" style="display:block;margin-top:.4rem"></span>
+        </div>
+
         <button type="submit" class="btn btn--primary btn--full" id="submitBtn">Send Enquiry</button>
         <p style="margin:1rem 0 0;font-size:.85rem;color:var(--text-muted);text-align:center">No payment required until we confirm availability. Payment via PayPal or Stripe, and a refundable security deposit, are arranged on confirmation.</p>
       </form>
@@ -971,12 +980,32 @@
     });
 
     /* ── Validation hook (works alongside main.js) ── */
-    document.getElementById('bookForm').addEventListener('submit', function () {
+    document.getElementById('bookForm').addEventListener('submit', function (e) {
+      /* require terms acceptance before anything else (capture phase blocks main.js) */
+      var terms    = document.getElementById('acceptTerms');
+      var termsErr = document.getElementById('error-terms');
+      if (terms && !terms.checked) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        if (termsErr) termsErr.textContent = 'Please confirm you have read and accept the Terms and Conditions.';
+        terms.focus();
+        terms.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      if (termsErr) termsErr.textContent = '';
       /* ensure hidden fields are set even if estimate wasn't triggered */
       if (selectedBike) document.getElementById('h-bike').value = selectedBike.name;
       if (startDate)    document.getElementById('h-start').value = fmt(startDate);
       if (endDate)      document.getElementById('h-end').value   = fmt(endDate);
     }, true);
+
+    /* clear the terms error as soon as the box is ticked */
+    (function () {
+      var terms = document.getElementById('acceptTerms');
+      if (terms) terms.addEventListener('change', function () {
+        if (terms.checked) { var ce = document.getElementById('error-terms'); if (ce) ce.textContent = ''; }
+      });
+    })();
 
     /* ── Init ── */
     renderCal();
