@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Identity Verification — Oslo Bike Tours</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    body { background: var(--bg); }
+    .verify-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    .verify-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 440px;
+    }
+    .verify-card__logo {
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--green-deep);
+      margin-bottom: 1.75rem;
+    }
+    .verify-card h1 {
+      font-size: 1.35rem;
+      color: var(--green-deep);
+      margin: 0 0 .4rem;
+    }
+    .verify-card__sub {
+      font-size: .88rem;
+      color: var(--text-muted);
+      margin: 0 0 1.75rem;
+    }
+    .verify-steps {
+      font-size: .85rem;
+      color: var(--text);
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem 1rem 2.4rem;
+      margin: 0 0 1.75rem;
+    }
+    .verify-steps li { margin-bottom: .45rem; line-height: 1.5; }
+    .verify-steps li:last-child { margin-bottom: 0; }
+    #verify-error {
+      font-size: .82rem;
+      color: #c0392b;
+      min-height: 1.2em;
+      margin: .75rem 0 0;
+    }
+    .verify-note {
+      font-size: .78rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .verify-success {
+      text-align: center;
+      display: none;
+    }
+    .verify-success__icon {
+      width: 52px;
+      height: 52px;
+      background: var(--green-mid);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 1.25rem;
+    }
+    .verify-success h2 { color: var(--green-deep); margin: 0 0 .5rem; }
+    .verify-success p { font-size: .9rem; color: var(--text-muted); margin: 0; }
+  </style>
+</head>
+<body>
+  <div class="verify-wrap">
+    <div class="verify-card">
+      <div class="verify-card__logo">Oslo Bike Tours</div>
+
+      <div id="verifyForm">
+        <h1>Identity Verification</h1>
+        <p class="verify-card__sub">A quick, secure ID check before your bike rental. Handled entirely by Stripe — we never see or store your document.</p>
+
+        <ul class="verify-steps">
+          <li>Have a passport, driving licence or national ID ready</li>
+          <li>You'll photograph the document and take a quick selfie</li>
+          <li>Takes about two minutes on your phone</li>
+        </ul>
+
+        <div class="form-group form-group--full" style="margin-bottom:1rem">
+          <label for="reference">Name or booking reference <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
+          <input type="text" id="reference" name="reference" placeholder="So we can match your verification to your booking" />
+        </div>
+
+        <button type="button" class="btn btn--primary btn--full" id="startBtn">Start verification</button>
+        <div id="verify-error" role="alert"></div>
+
+        <p class="verify-note">Your ID is processed securely by Stripe. Oslo Bike Tours receives only a verified / not-verified result. Identity checks powered by Stripe.</p>
+      </div>
+
+      <div class="verify-success" id="verifySuccess">
+        <div class="verify-success__icon">✓</div>
+        <h2>Verification submitted</h2>
+        <p>Thank you. Your identity check has been submitted to Stripe. We'll confirm your rental once it's approved — no further action needed.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const WORKER_URL = 'https://small-smoke-a243.turboflekkefjord.workers.dev';
+    const stripe = Stripe('pk_live_51Thl3XCB0GUjZZdUS0jIuYM3PawAEx5G2dDYEH4RQu5cvQiN32eyztZRwyaBjsw1NvQ7mOWoyIRBVSkza7b3mulm00rQetg8HD');
+
+    const startBtn = document.getElementById('startBtn');
+    const errorEl  = document.getElementById('verify-error');
+
+    startBtn.addEventListener('click', async () => {
+      startBtn.disabled = true;
+      startBtn.textContent = 'Preparing…';
+      errorEl.textContent = '';
+
+      try {
+        // 1. Create a verification session on the server
+        const res = await fetch(WORKER_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'verify_identity',
+            reference: document.getElementById('reference').value.trim()
+          })
+        });
+        const { client_secret, error: serverError } = await res.json();
+        if (serverError) throw new Error(serverError);
+
+        // 2. Open Stripe's secure verification flow
+        const { error } = await stripe.verifyIdentity(client_secret);
+
+        if (error) {
+          // User cancelled or an error occurred — let them retry
+          errorEl.textContent = error.message || 'Verification was not completed. Please try again.';
+          startBtn.disabled = false;
+          startBtn.textContent = 'Start verification';
+        } else {
+          document.getElementById('verifyForm').style.display = 'none';
+          document.getElementById('verifySuccess').style.display = 'block';
+        }
+      } catch (err) {
+        errorEl.textContent = 'Something went wrong. Please try again.';
+        startBtn.disabled = false;
+        startBtn.textContent = 'Start verification';
+      }
+    });
+  </script>
+</body>
+</html>
