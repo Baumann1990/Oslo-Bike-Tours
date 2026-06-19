@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bike Photos — Oslo Bike Tours</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    body { background: var(--bg); }
+    .ph-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    .ph-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.25rem 1.75rem;
+      width: 100%;
+      max-width: 440px;
+    }
+    .ph-card__logo {
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--green-deep);
+      margin-bottom: 1.5rem;
+    }
+    .ph-card h1 { font-size: 1.35rem; color: var(--green-deep); margin: 0 0 .4rem; }
+    .ph-card__sub { font-size: .88rem; color: var(--text-muted); margin: 0 0 1.75rem; }
+    .ph-label { display: block; font-size: .82rem; font-weight: 600; color: var(--text); margin: 0 0 .4rem; }
+    .ph-input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+    .ph-stage { display: flex; gap: .5rem; margin-bottom: 1.25rem; }
+    .ph-stage button {
+      flex: 1;
+      padding: 11px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      color: var(--text);
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .ph-stage button.is-active {
+      background: var(--green-deep);
+      color: var(--white);
+      border-color: var(--green-deep);
+    }
+    .ph-add {
+      display: block;
+      width: 100%;
+      padding: 1.5rem;
+      border: 2px dashed var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      color: var(--green-deep);
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+    .ph-add span { display: block; font-size: .8rem; font-weight: 400; color: var(--text-muted); margin-top: .3rem; }
+    #fileInput { display: none; }
+    .ph-preview { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+    .ph-preview img { width: 64px; height: 64px; object-fit: cover; border-radius: var(--radius-sm); border: 1.5px solid var(--border); }
+    #ph-error { font-size: .82rem; color: #c0392b; min-height: 1.2em; margin: 0 0 .5rem; }
+    .ph-note { font-size: .78rem; color: var(--text-muted); text-align: center; margin-top: 1rem; }
+    .ph-success { text-align: center; display: none; }
+    .ph-success__icon {
+      width: 52px; height: 52px; background: var(--green-mid); color: var(--white);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin: 0 auto 1.25rem;
+    }
+    .ph-success h2 { color: var(--green-deep); margin: 0 0 .5rem; }
+    .ph-success p { font-size: .9rem; color: var(--text-muted); margin: 0; }
+  </style>
+</head>
+<body>
+  <div class="ph-wrap">
+    <div class="ph-card">
+      <div class="ph-card__logo">Oslo Bike Tours</div>
+
+      <div id="phForm">
+        <h1>Bike Photos</h1>
+        <p class="ph-card__sub">A couple of quick photos of the bike — it protects you against being charged for anything that was already there. Takes 30 seconds.</p>
+
+        <label class="ph-label" for="reference">Your name or booking reference</label>
+        <input class="ph-input" type="text" id="reference" placeholder="So we can match the photos to your rental" />
+
+        <label class="ph-label">When are these from?</label>
+        <div class="ph-stage" id="stageGroup">
+          <button type="button" data-stage="pickup" class="is-active">At pickup</button>
+          <button type="button" data-stage="return">At return</button>
+        </div>
+
+        <label class="ph-add" for="fileInput">
+          📷 Add photos
+          <span>Tap to take a photo or choose from your phone</span>
+        </label>
+        <input type="file" id="fileInput" accept="image/*" capture="environment" multiple />
+
+        <div class="ph-preview" id="preview"></div>
+
+        <div id="ph-error" role="alert"></div>
+        <button type="button" class="btn btn--primary btn--full" id="sendBtn" disabled>Send photos</button>
+
+        <p class="ph-note">Photos are stored securely and used only to record the bike's condition for your rental.</p>
+      </div>
+
+      <div class="ph-success" id="phSuccess">
+        <div class="ph-success__icon">✓</div>
+        <h2>Photos received</h2>
+        <p>Thank you — we've got your photos on file for this rental. Enjoy the ride.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const WORKER_URL = 'https://small-smoke-a243.turboflekkefjord.workers.dev/upload-photos';
+
+    let stage = 'pickup';
+    let files = [];
+
+    const stageGroup = document.getElementById('stageGroup');
+    const fileInput  = document.getElementById('fileInput');
+    const preview    = document.getElementById('preview');
+    const sendBtn    = document.getElementById('sendBtn');
+    const errorEl    = document.getElementById('ph-error');
+
+    stageGroup.addEventListener('click', e => {
+      const btn = e.target.closest('button[data-stage]');
+      if (!btn) return;
+      stageGroup.querySelectorAll('button').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      stage = btn.dataset.stage;
+    });
+
+    fileInput.addEventListener('change', () => {
+      for (const f of fileInput.files) {
+        if (f.type.startsWith('image/')) files.push(f);
+      }
+      renderPreview();
+    });
+
+    function renderPreview() {
+      preview.innerHTML = '';
+      files.forEach(f => {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(f);
+        preview.appendChild(img);
+      });
+      sendBtn.disabled = files.length === 0;
+    }
+
+    sendBtn.addEventListener('click', async () => {
+      if (!files.length) return;
+      sendBtn.disabled = true;
+      sendBtn.textContent = 'Sending…';
+      errorEl.textContent = '';
+
+      try {
+        const fd = new FormData();
+        fd.append('reference', document.getElementById('reference').value.trim());
+        fd.append('stage', stage);
+        files.forEach(f => fd.append('photos', f, f.name));
+
+        const res = await fetch(WORKER_URL, { method: 'POST', body: fd });
+        const data = await res.json();
+
+        if (data.ok) {
+          document.getElementById('phForm').style.display = 'none';
+          document.getElementById('phSuccess').style.display = 'block';
+        } else {
+          throw new Error(data.error || 'Upload failed');
+        }
+      } catch (err) {
+        errorEl.textContent = (err && err.message) ? err.message : 'Something went wrong. Please try again.';
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Send photos';
+      }
+    });
+  </script>
+</body>
+</html>
