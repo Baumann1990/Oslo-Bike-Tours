@@ -104,8 +104,8 @@
 
         <label class="ph-label">When are these from?</label>
         <div class="ph-stage" id="stageGroup">
-          <button type="button" data-stage="pickup" class="is-active">At pickup</button>
-          <button type="button" data-stage="return">At return</button>
+          <button type="button" data-stage="pickup">At pickup</button>
+          <button type="button" data-stage="return" class="is-active">At return</button>
         </div>
 
         <label class="ph-add" for="fileInput">
@@ -133,7 +133,7 @@
   <script>
     const WORKER_URL = 'https://small-smoke-a243.turboflekkefjord.workers.dev/upload-photos';
 
-    let stage = 'pickup';
+    let stage = 'return';
     let files = [];
 
     const stageGroup = document.getElementById('stageGroup');
