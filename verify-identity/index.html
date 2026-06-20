@@ -120,10 +120,20 @@
   <script>
     const WORKER_URL = 'https://small-smoke-a243.turboflekkefjord.workers.dev';
 
+    const qs = new URLSearchParams(window.location.search);
+
     // If the customer has just returned from Stripe's hosted flow, show the submitted state
-    if (new URLSearchParams(window.location.search).get('done') === '1') {
+    if (qs.get('done') === '1') {
       document.getElementById('verifyForm').style.display = 'none';
       document.getElementById('verifySuccess').style.display = 'block';
+    }
+
+    // Pre-fill (and lock) the reference if provided in the link, e.g. ?ref=june22-smith
+    const refParam = qs.get('ref');
+    if (refParam) {
+      const refInput = document.getElementById('reference');
+      refInput.value = refParam;
+      refInput.readOnly = true;
     }
 
     const startBtn = document.getElementById('startBtn');
