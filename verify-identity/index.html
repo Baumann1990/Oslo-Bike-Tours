@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Identity Verification — Oslo Bike Tours</title>
   <link rel="stylesheet" href="/css/style.css" />
-  <script src="https://js.stripe.com/v3/"></script>
   <style>
     body { background: var(--bg); }
     .verify-wrap {
@@ -120,7 +119,12 @@
 
   <script>
     const WORKER_URL = 'https://small-smoke-a243.turboflekkefjord.workers.dev';
-    const stripe = Stripe('pk_live_51Thl3XCB0GUjZZdUS0jIuYM3PawAEx5G2dDYEH4RQu5cvQiN32eyztZRwyaBjsw1NvQ7mOWoyIRBVSkza7b3mulm00rQetg8HD');
+
+    // If the customer has just returned from Stripe's hosted flow, show the submitted state
+    if (new URLSearchParams(window.location.search).get('done') === '1') {
+      document.getElementById('verifyForm').style.display = 'none';
+      document.getElementById('verifySuccess').style.display = 'block';
+    }
 
     const startBtn = document.getElementById('startBtn');
     const errorEl  = document.getElementById('verify-error');
@@ -131,7 +135,7 @@
       errorEl.textContent = '';
 
       try {
-        // 1. Create a verification session on the server
+        // Create a verification session on the server
         const res = await fetch(WORKER_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -140,23 +144,14 @@
             reference: document.getElementById('reference').value.trim()
           })
         });
-        const { client_secret, error: serverError } = await res.json();
+        const { url, error: serverError } = await res.json();
         if (serverError) throw new Error(serverError);
+        if (!url) throw new Error('Could not start verification. Please try again.');
 
-        // 2. Open Stripe's secure verification flow
-        const { error } = await stripe.verifyIdentity(client_secret);
-
-        if (error) {
-          // User cancelled or an error occurred — let them retry
-          errorEl.textContent = error.message || 'Verification was not completed. Please try again.';
-          startBtn.disabled = false;
-          startBtn.textContent = 'Start verification';
-        } else {
-          document.getElementById('verifyForm').style.display = 'none';
-          document.getElementById('verifySuccess').style.display = 'block';
-        }
+        // Redirect to Stripe's hosted verification page (more reliable than an embedded modal)
+        window.location.href = url;
       } catch (err) {
-        errorEl.textContent = 'Something went wrong. Please try again.';
+        errorEl.textContent = (err && err.message) ? err.message : 'Something went wrong. Please try again.';
         startBtn.disabled = false;
         startBtn.textContent = 'Start verification';
       }
