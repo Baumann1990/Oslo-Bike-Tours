@@ -161,9 +161,9 @@
   </div>
 
   <script>
-    // Amount in NOK — defaults to the standard NOK 10 000 deposit; override per booking via URL param, e.g. ?amount=6000
+    // Amount in NOK — set per booking via URL param, e.g. ?amount=6000. Neutral fallback if no amount is given.
     const params = new URLSearchParams(window.location.search);
-    const amountNOK = parseInt(params.get('amount') || '10000', 10);
+    const amountNOK = parseInt(params.get('amount') || '2000', 10);
     const amountOre = amountNOK * 100; // Stripe uses smallest currency unit
 
     document.getElementById('displayAmount').textContent = amountNOK.toLocaleString('nb-NO');
