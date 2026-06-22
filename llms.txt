@@ -1,16 +1,16 @@
 # Oslo Bike Tours
 
 Oslo Bike Tours offers private, fully guided bike tours in Oslo, Norway.
-Small groups (max 8 people), local guides Eivind and Haakon. City tours include hotel pickup; forest and gravel tours meet at Sognsvann (the end of metro line 5, ~20 min from the centre), with hotel pickup available on request for NOK 1 000 per group.
+Small groups (max 8 people), local guides Eivind and Haakon. City tours include hotel pickup; forest and gravel tours meet at Sognsvann (the end of metro line 5, ~20 min from the centre), with hotel pickup available on request for NOK 699 per group.
 
 ## Tours
 
 - Oslo City Highlights — 18 km, 2 hours, road, easy. Aker Brygge, Opera House, Vigeland Park, Royal Palace. NOK 890/person.
 - Bygdøy Peninsula — 28 km, 2.5 hours, road, easy. Fjord views, Viking Ship Museum, Folk Museum. NOK 1 050/person.
-- Oslo Gravel Short — 13 km, 2 hours, gravel, easy. Nordmarka forest north of Oslo, pine and birch, gentle climbing. Meet at Sognsvann (end of metro line 5); hotel pickup on request (+NOK 1 000/group). NOK 890/person.
-- Oslo Gravel Loop — 25 km, 3 hours, gravel, medium. Nordmarka forest, rolling terrain, real climbs, mixed woodland. Meet at Sognsvann (end of metro line 5); hotel pickup on request (+NOK 1 000/group). NOK 1 090/person.
-- Nordmarka Forest (Ring 4) — 45 km, 4 hours, gravel, medium. Classic Oslo cycling loop through pine and birch forest, waffle stop at Kikutstua cabin, Maridalen valley. Meet at Sognsvann (end of metro line 5); hotel pickup on request (+NOK 1 000/group). NOK 1 450/person.
-- Epic Marka Endurance — 85 km, 6 hours, gravel, challenging. Deep Nordmarka wilderness, remote lakes, sustained climbs, rocky forest roads. Max 8 riders. Meet at Sognsvann (end of metro line 5); hotel pickup on request (+NOK 1 000/group). NOK 2 475/person.
+- Oslo Gravel Short — 13 km, 2 hours, gravel, easy. Nordmarka forest north of Oslo, pine and birch, gentle climbing. Meet at Sognsvann (end of metro line 5); hotel pickup on request (+NOK 699/group). NOK 890/person.
+- Oslo Gravel Loop — 25 km, 3 hours, gravel, medium. Nordmarka forest, rolling terrain, real climbs, mixed woodland. Meet at Sognsvann (end of metro line 5); hotel pickup on request (+NOK 699/group). NOK 1 090/person.
+- Nordmarka Forest (Ring 4) — 45 km, 4 hours, gravel, medium. Classic Oslo cycling loop through pine and birch forest, waffle stop at Kikutstua cabin, Maridalen valley. Meet at Sognsvann (end of metro line 5); hotel pickup on request (+NOK 699/group). NOK 1 450/person.
+- Epic Marka Endurance — 85 km, 6 hours, gravel, challenging. Deep Nordmarka wilderness, remote lakes, sustained climbs, rocky forest roads. Max 8 riders. Meet at Sognsvann (end of metro line 5); hotel pickup on request (+NOK 699/group). NOK 2 475/person.
 - Oslo Coffee Tour — 22 km, 3 hours, road, easy. Specialty coffee stops: Tim Wendelboe, Supreme Roastworks, Fuglen, Java. Coffee and food at each stop paid separately. NOK 1 190/person.
 - Oslo Architecture Tour — 30 km, 3 hours, road, easy. Nordic functionalism: Villa Stenersen (Arne Korsmo, 1939), Planetveien 12 (Korsmo, 1955), Havna Allé & Villa Dammann (1930–32), Skådalen School (Sverre Fehn, 1977). NOK 1 310/person.
 

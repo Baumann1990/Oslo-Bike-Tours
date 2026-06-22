@@ -325,7 +325,7 @@
                         <li>~150 m elevation gain — very manageable</li>
               <li>Gravel roads throughout, suitable for e-bikes</li>
               <li>Meet your guide at Sognsvann, end of metro line 5</li>
-              <li>Hotel pickup available on request (+NOK 1 000 per group)</li>
+              <li>Hotel pickup available on request (+NOK 699 per group)</li>
             </ul>
             <h4>What's included</h4>
             <ul class="modal__list">
@@ -335,7 +335,7 @@
               <li>Route planning and live commentary</li>
               <li>Café stops available on all tours</li>
             </ul>
-            <p style="margin:.75rem 0 0;font-size:.9rem;color:var(--text-muted)"><strong>Available on request:</strong> hotel pickup (+NOK 1 000 per group), gravel bike or e-bike from NOK 349, custom route adjustments.</p>
+            <p style="margin:.75rem 0 0;font-size:.9rem;color:var(--text-muted)"><strong>Available on request:</strong> hotel pickup (+NOK 699 per group), gravel bike or e-bike from NOK 349, custom route adjustments.</p>
           </div>
         </aside>
 
@@ -493,7 +493,7 @@
         </div>
         <div class="form-row">
           <div class="form-group">
-            label>Number of Riders</label>
+            <label>Number of Riders</label>
             <input type="hidden" id="riders" name="riders" value="1" />
             <div class="rf-stepper" data-stepper="riders" data-min="1" data-max="8">
               <button type="button" class="rf-stepper-btn" data-stepper-down aria-label="Decrease">−</button>
@@ -506,6 +506,12 @@
             <label for="message">Message <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
             <textarea id="message" name="message" rows="3" placeholder="Questions, special requests…"></textarea>
           </div>
+        </div>
+        <div class="form-group form-group--full" style="margin:0 0 1rem">
+          <label for="pickup" style="display:flex;align-items:flex-start;gap:.6rem;cursor:pointer;font-size:.9rem;line-height:1.5;color:var(--text)">
+            <input type="checkbox" id="pickup" name="hotel_pickup" value="Yes — hotel pickup requested (+NOK 699 per group)" style="margin-top:.2rem;width:18px;height:18px;flex-shrink:0" />
+            <span>Add hotel pickup for my group <strong>(+NOK 699)</strong> — otherwise we meet at Sognsvann, the end of metro line 5.</span>
+          </label>
         </div>
         <button type="submit" class="btn btn--primary btn--full">Send Enquiry</button>
         <p style="margin:1rem 0 0;font-size:.85rem;color:var(--text-muted);text-align:center">No payment is required until we confirm guide and bike availability. If the tour cannot go ahead as agreed, your payment is fully refundable.</p>
