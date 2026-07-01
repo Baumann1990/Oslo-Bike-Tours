@@ -522,7 +522,7 @@
         </div>
         <div class="tour-why__item">
           <span class="tour-why__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span>
-          <div class="tour-why__text"><strong>Day &amp; multi-day rentals</strong><span>Rent for a day or keep the bike for your whole trip — send your dates for multi-day pricing.</span></div>
+          <div class="tour-why__text"><strong>Day &amp; multi-day rentals</strong><span>Rent for a day or keep the bike for your whole trip — 20% off standard Gravel rentals over 4 days.</span></div>
         </div>
       </div>
     </div>
@@ -535,7 +535,7 @@
         <div class="tour-page__body">
           <p>Our <strong>gravel bike rental in Oslo</strong> gives you the same bikes we ride ourselves on our guided tours — properly maintained, correctly sized, helmet included — not the city hybrids that pass for rentals elsewhere.</p>
           <p>The Nordmarka forest starts at the end of metro line 5. From there, 1,700 square kilometres of gravel roads run north to lakes, ridgelines and mountain cabins. A quality gravel bike is the right tool. A city bike is not.</p>
-          <p>Rent for a single day, or keep the bike for your whole stay. <strong>Multi-day rentals</strong> are our speciality — they're the best way to explore the Nordmarka properly, at your own pace over several days. Tell us your dates and we'll confirm multi-day pricing. On longer rentals we include a <strong>spare tube, a small tool kit and a water bottle</strong> at no extra charge, so you're set up for the forest.</p>
+          <p>Rent for a single day, or keep the bike for your whole stay. <strong>Multi-day rentals</strong> are our speciality — they're the best way to explore the Nordmarka properly, at your own pace over several days. Tell us your dates and we'll confirm multi-day pricing. Standard <strong>Gravel</strong> rentals of <strong>more than 4 days get 20% off the total</strong>, and on longer rentals we include a <strong>spare tube, a small tool kit and a water bottle</strong> at no extra charge, so you're set up for the forest.</p>
           <p>Pick up at <strong>Sognsvann</strong> (end of metro line 5 — step off and the gravel starts immediately), <strong>Oslo Central Station</strong>, or <strong>Bogstad</strong>. We can also deliver the bike directly to your hotel, AirBnB or chosen address for an extra NOK 250. Choose your preferred option in the booking form and we confirm the exact time and meeting point within 24 hours.</p>
         </div>
       </div>
@@ -590,6 +590,7 @@
         <input type="hidden" id="h-total"    name="estimated_total" />
         <input type="hidden" id="h-location" name="pickup_location" />
         <input type="hidden" id="h-addons"   name="add_ons" />
+        <input type="hidden" id="h-pedals"   name="pedals" />
 
         <!-- Step 1: Bike -->
         <div class="rf-block">
@@ -613,6 +614,25 @@
             </button>
           </div>
           <span class="field-error" id="error-tour"></span>
+        </div>
+
+        <!-- Pedal choice (gravel bikes only) -->
+        <div class="rf-block" id="rfPedalBlock" style="display:none">
+          <p class="rf-label">Pedals <span class="rf-label-hint">— included with gravel bikes</span></p>
+          <div class="rf-location-grid" id="rfPedalGrid">
+            <button type="button" class="rf-bike-btn" data-pedal="Flat">
+              <span class="rf-bike-name">Flat</span>
+              <span class="rf-bike-price">No cycling shoes needed</span>
+            </button>
+            <button type="button" class="rf-bike-btn" data-pedal="SPD">
+              <span class="rf-bike-name">SPD</span>
+              <span class="rf-bike-price">Two-bolt clipless</span>
+            </button>
+            <button type="button" class="rf-bike-btn" data-pedal="SPD-SL">
+              <span class="rf-bike-name">SPD-SL</span>
+              <span class="rf-bike-price">Road, three-bolt clipless</span>
+            </button>
+          </div>
         </div>
 
         <!-- Step 2: Pickup location -->
@@ -883,12 +903,30 @@
 
     /* ── Bike buttons ── */
     var bikeBtns = document.querySelectorAll('.rf-bike-btn[data-bike]');
+    var pedalBtns = document.querySelectorAll('#rfPedalGrid .rf-bike-btn');
+    var pedalBlock = document.getElementById('rfPedalBlock');
     bikeBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
         bikeBtns.forEach(function (b) { b.classList.remove('is-active'); });
         btn.classList.add('is-active');
         selectedBike = { name: btn.dataset.bike, price: parseInt(btn.dataset.price) };
+        /* Pedal choice only applies to gravel bikes */
+        var isGravel = (selectedBike.name === 'Gravel' || selectedBike.name === 'Premium Gravel');
+        pedalBlock.style.display = isGravel ? 'block' : 'none';
+        if (!isGravel) {
+          pedalBtns.forEach(function (b) { b.classList.remove('is-active'); });
+          document.getElementById('h-pedals').value = '';
+        }
         updateEstimate();
+      });
+    });
+
+    /* ── Pedal buttons (gravel only) ── */
+    pedalBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        pedalBtns.forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        document.getElementById('h-pedals').value = btn.dataset.pedal;
       });
     });
 
@@ -1024,11 +1062,14 @@
       var days     = daysBetween(startDate, endDate);
       var bikeTotal = selectedBike.price * qty * days;
       var addonTotal = addonOnce + addonPerDay * days;
-      var total    = bikeTotal + addonTotal;
+      var subtotal = bikeTotal + addonTotal;
+      var discount = (days > 4 && selectedBike.name === 'Gravel') ? Math.round(subtotal * 0.20) : 0;
+      var total    = subtotal - discount;
       var totalFmt = total.toLocaleString('nb-NO');
       var bikeLine = qty + ' × ' + selectedBike.name + ' × ' + days + (days === 1 ? ' day' : ' days') + ' = NOK ' + bikeTotal.toLocaleString('nb-NO');
       var addonLine = addonTotal > 0 ? ' + NOK ' + addonTotal.toLocaleString('nb-NO') + ' add-ons' : '';
-      el.innerHTML = '<strong>NOK ' + totalFmt + '</strong> &nbsp;<span style="opacity:.75;font-size:.88rem">' + bikeLine + addonLine + '</span>';
+      var discountLine = discount > 0 ? ' − NOK ' + discount.toLocaleString('nb-NO') + ' (20% multi-day discount)' : '';
+      el.innerHTML = '<strong>NOK ' + totalFmt + '</strong> &nbsp;<span style="opacity:.75;font-size:.88rem">' + bikeLine + addonLine + discountLine + '</span>';
       el.parentElement.style.opacity = '1';
 
       /* Populate hidden fields */
@@ -1037,7 +1078,7 @@
       document.getElementById('h-end').value   = fmt(endDate);
       document.getElementById('h-days').value  = days;
       document.getElementById('h-qty').value   = qty;
-      document.getElementById('h-total').value = 'NOK ' + totalFmt;
+      document.getElementById('h-total').value = 'NOK ' + totalFmt + (discount > 0 ? ' (incl. 20% multi-day discount)' : '');
     }
 
     /* ── Card "Rent" buttons → pre-select bike ── */
