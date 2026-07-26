@@ -876,6 +876,7 @@
     /* ── State ── */
     var selectedBike     = null;   // { name, price }
     var selectedLocation = null;
+    var DELIVERY_FEE = 250;
     var qty              = 1;
     var startDate        = null;   // Date
     var endDate          = null;   // Date
@@ -937,6 +938,7 @@
         var isDelivery = selectedLocation === 'Hotel/Address Delivery';
         deliveryWrap.style.display = isDelivery ? 'block' : 'none';
         document.getElementById('h-location').value = selectedLocation;
+        updateEstimate();
       });
     });
     deliveryInput.addEventListener('input', function () {
@@ -1057,14 +1059,16 @@
       var days     = daysBetween(startDate, endDate);
       var bikeTotal = selectedBike.price * qty * days;
       var addonTotal = addonOnce + addonPerDay * days;
-      var subtotal = bikeTotal + addonTotal;
-      var discount = (days > 4 && selectedBike.name === 'Gravel') ? Math.round(subtotal * 0.20) : 0;
-      var total    = subtotal - discount;
+      /* Multi-day discount applies to the bike only — not to add-ons or the delivery fee */
+      var discount = (days > 4 && selectedBike.name === 'Gravel') ? Math.round(bikeTotal * 0.20) : 0;
+      var deliveryFee = (selectedLocation === 'Hotel/Address Delivery') ? DELIVERY_FEE : 0;
+      var total    = bikeTotal + addonTotal - discount + deliveryFee;
       var totalFmt = total.toLocaleString('nb-NO');
       var bikeLine = qty + ' × ' + selectedBike.name + ' × ' + days + (days === 1 ? ' day' : ' days') + ' = NOK ' + bikeTotal.toLocaleString('nb-NO');
       var addonLine = addonTotal > 0 ? ' + NOK ' + addonTotal.toLocaleString('nb-NO') + ' add-ons' : '';
+      var deliveryLine = deliveryFee > 0 ? ' + NOK ' + deliveryFee.toLocaleString('nb-NO') + ' delivery' : '';
       var discountLine = discount > 0 ? ' − NOK ' + discount.toLocaleString('nb-NO') + ' (20% multi-day discount)' : '';
-      el.innerHTML = '<strong>NOK ' + totalFmt + '</strong> &nbsp;<span style="opacity:.75;font-size:.88rem">' + bikeLine + addonLine + discountLine + '</span>';
+      el.innerHTML = '<strong>NOK ' + totalFmt + '</strong> &nbsp;<span style="opacity:.75;font-size:.88rem">' + bikeLine + addonLine + deliveryLine + discountLine + '</span>';
       el.parentElement.style.opacity = '1';
 
       /* Populate hidden fields */
@@ -1073,7 +1077,10 @@
       document.getElementById('h-end').value   = fmt(endDate);
       document.getElementById('h-days').value  = days;
       document.getElementById('h-qty').value   = qty;
-      document.getElementById('h-total').value = 'NOK ' + totalFmt + (discount > 0 ? ' (incl. 20% multi-day discount)' : '');
+      var totalNotes = [];
+      if (discount > 0)    totalNotes.push('incl. 20% multi-day discount on bike');
+      if (deliveryFee > 0) totalNotes.push('incl. NOK ' + deliveryFee + ' delivery fee');
+      document.getElementById('h-total').value = 'NOK ' + totalFmt + (totalNotes.length ? ' (' + totalNotes.join('; ') + ')' : '');
     }
 
     /* ── Card "Rent" buttons → pre-select bike ── */
