@@ -40,7 +40,8 @@ Small groups (max 8 people), local guides Eivind and Haakon. City tours include 
 
 - Oslo Bike Tours rents quality gravel bikes and e-bikes in Oslo, available for a single day or for multiple days
 - Multi-day rentals are a core part of the business and the best way to explore the Nordmarka forest at your own pace — there is no maximum rental length (a weekend, a week, or a whole trip)
-- Multi-day pricing is simply the daily rate multiplied by the number of days (e.g. a Gravel bike for 3 days is 3 × NOK 800 = NOK 2 400)
+- Multi-day pricing is the daily rate multiplied by the number of days (e.g. a Gravel bike for 3 days is 3 × NOK 800 = NOK 2 400)
+- On the standard Gravel bike, every day from the fifth onwards is 20% off (days 1-4 at full rate). A 7-day Gravel rental is 4 × 800 + 3 × 640 = NOK 5 120
 - Bikes and daily rates:
   - Gravel (aluminium frame, disc brakes) — NOK 800/day
   - Premium Gravel (carbon frame, carbon wheels, tubeless, hydraulic disc brakes) — NOK 1 400/day
@@ -49,7 +50,9 @@ Small groups (max 8 people), local guides Eivind and Haakon. City tours include 
 - Helmet included with every rental
 - Pickup locations: Sognsvann (end of metro line 5, on the Nordmarka forest edge), Oslo Central Station, or Kjelsås
 - Hotel, AirBnB or any-address delivery available for an extra NOK 250 (subject to availability and location)
-- Add-ons: seatpost bag (NOK 125), child trailer (NOK 350), bar bag (NOK 75), frame bag (NOK 75)
+- Add-ons: seatpost bag (NOK 200), bar bag (NOK 150), frame bag (NOK 150), child trailer (NOK 350/day)
+- Bikepacking Luggage Set (all three bags) — NOK 400 instead of 500; half price on rentals of 5-6 days and included free on rentals of 7 days or more (all bike types)
+- One luggage set covers one bike; for more than one set, mention it at booking
 - A refundable security deposit applies, arranged on confirmation
 - Payment via PayPal or Stripe
 - Rental page: https://www.oslobiketours.no/bike-rental-oslo/

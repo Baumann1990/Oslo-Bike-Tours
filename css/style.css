@@ -2336,6 +2336,71 @@ textarea { resize: vertical; }
   .sticky-book { display: none; }
 }
 
+/* ── Sticky promo bar ────────────────────────────────────────── */
+.promo-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px 20px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  background: var(--green-deep);
+  border-top: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 -4px 20px rgba(0,0,0,.18);
+  transform: translateY(100%);
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+}
+
+.promo-bar.is-visible { transform: translateY(0); }
+.promo-bar[hidden]    { display: none; }
+
+.promo-bar__text {
+  color: #fff;
+  font-size: .95rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.promo-bar__text strong { color: var(--amber); }
+
+.promo-bar__cta {
+  flex-shrink: 0;
+  background: var(--amber);
+  color: var(--green-deep);
+  font-weight: 700;
+  font-size: .88rem;
+  text-decoration: none;
+  padding: 9px 18px;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: background .2s;
+}
+
+.promo-bar__cta:hover { background: var(--amber-dark); color: #fff; }
+
+.promo-bar__close {
+  position: absolute;
+  right: 10px; top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 0;
+  color: rgba(255,255,255,.55);
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.promo-bar__close:hover { color: #fff; }
+
+@media (max-width: 640px) {
+  .promo-bar { flex-direction: column; gap: 10px; padding-right: 40px; text-align: center; }
+  .promo-bar__text { font-size: .88rem; }
+}
+
 /* ── Related tours chip row ──────────────────────────────────── */
 .related-tours { background: var(--bg); padding-top: 0; }
 
