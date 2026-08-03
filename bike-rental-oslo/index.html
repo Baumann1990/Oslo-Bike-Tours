@@ -526,7 +526,7 @@
         </div>
         <div class="tour-why__item">
           <span class="tour-why__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span>
-          <div class="tour-why__text"><strong>Day &amp; multi-day rentals</strong><span>Rent for a day or keep the bike for your whole trip — 20% off every day from the fifth on standard Gravel.</span></div>
+          <div class="tour-why__text"><strong>Day &amp; multi-day rentals</strong><span>Rent for a day or keep the bike for your whole trip — 20% off every day from the fifth on the standard Gravel and both e-bikes.</span></div>
         </div>
       </div>
     </div>
@@ -691,7 +691,7 @@
           <p class="rf-label">5. Add-ons <span class="rf-label-hint">— optional</span></p>
           <div class="rf-addon-grid">
             <button type="button" class="rf-addon-btn" data-addon="Bikepacking Luggage Set" data-price="400" data-bundle="true">
-              <span class="rf-addon-name">Bikepacking Luggage Set</span>
+              <span class="rf-addon-name">Bikepacking Luggage Set<br><span style="font-weight:400;opacity:.7;font-size:.82em">(bar, frame &amp; seatpost bags)</span></span>
               <span class="rf-addon-price">NOK 400</span>
             </button>
             <button type="button" class="rf-addon-btn" data-addon="Seatpost Bag" data-price="200" data-bag="true">
@@ -711,7 +711,7 @@
               <span class="rf-addon-price">NOK 350 / day</span>
             </button>
           </div>
-          <p style="font-size:.82rem;color:var(--text-muted);margin:.75rem 0 0">All three bags together as the <strong>Bikepacking Luggage Set</strong> — NOK 400 instead of 500. Half price on rentals of 5–6 days, and <strong>included free on rentals of 7 days or more</strong>. One set covers one bike — renting more than one? Mention it in the message box and we'll confirm within 24 hours.</p>
+          <p style="font-size:.82rem;color:var(--text-muted);margin:.75rem 0 0">All three bags together as the <strong>Bikepacking Luggage Set</strong> (bar, frame and seatpost bags) — NOK 400 instead of 500. Half price on rentals of 5–6 days, and <strong>included free on rentals of 7 days or more</strong>. One set covers one bike — renting more than one? Mention it in the message box and we'll confirm within 24 hours.</p>
         </div>
 
         <!-- Step 6: Contact -->
@@ -879,6 +879,7 @@
     var selectedLocation = null;
     var DELIVERY_FEE = 250;
     var BUNDLE_PRICE = 400;
+    var DISCOUNT_BIKES = ['Gravel', 'Premium E-Bike', 'Long Range E-Bike'];
     var qty              = 1;
     var startDate        = null;   // Date
     var endDate          = null;   // Date
@@ -1070,8 +1071,10 @@
       var bikeTotal = selectedBike.price * qty * days;
       var addonTotal = addonOnce + addonPerDay * days;
       /* Multi-day discount: 20% off each day from the fifth onwards, bike only.
-         Applied marginally (not to the whole rental) so a longer booking is never cheaper than a shorter one. */
-      var discountedDays = (days > 4 && selectedBike.name === 'Gravel') ? days - 4 : 0;
+         Applied marginally (not to the whole rental) so a longer booking is never cheaper than a shorter one.
+         Eligible: standard Gravel and both e-bikes. Premium Gravel is excluded. */
+      var discountEligible = DISCOUNT_BIKES.indexOf(selectedBike.name) !== -1;
+      var discountedDays = (days > 4 && discountEligible) ? days - 4 : 0;
       var discount = Math.round(selectedBike.price * qty * discountedDays * 0.20);
       /* Luggage set: free on any rental of 7+ days, half price on 5–6 days (all bike types) */
       var bundleOn = !!document.querySelector('.rf-addon-btn[data-bundle="true"].is-active');
@@ -1154,7 +1157,7 @@
        on this page. The promo bar below replaces it and links to the rental form. -->
   <style>.sticky-book { display: none !important; }</style>
   <div class="promo-bar" id="promoBar" role="region" aria-label="Bikepacking offer">
-    <p class="promo-bar__text">Bikepacking Luggage Set: <strong>half price from 5 days, free from 7</strong>.</p>
+    <p class="promo-bar__text">Luggage set (bar, frame &amp; seatpost bags): <strong>half price from 5 days, free from 7</strong>.</p>
     <a href="#book" class="promo-bar__cta">Book a bike</a>
     <button class="promo-bar__close" id="promoClose" aria-label="Dismiss offer">&times;</button>
   </div>
