@@ -20,7 +20,7 @@ Small groups (max 8 people), local guides Eivind and Haakon. City tours include 
 - Guide picks you up at your hotel or accommodation in Oslo
 - Tours tailored to your pace and preferences
 - Optional café stops available on all tours
-- Bike rental as a guided-tour add-on from NOK 349; standalone day and multi-day rentals from NOK 800/day (see Bike rental section)
+- Bike rental as a guided-tour add-on from NOK 349; standalone day and multi-day rentals from NOK 899 for the first day, less for each day after (see Bike rental section)
 - Bike not included in base price
 - Helmet not included in base price
 - Languages: English and Norwegian
@@ -40,13 +40,13 @@ Small groups (max 8 people), local guides Eivind and Haakon. City tours include 
 
 - Oslo Bike Tours rents quality gravel bikes and e-bikes in Oslo, available for a single day or for multiple days
 - Multi-day rentals are a core part of the business and the best way to explore the Nordmarka forest at your own pace — there is no maximum rental length (a weekend, a week, or a whole trip)
-- Multi-day pricing is the daily rate multiplied by the number of days (e.g. a Gravel bike for 3 days is 3 × NOK 800 = NOK 2 400)
-- On the standard Gravel bike and both e-bikes, every day from the fifth onwards is 20% off (days 1-4 at full rate). A 7-day Gravel rental is 4 × 800 + 3 × 640 = NOK 5 120. Premium Gravel is excluded from this discount
-- Bikes and daily rates:
-  - Gravel (aluminium frame, disc brakes) — NOK 800/day
-  - Premium Gravel (carbon frame, carbon wheels, tubeless, hydraulic disc brakes) — NOK 1 400/day
-  - Premium E-Bike — NOK 800/day
-  - Long Range E-Bike (largest battery, for full-day forest rides) — NOK 1 200/day
+- Pricing is tiered by rental length: the first day costs most, and every day after that costs less. There is no discount code and no minimum
+- Gravel and Premium E-Bike: NOK 899 first day, NOK 700 for days 2-4, NOK 600 from day 5 onwards
+  - Totals: 1 day 899, 2 days 1 599, 3 days 2 299, 4 days 2 999, 5 days 3 599, 7 days 4 799
+- Long Range E-Bike (largest battery, for full-day forest rides): NOK 1 299 first day, NOK 1 050 for days 2-4, NOK 900 from day 5 onwards
+  - Totals: 1 day 1 299, 2 days 2 349, 3 days 3 399, 4 days 4 449, 5 days 5 349, 7 days 7 149
+- Premium Gravel (carbon frame, carbon wheels, tubeless, hydraulic disc brakes): NOK 1 399 per day at any length, not tiered
+- Gravel has an aluminium frame and disc brakes; Premium E-Bike covers a normal forest day
 - Helmet included with every rental
 - Pickup locations: Sognsvann (end of metro line 5, on the Nordmarka forest edge), Oslo Central Station, or Kjelsås
 - Hotel, AirBnB or any-address delivery available for an extra NOK 250 (subject to availability and location)
