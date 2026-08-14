@@ -1755,14 +1755,19 @@
     document.querySelectorAll('a[data-tour]').forEach(function (link) {
       link.addEventListener('click', function () {
         var tourName = this.getAttribute('data-tour');
-        var sel = document.getElementById('tour');
-        if (!sel) return;
-        for (var i = 0; i < sel.options.length; i++) {
-          if (sel.options[i].text === tourName) {
-            sel.selectedIndex = i;
-            break;
+        var el = document.getElementById('tour');
+        if (!el) return;
+        if (el.tagName === 'SELECT') {
+          for (var i = 0; i < el.options.length; i++) {
+            if (el.options[i].text === tourName) { el.selectedIndex = i; break; }
           }
+        } else {
+          /* #tour is a hidden input, not a select — set the value directly */
+          el.value = tourName;
         }
+        /* let the price estimator and the validator see the change */
+        el.dispatchEvent(new Event('input',  { bubbles: true }));
+        el.dispatchEvent(new Event('change', { bubbles: true }));
       });
     });
   </script>

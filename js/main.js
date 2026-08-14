@@ -470,9 +470,9 @@ if (form) {
 
   const priceMap = {
     'Oslo City Highlights':      890,
-    'Bygdøy Peninsula':         1090,
+    'Bygdøy Peninsula':         1050,
     'Oslo Gravel Short':         890,
-    'Oslo Gravel Loop':         1050,
+    'Oslo Gravel Loop':         1090,
     'Nordmarka Forest (Ring 4)':1450,
     'Epic Marka Endurance':     2475,
     'Oslo Coffee Tour':         1190,
