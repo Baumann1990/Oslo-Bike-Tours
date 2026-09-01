@@ -32,7 +32,6 @@ Small groups (max 8 people), local guides Eivind and Haakon. City tours include 
 
 - Private bike tours overview: https://www.oslobiketours.no/private-bike-tours-oslo/
 - Gravel bike tours overview: https://www.oslobiketours.no/gravel-bike-tours-oslo/
-- Shore excursions (cruise passengers): https://www.oslobiketours.no/oslo-shore-excursion-bike-tour/
 - Hotel pickup: https://www.oslobiketours.no/hotel-pickup/
 - Bike rental (day and multi-day): https://www.oslobiketours.no/bike-rental-oslo/
 
@@ -48,8 +47,7 @@ Small groups (max 8 people), local guides Eivind and Haakon. City tours include 
 - Premium Gravel (carbon frame, carbon wheels, tubeless, hydraulic disc brakes): NOK 1 399 per day at any length, not tiered
 - Gravel has an aluminium frame and disc brakes; Premium E-Bike covers a normal forest day
 - Helmet included with every rental
-- Standard pickup locations, included in the price: Sognsvann (end of metro line 5, on the Nordmarka forest edge), Kjelsås (end of tram line 11), or Huseby (2 min walk from Montebello on metro line 3, west Oslo, at the start of the Mærradalen gravel route up to Bogstad and Sørkedalen)
-- Oslo Central Station pickup or return available for an extra NOK 250, free of charge on rentals of 7 days or more
+- Pickup locations, all included in the price: Sognsvann (end of metro line 5, on the Nordmarka forest edge), Kjelsås (end of tram line 11), Huseby (2 min walk from Montebello on metro line 3, west Oslo, at the start of the Mærradalen gravel route up to Bogstad and Sørkedalen), or Oslo Central Station
 - Hotel, AirBnB or any-address delivery available for an extra NOK 399 (subject to availability and location)
 - Add-ons: seatpost bag (NOK 200), bar bag (NOK 150), frame bag (NOK 150), child trailer (NOK 350/day)
 - Bikepacking Luggage Set (bar bag, frame bag and seatpost bag) — NOK 400 instead of 500; half price on rentals of 5-6 days and included free on rentals of 7 days or more (all bike types)
@@ -58,15 +56,6 @@ Small groups (max 8 people), local guides Eivind and Haakon. City tours include 
 - Payment via PayPal or Stripe
 - Rental page: https://www.oslobiketours.no/bike-rental-oslo/
 - Note: bike rental is also available as an add-on to guided tours from NOK 349
-
-## Shore excursions (cruise passengers)
-
-- Oslo Bike Tours accepts cruise passengers and specialises in shore excursions from the Oslo cruise terminal
-- Guide meets passengers at the terminal on arrival
-- Guaranteed return to the ship before all-aboard time — buffer built into every tour
-- Recommended tours for cruise passengers: Oslo City Highlights (2 hrs), Bygdøy Peninsula (2.5 hrs), Oslo Gravel Short (2 hrs), Oslo Coffee Tour (3 hrs)
-- Longer tours available for full-day port calls
-- Dedicated landing page: https://www.oslobiketours.no/oslo-shore-excursion-bike-tour/
 
 ## Booking
 
