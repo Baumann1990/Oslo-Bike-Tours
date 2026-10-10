@@ -710,3 +710,21 @@ function loadConditions() {
     }
   }
 })();
+
+/* ── Rental form: live reply status (promise: 2 h, 08:00–22:00) ── */
+(function initReplyStatus() {
+  const el = document.querySelector('[data-reply-status]');
+  if (!el) return;
+  const OPEN = 8, CLOSE = 22;
+  const update = () => {
+    const hour = Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Oslo', hour: '2-digit', hourCycle: 'h23' }).format(new Date()));
+    const open = hour >= OPEN && hour < CLOSE;
+    el.classList.toggle('reply-status--open', open);
+    el.innerHTML = '<span class="reply-status__dot"></span>' + (open
+      ? 'Answering now — reply within 2 hours'
+      : 'Back at 08:00 — reply by 10:00');
+    el.hidden = false;
+  };
+  update();
+  setInterval(update, 60e3);
+})();

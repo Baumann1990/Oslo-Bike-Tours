@@ -2876,3 +2876,25 @@ html.has-ride-ribbon .hero { padding-top: 40px; height: calc(100vh + 40px); heig
 }
 [data-fx-table] .fx { display: block; margin-top: .1rem; }
 .rf-estimate .fx { color: inherit; opacity: .75; }
+
+/* ── Rental form: live reply status ──────────────────────────── */
+.reply-status {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  margin: .6rem auto 0;
+  padding: .3rem .85rem;
+  border-radius: 99px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: .82rem;
+  color: var(--text-muted);
+}
+.reply-status[hidden] { display: none; }
+.reply-status__dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #b9b3a8;
+}
+.reply-status--open { color: var(--green-deep); }
+.reply-status--open .reply-status__dot { background: #3ddc97; box-shadow: 0 0 6px #3ddc97; }
