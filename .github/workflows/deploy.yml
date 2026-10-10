@@ -1,5 +1,5 @@
 # Publishes the site to GitHub Pages on every push, and every 3 hours with a
-# fresh Nordmarka riding forecast (data/conditions.json is generated here, never committed).
+# fresh Nordmarka riding forecast and exchange rates (data/*.json is generated here, never committed).
 # Requires: Settings → Pages → Build and deployment → Source: "GitHub Actions".
 name: Deploy site
 
@@ -47,6 +47,13 @@ jobs:
         run: |
           mkdir -p _site/data
           python scripts/riding_forecast.py _site/data/conditions.json
+
+      # Same fallback: without rates the rental page simply shows NOK only.
+      - name: Fetch exchange rates
+        continue-on-error: true
+        run: |
+          mkdir -p _site/data
+          python scripts/exchange_rates.py _site/data/rates.json
 
       - uses: actions/configure-pages@v5
 

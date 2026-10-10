@@ -2824,3 +2824,56 @@ html.has-ride-ribbon .hero { padding-top: 40px; height: calc(100vh + 40px); heig
   html.has-ride-ribbon .tour-hero { height: calc(45vh + 40px); min-height: 320px; }
   html.has-ride-ribbon .hero { height: calc(85svh + 40px); min-height: 560px; }
 }
+
+/* ── Route cards: latest start for daylight (filled by main.js) ── */
+.ride-start {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  margin-top: .2rem;
+  font-size: .78rem;
+  color: var(--green-mid);
+}
+.ride-start[hidden] { display: none; }
+.ride-start strong { color: var(--green-deep); }
+.ride-start__dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--amber);
+}
+
+/* ── Approximate prices in the visitor's currency ─────────────── */
+.fx-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  margin: 0 0 1.5rem;
+  font-size: .8rem;
+}
+.fx-toggle[hidden] { display: none; }
+.fx-toggle__label { color: var(--text-muted); margin-right: .25rem; }
+.fx-toggle button {
+  font: inherit;
+  padding: .25rem .7rem;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+.fx-toggle button[aria-pressed="true"] {
+  background: var(--green-deep);
+  border-color: var(--green-deep);
+  color: var(--white);
+}
+.fx {
+  font-size: .78em;
+  font-weight: 400;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+[data-fx-table] .fx { display: block; margin-top: .1rem; }
+.rf-estimate .fx { color: inherit; opacity: .75; }

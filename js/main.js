@@ -523,6 +523,14 @@ if (form) {
   update();
 })();
 
+/* ── Nordmarka forecast, shared by the ribbon and route start times ── */
+let conditionsPromise;
+function loadConditions() {
+  conditionsPromise = conditionsPromise || fetch('/data/conditions.json', { cache: 'no-cache' })
+    .then(r => (r.ok ? r.json() : Promise.reject()));
+  return conditionsPromise;
+}
+
 /* ── Nordmarka riding-conditions ribbon (Apr – Nov) ──────────── */
 (function initRideRibbon() {
   if (/^\/(deposit|verify-identity)\//.test(location.pathname)) return;
@@ -558,10 +566,7 @@ if (form) {
   document.documentElement.classList.add('has-ride-ribbon');
   if (!inSeason) return;
 
-  fetch('/data/conditions.json', { cache: 'no-cache' })
-    .then(r => (r.ok ? r.json() : Promise.reject()))
-    .then(render)
-    .catch(() => {});
+  loadConditions().then(render).catch(() => {});
 
   function render(data) {
     if (Date.now() - new Date(data.generated).getTime() > 12 * 3600e3) return; // stale: keep season message
@@ -585,5 +590,123 @@ if (form) {
       `<span class="ride-ribbon__detail"><span class="sep">·</span> ${detail}</span>` +
       later + cta;
     ribbon.title = 'Forecast for the Nordmarka near Ullevålseter, 10:00 to sunset, from MET Norway';
+  }
+})();
+
+/* ── Route cards: latest start to finish in daylight ─────────── */
+(function initRideStartTimes() {
+  const slots = document.querySelectorAll('[data-ride-hours]');
+  if (!slots.length) return;
+
+  const osloDate = d => new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Oslo' }).format(d);
+  const today = osloDate(new Date());
+  const hhmm = d => new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Oslo', hour: '2-digit', minute: '2-digit' }).format(d);
+  const OPEN = 10; // bikes can be collected from 10:00
+
+  loadConditions().then(data => {
+    const days = (data.days || []).filter(d => d.date >= today && d.end);
+    if (!days.length) return;
+
+    slots.forEach(slot => {
+      const hours = Number(slot.dataset.rideHours);
+      // Latest start = sunset minus riding time, rounded down to the quarter hour
+      const latest = d => {
+        const t = new Date(new Date(d.end).getTime() - hours * 3600e3);
+        t.setMinutes(Math.floor(t.getMinutes() / 15) * 15, 0, 0);
+        return t;
+      };
+      const day = days.find(d => latest(d).getTime() > Date.now());
+      if (!day) return;
+
+      const when = day.date === today ? 'today' : day.date === osloDate(new Date(Date.now() + 864e5)) ? 'tomorrow'
+        : new Date(day.date + 'T12:00:00Z').toLocaleDateString('en-GB', { weekday: 'long', timeZone: 'UTC' });
+      const start = latest(day);
+      const early = Number(hhmm(start).slice(0, 2)) < OPEN;
+      slot.innerHTML = `<span class="ride-start__dot"></span>Start by <strong>${hhmm(start)}</strong> ${when} to finish in daylight` +
+        (early ? ' · ask us about collection before 10:00' : '');
+      slot.title = `Sunset ${day.sunset}, about ${hours} h riding including stops`;
+      slot.hidden = false;
+    });
+  }).catch(() => {});
+})();
+
+/* ── Rental prices: approximate amount in the visitor's currency ── */
+(function initCurrencyHints() {
+  const toggle = document.querySelector('[data-fx-toggle]');
+  if (!toggle) return;
+
+  const KEY = 'obt_fx';
+  const EURO_LANGS = ['de', 'fr', 'nl', 'es', 'it', 'pt', 'fi', 'el', 'sk', 'sl', 'et', 'lv', 'lt', 'ga', 'mt', 'hr'];
+  const guess = () => {
+    const tag = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+    const [lang, region] = tag.toLowerCase().split('-');
+    if (region === 'us') return 'USD';
+    if (region === 'gb' || region === 'uk') return 'GBP';
+    if (['nb', 'nn', 'no', 'sv', 'da'].includes(lang)) return 'NOK';
+    if (EURO_LANGS.includes(lang) || region === 'ie') return 'EUR';
+    return 'NOK';
+  };
+  let saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+
+  const parseNok = text => Number(String(text).replace(/[^\d]/g, ''));
+  let fmt = null, rate = 1;
+
+  fetch('/data/rates.json', { cache: 'no-cache' })
+    .then(r => (r.ok ? r.json() : Promise.reject()))
+    .then(data => {
+      if (!data.nok_per || Date.now() - new Date(data.generated).getTime() > 7 * 864e5) return; // stale: NOK only
+      toggle.hidden = false;
+      toggle.title = `Approximate, at Norges Bank's rate of ${data.date}. You pay in NOK.`;
+      const choose = cur => {
+        toggle.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cur === cur)));
+        fmt = cur === 'NOK' || !data.nok_per[cur] ? null
+          : new Intl.NumberFormat('en-GB', { style: 'currency', currency: cur, currencyDisplay: 'narrowSymbol', maximumFractionDigits: 0 });
+        rate = data.nok_per[cur] || 1;
+        paint();
+      };
+      toggle.addEventListener('click', e => {
+        const btn = e.target.closest('button[data-cur]');
+        if (!btn) return;
+        try { localStorage.setItem(KEY, btn.dataset.cur); } catch (err) {}
+        choose(btn.dataset.cur);
+      });
+      choose(saved && (saved === 'NOK' || data.nok_per[saved]) ? saved : guess());
+
+      // The price calculator rewrites its text as dates change: re-apply after each update
+      const estimate = document.getElementById('rfEstimateText');
+      if (estimate) new MutationObserver(() => { if (!estimate.querySelector('.fx')) paintEstimate(estimate); })
+        .observe(estimate, { childList: true, subtree: true });
+    })
+    .catch(() => {});
+
+  const hint = nok => `<span class="fx">≈ ${fmt.format(Math.round(nok / rate))}</span>`;
+
+  function paint() {
+    document.querySelectorAll('.fx').forEach(el => el.remove());
+    if (!fmt) return;
+    document.querySelectorAll('[data-fx-table] tbody td:not(:first-child)').forEach(td => {
+      const nok = parseNok(td.textContent);
+      if (nok) td.insertAdjacentHTML('beforeend', hint(nok));
+    });
+    document.querySelectorAll('.tour-card__price').forEach(el => {
+      const m = el.textContent.match(/NOK\s*([\d\s\u00a0]+)/);
+      if (m) el.insertAdjacentHTML('beforeend', ' ' + hint(parseNok(m[1])));
+    });
+    const estimate = document.getElementById('rfEstimateText');
+    if (estimate) paintEstimate(estimate);
+  }
+
+  function paintEstimate(el) {
+    if (!fmt) return;
+    // First NOK amount in the estimate is the total
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    for (let node; (node = walker.nextNode());) {
+      const m = node.textContent.match(/NOK[\s\u00a0]*\d[\d\s\u00a0]*/);
+      if (!m) continue;
+      const after = node.splitText(m.index + m[0].trimEnd().length);
+      after.parentNode.insertBefore(document.createRange().createContextualFragment(' ' + hint(parseNok(m[0]))), after);
+      return;
+    }
   }
 })();
