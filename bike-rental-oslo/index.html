@@ -674,6 +674,7 @@
         <input type="hidden" id="h-bike"  name="bike" />
         <input type="hidden" id="h-start" name="start_date" />
         <input type="hidden" id="h-end"   name="end_date" />
+        <input type="hidden" id="h-heights" name="rider_heights" />
         <input type="hidden" id="h-days"  name="days" />
         <input type="hidden" id="h-qty"   name="bikes" />
         <input type="hidden" id="h-total"    name="estimated_total" />
@@ -760,12 +761,15 @@
 
         <!-- Step 3: Quantity -->
         <div class="rf-block">
-          <p class="rf-label">3. Number of bikes</p>
+          <p class="rf-label">3. Bikes and rider heights</p>
           <div class="rf-stepper">
             <button type="button" class="rf-stepper-btn" id="rfQtyDown" aria-label="Decrease">−</button>
             <span class="rf-stepper-val" id="rfQtyVal">1</span>
             <button type="button" class="rf-stepper-btn" id="rfQtyUp" aria-label="Increase">+</button>
           </div>
+          <p class="rf-heights-hint">Each rider's height, so every bike is set up for them before pickup.</p>
+          <div class="rf-heights" id="rfHeights"></div>
+          <span class="form__error" id="error-heights" role="alert"></span>
         </div>
 
         <!-- Step 4: Calendar -->
@@ -1263,6 +1267,60 @@
       });
     });
 
+    /* ── Rider heights: one dropdown per bike ── */
+    var HEIGHT_BANDS = (function () {
+      /* Each whole inch belongs to exactly one band (by its rounded cm), so the
+         feet-and-inches ranges never overlap for riders who think in inches. */
+      var ftin = function (i) { return Math.floor(i / 12) + '\u2032' + (i % 12) + '\u2033'; };
+      var band = function (cm) { return cm < 155 ? 0 : cm >= 195 ? 9 : 1 + Math.floor((cm - 155) / 5); };
+      var inches = [];
+      for (var i = 48; i <= 84; i++) { var b = band(Math.round(i * 2.54)); (inches[b] = inches[b] || []).push(i); }
+      var span = function (b) { var r = inches[b]; return ftin(r[0]) + '–' + ftin(r[r.length - 1]); };
+      var bands = [{ v: 'Under 155 cm', t: 'Under 155 cm (' + ftin(inches[0][inches[0].length - 1]) + ' or under)' }];
+      for (var cm = 155, k = 1; cm < 195; cm += 5, k++) {
+        bands.push({ v: cm + '–' + (cm + 4) + ' cm', t: cm + '–' + (cm + 4) + ' cm (' + span(k) + ')' });
+      }
+      bands.push({ v: '195 cm or taller', t: '195 cm or taller (' + ftin(inches[9][0]) + ' or over)' });
+      bands.push({ v: 'Not sure — ask me', t: 'Not sure — ask me' });
+      return bands;
+    })();
+
+    function renderHeights() {
+      var box = document.getElementById('rfHeights');
+      var kept = Array.prototype.map.call(box.querySelectorAll('select'), function (sel) { return sel.value; });
+      box.innerHTML = '';
+      for (var i = 0; i < qty; i++) {
+        var id = 'rfHeight' + (i + 1);
+        var row = document.createElement('div');
+        row.className = 'rf-height-row';
+        var opts = '<option value="">Select height</option>' + HEIGHT_BANDS.map(function (b) {
+          return '<option value="' + b.v + '"' + (kept[i] === b.v ? ' selected' : '') + '>' + b.t + '</option>';
+        }).join('');
+        row.innerHTML = '<label for="' + id + '">' + (qty > 1 ? 'Rider ' + (i + 1) : 'Rider height') + '</label>' +
+          '<select id="' + id + '">' + opts + '</select>';
+        box.appendChild(row);
+      }
+      syncHeights();
+    }
+
+    function syncHeights() {
+      var sels = document.querySelectorAll('#rfHeights select');
+      var parts = Array.prototype.map.call(sels, function (sel, i) {
+        return (sels.length > 1 ? (i + 1) + ') ' : '') + (sel.value || 'not given');
+      });
+      document.getElementById('h-heights').value = parts.join(' · ');
+    }
+
+    document.getElementById('rfHeights').addEventListener('change', function (e) {
+      if (e.target.tagName !== 'SELECT') return;
+      e.target.classList.remove('input--error');
+      if (!document.querySelector('#rfHeights select.input--error')) document.getElementById('error-heights').textContent = '';
+      syncHeights();
+    });
+    ['rfQtyUp', 'rfQtyDown'].forEach(function (id) {
+      document.getElementById(id).addEventListener('click', renderHeights);
+    });
+
     /* ── Validation hook (works alongside main.js) ── */
     document.getElementById('bookForm').addEventListener('submit', function (e) {
       /* require terms acceptance before anything else (capture phase blocks main.js) */
@@ -1277,6 +1335,18 @@
         return;
       }
       if (termsErr) termsErr.textContent = '';
+      var missing = Array.prototype.filter.call(document.querySelectorAll('#rfHeights select'), function (sel) { return !sel.value; });
+      if (missing.length) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        missing.forEach(function (sel) { sel.classList.add('input--error'); });
+        document.getElementById('error-heights').textContent =
+          missing.length > 1 ? 'Please choose a height for each rider (or "Not sure").' : 'Please choose a height (or "Not sure").';
+        missing[0].focus();
+        missing[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      syncHeights();
       /* ensure hidden fields are set even if estimate wasn't triggered */
       if (selectedBike) document.getElementById('h-bike').value = selectedBike.name;
       if (startDate)    document.getElementById('h-start').value = fmt(startDate);
@@ -1294,6 +1364,7 @@
     /* ── Init ── */
     renderCal();
     updateEstimate();
+    renderHeights();
   })();
   </script>
 

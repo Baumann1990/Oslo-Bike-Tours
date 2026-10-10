@@ -2898,3 +2898,27 @@ html.has-ride-ribbon .hero { padding-top: 40px; height: calc(100vh + 40px); heig
 }
 .reply-status--open { color: var(--green-deep); }
 .reply-status--open .reply-status__dot { background: #3ddc97; box-shadow: 0 0 6px #3ddc97; }
+
+/* ── Rental form: rider heights ──────────────────────────────── */
+.rf-heights-hint { font-size: .82rem; color: var(--text-muted); margin: .75rem 0 .5rem; }
+.rf-heights { display: grid; gap: .5rem; }
+.rf-height-row {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  align-items: center;
+  gap: .75rem;
+}
+.rf-height-row label { font-size: .88rem; font-weight: 600; color: var(--text); }
+.rf-height-row select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--surface);
+}
+.rf-height-row select.input--error { border-color: #c0392b; }
+@media (max-width: 420px) {
+  .rf-height-row { grid-template-columns: 1fr; gap: .3rem; }
+}
