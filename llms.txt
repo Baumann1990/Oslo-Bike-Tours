@@ -54,8 +54,8 @@ Small groups (max 8 people), local guides Eivind and Haakon. City tours include 
 - Rental enquiries get a reply within 2 hours between 08:00 and 22:00, every day; later ones by 10:00 the next morning
 - Collection from 10:00 and return until 20:00, seven days a week including weekends. Bikes are locked at the pickup point and the customer is sent the code, so collection does not depend on shop opening hours; outside those times can usually be arranged on request
 - Hotel, AirBnB or any-address delivery available for an extra NOK 399 (subject to availability and location)
-- Add-ons: seatpost bag (NOK 200), bar bag (NOK 150), frame bag (NOK 150), child trailer (NOK 350/day)
-- Bikepacking Luggage Set (bar bag, frame bag and seatpost bag) — NOK 400 instead of 500; half price on rentals of 5-6 days and included free on rentals of 7 days or more (all bike types)
+- Add-ons: seatpost bag (NOK 199), bar bag (NOK 149), frame bag (NOK 149), child trailer (NOK 349/day)
+- Bikepacking Luggage Set (bar bag, frame bag and seatpost bag) — NOK 399 instead of 497; half price on rentals of 5-6 days and included free on rentals of 7 days or more (all bike types)
 - One luggage set covers one bike; for more than one set, mention it at booking
 - A refundable security deposit applies, arranged on confirmation
 - Payment via PayPal or Stripe
