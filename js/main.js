@@ -522,3 +522,68 @@ if (form) {
 
   update();
 })();
+
+/* ── Nordmarka riding-conditions ribbon (Apr – Nov) ──────────── */
+(function initRideRibbon() {
+  if (/^\/(deposit|verify-identity)\//.test(location.pathname)) return;
+
+  const osloDate = d => new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Oslo' }).format(d); // YYYY-MM-DD
+  const today = osloDate(new Date());
+  const tomorrow = osloDate(new Date(Date.now() + 864e5));
+  const month = Number(today.split('-')[1]);
+  const inSeason = month >= 4 && month <= 11;
+
+  const LEVEL = { good: 'Good riding', showers: 'Showers', windy: 'Windy', wet: 'Wet', sleet: 'Sleet', snow: 'Snow' };
+  const SHORT = { good: 'Good', showers: 'Showers', windy: 'Windy', wet: 'Wet', sleet: 'Sleet', snow: 'Snow' };
+  const onRentalPage = location.pathname.startsWith('/bike-rental-oslo');
+  const both = (long, short) =>
+    `<span class="ride-ribbon__long">${long}</span><span class="ride-ribbon__short">${short}</span>`;
+  const cta = `<a href="${onRentalPage ? '#book' : '/bike-rental-oslo/#book'}">${inSeason ? 'Rent a bike' : 'See the bikes'} →</a>`;
+  const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+  const dayName = d =>
+    d.date === today ? 'today'
+    : d.date === tomorrow ? 'tomorrow'
+    : new Date(d.date + 'T12:00:00Z').toLocaleDateString('en-GB', { weekday: 'long', timeZone: 'UTC' });
+
+  // Shown straight away so the page doesn't jump when the forecast arrives
+  const ribbon = document.createElement('div');
+  ribbon.className = 'ride-ribbon';
+  ribbon.setAttribute('role', 'status');
+  ribbon.innerHTML = '<span class="ride-dot"></span><span class="ride-ribbon__text">' +
+    (inSeason
+      ? both('Gravel season in the Nordmarka — bikes at four pickup points across Oslo', 'Gravel bike rental in Oslo')
+      : both('Nordmarka gravel season reopens in spring', 'Season reopens in spring')) +
+    '</span>' + cta;
+  document.body.prepend(ribbon);
+  document.documentElement.classList.add('has-ride-ribbon');
+  if (!inSeason) return;
+
+  fetch('/data/conditions.json', { cache: 'no-cache' })
+    .then(r => (r.ok ? r.json() : Promise.reject()))
+    .then(render)
+    .catch(() => {});
+
+  function render(data) {
+    if (Date.now() - new Date(data.generated).getTime() > 12 * 3600e3) return; // stale: keep season message
+    const days = (data.days || []).filter(d => LEVEL[d.level] && new Date(d.end).getTime() > Date.now());
+    if (!days.length) return;
+
+    const first = days[0];
+    const rain = Number(first.precip) > 0 ? `${Number(first.precip)} mm` : 'dry';
+    const detail = `${Number(first.temp_max)}° · ${rain} · sunset ${first.sunset}`;
+    // When today isn't good, point to the next good day in the outlook
+    const better = first.level === 'good' ? null : days.slice(1).find(d => d.level === 'good');
+    const later = better
+      ? `<span class="ride-ribbon__later"><span class="sep">·</span> ${cap(dayName(better))}: <strong>${LEVEL.good}</strong></span>`
+      : '';
+
+    ribbon.innerHTML =
+      `<span class="ride-dot ride-dot--${first.level}"></span>` +
+      `<span class="ride-ribbon__text">${both('Nordmarka ' + dayName(first), cap(dayName(first)))}: ` +
+      `<strong>${both(LEVEL[first.level], SHORT[first.level])}</strong>` +
+      `<span class="ride-ribbon__short"> · sunset ${first.sunset}</span></span>` +
+      `<span class="ride-ribbon__detail"><span class="sep">·</span> ${detail}</span>` +
+      later + cta;
+    ribbon.title = 'Forecast for the Nordmarka near Ullevålseter, 10:00 to sunset, from MET Norway';
+  }
+})();

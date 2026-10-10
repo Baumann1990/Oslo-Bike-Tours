@@ -2740,3 +2740,87 @@ textarea { resize: vertical; }
   text-transform: uppercase;
   color: var(--text-muted);
 }
+
+/* ── Page that starts straight under the nav (no hero) ────────── */
+.page-top { padding-top: 120px; }
+
+/* ── Nordmarka riding-conditions ribbon (added by main.js) ───── */
+.ride-ribbon {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 101;
+  height: calc(40px + env(safe-area-inset-top, 0px));
+  padding: env(safe-area-inset-top, 0px) 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--green-deep);
+  color: rgba(255,255,255,.92);
+  font-size: .8125rem;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ride-ribbon__text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ride-ribbon__short { display: none; }
+.ride-ribbon strong { color: var(--white); font-weight: 600; }
+.ride-ribbon .sep { opacity: .4; }
+.ride-ribbon__detail { color: rgba(255,255,255,.65); }
+
+.ride-ribbon a {
+  color: var(--amber);
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 6px;
+  flex-shrink: 0;
+}
+
+.ride-ribbon a:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+.ride-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--green-light);
+}
+
+.ride-dot--good    { background: #3ddc97; box-shadow: 0 0 8px #3ddc97; }
+.ride-dot--showers,
+.ride-dot--windy   { background: var(--amber); }
+.ride-dot--wet     { background: #7fa7c9; }
+.ride-dot--sleet,
+.ride-dot--snow    { background: #e8f1f8; }
+
+html.has-ride-ribbon { scroll-padding-top: 40px; }
+html.has-ride-ribbon .nav {
+  top: calc(40px + env(safe-area-inset-top, 0px));
+  height: var(--nav-h);
+  padding-top: 0;
+}
+html.has-ride-ribbon .tour-page__sidebar { top: calc(var(--nav-h) + 64px); }
+html.has-ride-ribbon .page-top { padding-top: 160px; }
+/* Hero content is bottom-anchored: grow the hero by the ribbon so nothing slides under the nav */
+html.has-ride-ribbon .tour-hero { height: calc(65vh + 40px); min-height: 440px; }
+/* Homepage hero centres its content: same space, moved down by the ribbon */
+html.has-ride-ribbon .hero { padding-top: 40px; height: calc(100vh + 40px); height: calc(100svh + 40px); min-height: 680px; }
+
+@media (max-width: 768px) {
+  .ride-ribbon { font-size: .75rem; gap: 6px; }
+  .ride-ribbon__detail,
+  .ride-ribbon__later,
+  .ride-ribbon__long { display: none; }
+  .ride-ribbon__short { display: inline; }
+  html.has-ride-ribbon .nav__menu {
+    top: calc(var(--nav-h) + 40px + env(safe-area-inset-top, 0px));
+    transform: translateY(calc(-100% - var(--nav-h) - 40px - env(safe-area-inset-top, 0px)));
+  }
+  html.has-ride-ribbon .nav__menu.open { transform: translateY(0); }
+  html.has-ride-ribbon .tour-hero { height: calc(45vh + 40px); min-height: 320px; }
+  html.has-ride-ribbon .hero { height: calc(85svh + 40px); min-height: 560px; }
+}
