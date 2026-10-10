@@ -529,10 +529,14 @@
       <div style="max-width:760px;margin:0 auto">
         <p class="tour-why__eyebrow" style="text-align:center">What it costs</p>
         <h2 style="font-family:var(--font-serif);font-size:clamp(1.4rem,3vw,1.9rem);color:var(--green-deep);text-align:center;margin:0 0 .6rem">Your first day is from NOK 699. Every day after that costs less.</h2>
-        <p style="text-align:center;color:var(--text-muted);font-size:.95rem;margin:0 0 2rem">Pick your dates in the form below and the exact price appears. No codes, no minimum. All prices in NOK.</p>
+        <p style="text-align:center;color:var(--text-muted);font-size:.95rem;margin:0 0 1rem">Pick your dates in the form below and the exact price appears. No codes, no minimum. All prices in NOK.</p>
+        <div class="fx-toggle" data-fx-toggle hidden>
+          <span class="fx-toggle__label">Also show approx. in</span>
+          <button type="button" data-cur="NOK">NOK only</button><button type="button" data-cur="EUR">€ EUR</button><button type="button" data-cur="USD">$ USD</button><button type="button" data-cur="GBP">£ GBP</button>
+        </div>
 
         <div style="overflow-x:auto">
-          <table style="width:100%;border-collapse:collapse;font-size:.95rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden">
+          <table data-fx-table style="width:100%;border-collapse:collapse;font-size:.95rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden">
             <thead>
               <tr style="background:var(--green-deep);color:#fff;text-align:left">
                 <th style="padding:.75rem 1rem;font-weight:600">Rental</th>
@@ -593,6 +597,7 @@
               <a href="/blog/kjelsas-to-maridalen/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Maridalsvannet and the valley</a>
               <span style="font-size:.82rem;color:var(--text-muted)">13 km · 2 hrs · easy</span>
               <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">Flat, scenic and along the water the whole way.</span>
+              <span class="ride-start" data-ride-hours="2" hidden></span>
             </div>
             <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
               <span style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap"><span style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:var(--accent);color:var(--green-deep);border-radius:99px;padding:.1rem .5rem">Most popular</span></span>
@@ -600,26 +605,31 @@
               <span style="font-size:.82rem;color:var(--text-muted)">50–55 km · ~1 000 m up · 4–5 hrs</span>
               <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">The Oslo gravel loop, with waffles at Kikutstua.</span>
               <a href="/routes/ring4-kjelsas.gpx" download style="display:inline-flex;align-items:center;gap:.35rem;margin-top:.15rem;font-size:.8rem;font-weight:700;color:var(--green-mid);text-decoration:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>GPX · from Kjelsås</a>
+              <span class="ride-start" data-ride-hours="5" hidden></span>
             </div>
             <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
               <a href="/blog/how-to-get-to-sognsvann/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">The short forest loop</a>
               <span style="font-size:.82rem;color:var(--text-muted)">13 km · 2 hrs · easy</span>
               <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">Gravel from the metro platform. Good first ride.</span>
+              <span class="ride-start" data-ride-hours="2" hidden></span>
             </div>
             <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
               <a href="/oslo-gravel-loop/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">The Nordmarka loop</a>
               <span style="font-size:.82rem;color:var(--text-muted)">25 km · 3 hrs · medium</span>
               <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">Rolling terrain and the first real climbs.</span>
+              <span class="ride-start" data-ride-hours="3" hidden></span>
             </div>
             <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
               <a href="/epic-marka-endurance/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Into the deep Marka</a>
               <span style="font-size:.82rem;color:var(--text-muted)">85 km · full day · hard</span>
               <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">Remote lakes, sustained climbing, few people.</span>
+              <span class="ride-start" data-ride-hours="6" hidden></span>
             </div>
             <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
               <a href="/blog/gravel-riding-oslo-autumn/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Mærradalen to Bogstad</a>
               <span style="font-size:.82rem;color:var(--text-muted)">6 km · 100 m up · easy</span>
               <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">The quiet western valley into Sørkedalen.</span>
+              <span class="ride-start" data-ride-hours="1.5" hidden></span>
             </div>
             <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
               <a href="/blog/nordmarka-overnight-bikepacking/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Nordmarka overnighter</a>

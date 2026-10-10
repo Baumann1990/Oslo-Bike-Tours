@@ -1,0 +1,65 @@
+# Publishes the site to GitHub Pages on every push, and every 3 hours with a
+# fresh Nordmarka riding forecast and exchange rates (data/*.json is generated here, never committed).
+# Requires: Settings → Pages → Build and deployment → Source: "GitHub Actions".
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "20 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # HEIC originals are never served, so they stay out of the upload.
+      - name: Assemble site
+        run: |
+          mkdir _site
+          rsync -a ./ _site/ --exclude '.git' --exclude '.github' --exclude '_site' \
+            --exclude 'scripts' --exclude '.claude' --exclude 'data' \
+            --exclude '*.heic' --exclude '*.HEIC'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # If MET Norway is down, the site still deploys; the ribbon then shows
+      # its generic season message instead of a forecast.
+      - name: Fetch Nordmarka riding forecast
+        continue-on-error: true
+        run: |
+          mkdir -p _site/data
+          python scripts/riding_forecast.py _site/data/conditions.json
+
+      # Same fallback: without rates the rental page simply shows NOK only.
+      - name: Fetch exchange rates
+        continue-on-error: true
+        run: |
+          mkdir -p _site/data
+          python scripts/exchange_rates.py _site/data/rates.json
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
