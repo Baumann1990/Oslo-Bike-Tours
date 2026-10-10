@@ -541,8 +541,8 @@ function loadConditions() {
   const month = Number(today.split('-')[1]);
   const inSeason = month >= 4 && month <= 11;
 
-  const LEVEL = { good: 'Good riding', showers: 'Showers', windy: 'Windy', wet: 'Wet', sleet: 'Sleet', snow: 'Snow' };
-  const SHORT = { good: 'Good', showers: 'Showers', windy: 'Windy', wet: 'Wet', sleet: 'Sleet', snow: 'Snow' };
+  const LEVEL = { good: 'Good riding', showers: 'Showers', windy: 'Windy', wet: 'Wet', snow: 'Snow' };
+  const SHORT = { good: 'Good', showers: 'Showers', windy: 'Windy', wet: 'Wet', snow: 'Snow' };
   const onRentalPage = location.pathname.startsWith('/bike-rental-oslo');
   const both = (long, short) =>
     `<span class="ride-ribbon__long">${long}</span><span class="ride-ribbon__short">${short}</span>`;

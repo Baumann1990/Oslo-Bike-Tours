@@ -115,16 +115,14 @@ def hourly(series: list) -> dict[datetime, dict]:
 
 def classify(rows: list[dict], precip: float, temp_max: float, wind_max: float) -> str:
     # Nordmarka gravel drains well, so rain is "wet", never a reason not to ride.
-    # One wintry hour does not make a snowy day: it has to carry real precipitation
-    # or a good share of the riding window.
+    # Only MET's snow forecasts count as snow. Its in-between rain-and-snow category
+    # is often just cold rain on the day, so it is scored as rain. One snowy hour
+    # does not make a snowy day: it has to carry real precipitation or a good
+    # share of the riding window.
     snow = [r for r in rows if r["precip"] > 0 and "snow" in r["symbol"]]
-    sleet = [r for r in rows if r["precip"] > 0 and "sleet" in r["symbol"]]
-    wintry_mm = sum(r["precip"] for r in snow + sleet)
-    if wintry_mm >= 1.0 or len(snow) + len(sleet) >= max(2, len(rows) / 3):
-        return "snow" if len(snow) >= len(sleet) else "sleet"
-    if precip >= 0.5 and temp_max <= 1.5:
+    if sum(r["precip"] for r in snow) >= 1.0 or len(snow) >= max(2, len(rows) / 3):
         return "snow"
-    if precip >= 3 or any("heavyrain" in r["symbol"] for r in rows):
+    if precip >= 3 or any("heavyrain" in r["symbol"] or "heavysleet" in r["symbol"] for r in rows):
         return "wet"
     if precip >= 0.5:
         return "showers"
@@ -174,11 +172,9 @@ def score_day(day: date, hours: dict, now: datetime) -> dict | None:
 
 
 def first_snow(hours: dict) -> str | None:
-    """Earliest date in the whole forecast with snow or sleet, so we know when to revert autumn rates."""
+    """Earliest date in the whole forecast with snow (not rain-and-snow), so we know when to revert autumn rates."""
     for ts in sorted(hours):
-        r = hours[ts]
-        cold_precip = r["precip"] > 0.2 and r["temp"] is not None and r["temp"] <= 1
-        if "snow" in r["symbol"] or "sleet" in r["symbol"] or cold_precip:
+        if hours[ts]["precip"] > 0 and "snow" in hours[ts]["symbol"]:
             return ts.astimezone(OSLO).date().isoformat()
     return None
 

@@ -2794,7 +2794,6 @@ textarea { resize: vertical; }
 .ride-dot--showers,
 .ride-dot--windy   { background: var(--amber); }
 .ride-dot--wet     { background: #7fa7c9; }
-.ride-dot--sleet,
 .ride-dot--snow    { background: #e8f1f8; }
 
 html.has-ride-ribbon { scroll-padding-top: 40px; }
