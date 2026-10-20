@@ -60,6 +60,7 @@ Small groups (max 8 people), local guides Eivind and Haakon. City tours include 
 - A refundable security deposit applies, arranged on confirmation
 - Payment via PayPal or Stripe
 - Rental page: https://www.oslobiketours.no/bike-rental-oslo/
+- Nordmarka riding conditions (today and the next five days, with latest start times per route, updated every 3 hours from MET Norway): https://www.oslobiketours.no/nordmarka-conditions/
 - Note: bike rental is also available as an add-on to guided tours from NOK 349
 
 ## Booking

@@ -21,7 +21,7 @@ from zoneinfo import ZoneInfo
 
 LAT, LON = 60.0230, 10.7000  # near Ullevålseter (MET asks for max 4 decimals)
 OSLO = ZoneInfo("Europe/Oslo")
-DAYS = 4
+DAYS = 6
 OPEN_HOUR = 10      # bikes can be collected from 10:00
 MIN_HOURS_LEFT = 2  # skip today once less riding daylight than this remains
 
@@ -97,7 +97,7 @@ def hourly(series: list) -> dict[datetime, dict]:
             hours[ts] = {
                 "precip": nxt.get("details", {}).get("precipitation_amount", 0.0),
                 "symbol": nxt.get("summary", {}).get("symbol_code", ""),
-                "temp": temp, "wind": wind,
+                "temp": temp, "wind": wind, "hourly": True,
             }
         elif "next_6_hours" in data:
             nxt = data["next_6_hours"]
@@ -107,6 +107,7 @@ def hourly(series: list) -> dict[datetime, dict]:
                 spread[ts + timedelta(hours=i)] = {
                     "precip": amount / 6, "symbol": symbol,
                     "temp": temp if i == 0 else None, "wind": wind if i == 0 else None,
+                    "hourly": False,
                 }
     for ts, row in spread.items():
         hours.setdefault(ts, row)
@@ -167,6 +168,8 @@ def score_day(day: date, hours: dict, now: datetime) -> dict | None:
         "precip": round(precip, 1),
         "wind_max": round(wind_max),
         "level": classify(rows, precip, temp_max, wind_max),
+        # MET gives hourly detail for about 2.5 days; beyond that it is 6-hourly
+        "outlook": not all(r["hourly"] for r in rows),
     })
     return entry
 

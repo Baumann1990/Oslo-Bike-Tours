@@ -252,14 +252,17 @@ document.addEventListener('keydown', e => {
   const bar = document.createElement('div');
   bar.className = 'sticky-book';
 
-  // On tour sub-pages link to /#book; on the homepage link to #book
-  const isHome = window.location.pathname === '/' ||
-                 window.location.pathname === '/index.html';
-  const href   = isHome ? '#book' : '/#book';
+  // Rental pages get a rental button; the homepage and tour pages keep "Book a Tour"
+  const path = window.location.pathname;
+  const isHome = path === '/' || path === '/index.html';
+  const isRentalPage = path.startsWith('/bike-rental-oslo');
+  const isRental = isRentalPage || /^\/(nordmarka-conditions|bike-rental-terms)\//.test(path);
+  const href  = isRental ? (isRentalPage ? '#book' : '/bike-rental-oslo/#book') : (isHome ? '#book' : '/#book');
+  const label = isRental ? 'Rent a bike' : 'Book a Tour';
 
   bar.innerHTML = `
     <a href="${href}" class="btn btn--primary btn--full">
-      Book a Tour
+      ${label}
     </a>`;
   document.body.appendChild(bar);
 
@@ -267,8 +270,8 @@ document.addEventListener('keydown', e => {
   // On the homepage that's the hero; on tour pages it's the tour hero.
   const hero = document.querySelector('.hero, .tour-hero');
 
-  // On the homepage also hide the bar when the booking section is visible.
-  const bookSection = isHome ? document.getElementById('book') : null;
+  // Where the booking form is on this page, hide the bar while it is visible.
+  const bookSection = (isHome || isRentalPage) ? document.getElementById('book') : null;
 
   let ticking = false;
 
@@ -557,11 +560,14 @@ function loadConditions() {
   const ribbon = document.createElement('div');
   ribbon.className = 'ride-ribbon';
   ribbon.setAttribute('role', 'status');
-  ribbon.innerHTML = '<span class="ride-dot"></span><span class="ride-ribbon__text">' +
+  const COND = '/nordmarka-conditions/';
+  const linkOpen = location.pathname.startsWith(COND) ? '<span class="ride-ribbon__link">' : `<a class="ride-ribbon__link" href="${COND}">`;
+  const linkClose = location.pathname.startsWith(COND) ? '</span>' : '</a>';
+  ribbon.innerHTML = linkOpen + '<span class="ride-dot"></span><span class="ride-ribbon__text">' +
     (inSeason
       ? both('Gravel season in the Nordmarka — bikes at four pickup points across Oslo', 'Gravel bike rental in Oslo')
       : both('Nordmarka gravel season reopens in spring', 'Season reopens in spring')) +
-    '</span>' + cta;
+    '</span>' + linkClose + cta;
   document.body.prepend(ribbon);
   document.documentElement.classList.add('has-ride-ribbon');
   if (!inSeason) return;
@@ -582,14 +588,14 @@ function loadConditions() {
       ? `<span class="ride-ribbon__later"><span class="sep">·</span> ${cap(dayName(better))}: <strong>${LEVEL.good}</strong></span>`
       : '';
 
-    ribbon.innerHTML =
+    ribbon.innerHTML = linkOpen +
       `<span class="ride-dot ride-dot--${first.level}"></span>` +
       `<span class="ride-ribbon__text">${both('Nordmarka ' + dayName(first), cap(dayName(first)))}: ` +
       `<strong>${both(LEVEL[first.level], SHORT[first.level])}</strong>` +
       `<span class="ride-ribbon__short"> · sunset ${first.sunset}</span></span>` +
       `<span class="ride-ribbon__detail"><span class="sep">·</span> ${detail}</span>` +
-      later + cta;
-    ribbon.title = 'Forecast for the Nordmarka near Ullevålseter, 10:00 to sunset, from MET Norway';
+      later + `<span class="ride-ribbon__detail ride-ribbon__credit"><span class="sep">·</span> MET Norway</span>` + linkClose + cta;
+    ribbon.title = 'Forecast for the Nordmarka near Ullevålseter, 10:00 to sunset. Data: MET Norway, CC BY 4.0. Tap for the next few days.';
   }
 })();
 

@@ -2922,3 +2922,85 @@ html.has-ride-ribbon .hero { padding-top: 40px; height: calc(100vh + 40px); heig
 @media (max-width: 420px) {
   .rf-height-row { grid-template-columns: 1fr; gap: .3rem; }
 }
+
+/* ── Nordmarka conditions page ───────────────────────────────── */
+.cx__wrap { max-width: 860px; }
+.cx-loading { color: var(--text-muted); text-align: center; padding: 2rem 0; }
+.cx-today {
+  background: var(--green-deep);
+  color: rgba(255,255,255,.9);
+  border-radius: var(--radius);
+  padding: 1.75rem 2rem;
+}
+.cx-today .cx-loading { color: rgba(255,255,255,.75); padding: 1rem 0; }
+.cx-today .cx-loading a { color: var(--amber); }
+.cx-today__when { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; opacity: .75; margin: 0 0 .5rem; }
+.cx-today__level {
+  display: flex; align-items: center; gap: .6rem;
+  font-family: var(--font-serif); font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 700;
+  color: var(--white); margin: 0 0 1.25rem;
+}
+.cx-today__level .ride-dot { width: 14px; height: 14px; }
+.cx-facts {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+}
+.cx-facts li { display: flex; flex-direction: column; gap: .2rem; }
+.cx-facts span { font-size: .75rem; opacity: .7; }
+.cx-facts strong { font-size: 1.15rem; color: var(--white); font-weight: 600; }
+.cx-today__next { margin: 1.25rem 0 0; font-size: .95rem; }
+.cx-today__next strong { color: var(--amber); }
+
+.cx-h2 { font-family: var(--font-serif); font-size: 1.35rem; color: var(--green-deep); margin: 2.5rem 0 1rem; }
+.cx-h2[hidden], .cx-note[hidden] { display: none; }
+.cx-days { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .75rem; }
+.cx-day {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: .95rem 1rem;
+}
+.cx-day--good { border-color: #3ddc97; box-shadow: 0 0 0 1px #3ddc97 inset; }
+.cx-day p { margin: 0; }
+.cx-day__name { font-weight: 700; color: var(--green-deep); display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
+.cx-day__date { font-size: .78rem; color: var(--text-muted); margin-bottom: .55rem !important; }
+.cx-day__level { display: flex; align-items: center; gap: .45rem; font-weight: 600; margin-bottom: .35rem !important; }
+.cx-day__meta { font-size: .8rem; color: var(--text-muted); line-height: 1.5; }
+.cx-outlook {
+  font-size: .62rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--text-muted); border: 1px solid var(--border); border-radius: 99px; padding: .05rem .4rem;
+}
+.cx-day .ride-dot--snow, .cx-today .ride-dot--snow { box-shadow: 0 0 0 1px #b9c7d3 inset; }
+
+.cx-note { font-size: .82rem; color: var(--text-muted); margin: 0 0 .75rem; }
+.cx-starts { overflow-x: auto; }
+.cx-table {
+  width: 100%; border-collapse: collapse; font-size: .92rem;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+}
+.cx-table th { background: var(--green-deep); color: #fff; text-align: left; font-weight: 600; padding: .65rem .9rem; }
+.cx-table td { padding: .65rem .9rem; border-top: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+.cx-table td:first-child { font-weight: 600; }
+.cx-table td a { color: var(--green-deep); }
+.cx-table__hours { display: block; font-size: .75rem; font-weight: 400; color: var(--text-muted); }
+.cx-late { color: var(--text-muted); font-size: .82rem; }
+.cx-early { color: var(--amber-dark); }
+.cx-credit { font-size: .78rem; color: var(--text-muted); margin: 2rem 0 0; }
+.cx-credit a { color: inherit; }
+
+@media (max-width: 600px) {
+  .cx-today { padding: 1.4rem 1.25rem; }
+  .cx-facts { grid-template-columns: repeat(2, 1fr); }
+  .cx-table th, .cx-table td { padding: .55rem .6rem; }
+}
+
+/* Ribbon: the conditions text links to the conditions page */
+.ride-ribbon .ride-ribbon__link {
+  color: inherit; font-weight: inherit; margin-left: 0;
+  display: inline-flex; align-items: center; gap: 8px; min-width: 0;
+}
+.ride-ribbon a.ride-ribbon__link:hover .ride-ribbon__text { text-decoration: underline; text-underline-offset: 2px; }
+.ride-ribbon__credit { font-size: .9em; opacity: .8; }
+
+@media (max-width: 600px) {
+  .cx-table td:first-child { width: 46%; }
+  .cx-table th:not(:first-child), .cx-table td:not(:first-child) { text-align: center; }
+}
