@@ -48,6 +48,11 @@ jobs:
           mkdir -p _site/data
           python scripts/riding_forecast.py _site/data/conditions.json
 
+      # Plain-HTML copy of the forecast in the conditions page, for crawlers that skip JavaScript.
+      - name: Write forecast into conditions page
+        continue-on-error: true
+        run: python scripts/conditions_snapshot.py _site/data/conditions.json _site/nordmarka-conditions/index.html
+
       # Same fallback: without rates the rental page simply shows NOK only.
       - name: Fetch exchange rates
         continue-on-error: true

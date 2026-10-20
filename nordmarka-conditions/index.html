@@ -42,6 +42,10 @@
   <meta property="og:title"       content="Nordmarka Riding Conditions Today" />
   <meta property="og:description" content="Today's gravel riding conditions in the Nordmarka above Oslo and the next five days: rain, temperature, wind, sunset and the latest start per route." />
   <meta property="og:image"       content="https://www.oslobiketours.no/images/IMG_6630.webp" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Nordmarka Riding Conditions Today" />
+  <meta name="twitter:description" content="Today's gravel riding conditions in the Nordmarka above Oslo and the next five days, with the latest start per route." />
+  <meta name="twitter:image"       content="https://www.oslobiketours.no/images/IMG_6630.webp" />
 
   <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -51,8 +55,12 @@
       "name": "Nordmarka Riding Conditions Today",
       "description": "Today's gravel riding conditions in the Nordmarka above Oslo and the next five days: rain, temperature, wind, sunset and the latest start per route.",
       "url": "https://www.oslobiketours.no/nordmarka-conditions/",
+      "dateModified": "",
+      "about": { "@type": "Place", "name": "Nordmarka", "geo": { "@type": "GeoCoordinates", "latitude": 60.023, "longitude": 10.7 } },
+      "isBasedOn": { "@type": "Dataset", "name": "MET Norway Locationforecast", "url": "https://api.met.no/weatherapi/locationforecast/2.0/documentation", "license": "https://creativecommons.org/licenses/by/4.0/", "creator": { "@type": "Organization", "name": "MET Norway", "url": "https://www.met.no/en" } },
       "publisher": { "@type": "Organization", "name": "Oslo Bike Tours", "url": "https://www.oslobiketours.no" }
     },
+    {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can you ride in the Nordmarka when it rains?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The forest roads are well-drained gravel that stays firm in rain, so a wet day is rideable, just wetter. Bring a shell jacket and allow more braking distance."}}, {"@type": "Question", "name": "When does the gravel riding season in the Nordmarka end?", "acceptedAnswer": {"@type": "Answer", "text": "Usually when the first lasting snow arrives, often in November. Until then autumn is one of the best times to ride: quiet roads, autumn colours and firm gravel."}}, {"@type": "Question", "name": "How late can I start Ring 4?", "acceptedAnswer": {"@type": "Answer", "text": "Ring 4 takes about five hours with stops. Start no later than five hours before sunset; the start-time table on this page shows the exact time for today and the next days."}}, {"@type": "Question", "name": "Is the Nordmarka colder than central Oslo?", "acceptedAnswer": {"@type": "Answer", "text": "Usually a few degrees colder. The forecast on this page is for the forest itself at around 280 metres, near Ullevålseter, not for the city."}}, {"@type": "Question", "name": "Where can I rent a bike for the Nordmarka?", "acceptedAnswer": {"@type": "Answer", "text": "Oslo Bike Tours rents gravel bikes and e-bikes from four free pickup points on the metro and tram, with helmet and lights included."}}]},
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
@@ -112,6 +120,7 @@
   <!-- ─── Live conditions (filled from /data/conditions.json) ────── -->
   <section class="section cx" style="background:var(--bg);padding:48px 0">
     <div class="container cx__wrap">
+      <!--SNAPSHOT--><!--/SNAPSHOT-->
       <div class="cx-today" id="cxToday">
         <p class="cx-loading" id="cxStatus">Loading today's forecast…</p>
       </div>
@@ -147,6 +156,18 @@
         <h2>Daylight</h2>
         <p>In autumn, daylight runs out before your legs do. The start times above work back from sunset, so you finish the loop in the light. Every rental includes front and rear lights in case the ride runs long. For route details, see the <a href="/blog/ring-4-nordmarka-gravel-loop/">Ring 4 guide</a> or <a href="/blog/spare-day-in-oslo-by-bike/">a spare day in Oslo by bike</a>.</p>
 
+        <h2>Common questions</h2>
+        <h3>Can you ride in the Nordmarka when it rains?</h3>
+        <p>Yes. The forest roads are well-drained gravel that stays firm in rain, so a wet day is rideable, just wetter. Bring a shell jacket and allow more braking distance.</p>
+        <h3>When does the gravel riding season in the Nordmarka end?</h3>
+        <p>Usually when the first lasting snow arrives, often in November. Until then autumn is one of the best times to ride: quiet roads, autumn colours and firm gravel.</p>
+        <h3>How late can I start Ring 4?</h3>
+        <p>Ring 4 takes about five hours with stops. Start no later than five hours before sunset; the start-time table on this page shows the exact time for today and the next days.</p>
+        <h3>Is the Nordmarka colder than central Oslo?</h3>
+        <p>Usually a few degrees colder. The forecast on this page is for the forest itself at around 280 metres, near Ullevålseter, not for the city.</p>
+        <h3>Where can I rent a bike for the Nordmarka?</h3>
+        <p>Oslo Bike Tours <a href="/bike-rental-oslo/">rents gravel bikes and e-bikes</a> from four free pickup points on the metro and tram, with helmet and lights included.</p>
+
         <div class="blog-cta">
           <h3>Found your day? Get a bike for it</h3>
           <p>Gravel bikes and e-bikes from four free pickup points on the metro and tram, with helmet and lights included.</p>
@@ -180,6 +201,7 @@
           <li><a href="/#guides">Our Guides</a></li>
           <li><a href="/#book">Book a Tour</a></li>
           <li><a href="/bike-rental-oslo/">Bike Rental</a></li>
+          <li><a href="/nordmarka-conditions/">Riding Conditions</a></li>
           <li><a href="/blog/">Journal</a></li>
         </ul>
       </div>
@@ -240,6 +262,8 @@
       if (Date.now() - new Date(data.generated).getTime() > 12 * 3600e3) return fail();
       var days = (data.days || []).filter(function (d) { return LEVEL[d.level] && new Date(d.end).getTime() > Date.now(); });
       if (!days.length) return fail();
+      var snap = document.getElementById('cxSnapshot');
+      if (snap) snap.hidden = true;
 
       var first = days[0];
       var better = first.level === 'good' ? null : days.slice(1).filter(function (d) { return d.level === 'good'; })[0];

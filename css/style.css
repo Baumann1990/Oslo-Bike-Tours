@@ -3004,3 +3004,7 @@ html.has-ride-ribbon .hero { padding-top: 40px; height: calc(100vh + 40px); heig
   .cx-table td:first-child { width: 46%; }
   .cx-table th:not(:first-child), .cx-table td:not(:first-child) { text-align: center; }
 }
+
+/* Deploy-time forecast summary for crawlers; hidden once the live panels load */
+.cx-snapshot { margin: 0 0 24px; font-size: .95rem; line-height: 1.6; }
+.cx-snapshot ul { margin: .5rem 0 1rem; padding-left: 1.2rem; }
