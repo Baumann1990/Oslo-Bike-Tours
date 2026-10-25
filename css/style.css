@@ -3041,3 +3041,10 @@ html.has-ride-ribbon .hero { padding-top: 40px; height: calc(100vh + 40px); heig
   .marka .tour-hero__content { position: relative; padding-top: calc(var(--nav-h) + 72px); }
   .marka-wordmark { padding: 10px 16px 10px; }
 }
+/* Hero without a photo: plain Spruce with the wordmark as the centrepiece */
+.marka-hero { background: var(--green-deep); }
+.marka-hero .marka-wordmark { background: none; padding: 0; margin: .75rem 0 1.5rem; }
+.marka-hero .marka-wordmark__name { font-size: clamp(3.4rem, 9vw, 6rem); }
+.marka-hero .marka-wordmark__path { height: clamp(14px, 2vw, 22px); }
+.marka-hero .marka-wordmark__bikes { font-size: clamp(.95rem, 1.8vw, 1.3rem); }
+.marka-hero .marka-wordmark__by { font-size: clamp(.85rem, 1.4vw, 1rem); }
