@@ -3052,9 +3052,7 @@ html.has-ride-ribbon .hero { padding-top: 40px; height: calc(100vh + 40px); heig
 .marka .marka-bikes-b { padding-top: calc(var(--sec) * .5); }
 .marka-prices { background: var(--white); }
 .marka .marka-strip { background: var(--bg); padding: calc(var(--sec) * .67) 0; }
-.marka .marka-ride { background: var(--white); padding: var(--sec) 0; }
-.marka .marka-ride .tour-page__inner { grid-template-columns: 1fr; max-width: 800px; margin: 0 auto; padding: 0; }
-.marka .marka-ride .tour-page__body > :last-child { margin-bottom: 0; }
+.marka-ride { background: var(--white); }
 .marka .book { background: var(--bg); }
 .marka .book__form { background: var(--white); }
 .marka .faq { background: var(--white); }
@@ -3071,3 +3069,28 @@ html.has-ride-ribbon .hero { padding-top: 40px; height: calc(100vh + 40px); heig
 .marka-panel .section-sub, .marka-panel p { color: #c9d3c6 !important; }
 .marka-panel .tag { background: rgba(247,244,239,.12); color: var(--amber); }
 .marka-panel .marka-step { background: var(--amber) !important; color: var(--ink) !important; }
+
+/* Where to ride: photo and opening side by side, ways in, routes, tips, guided-tour note */
+.marka-ride .container { max-width: 1040px; }
+.ride-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.ride-intro__img { width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; border-radius: var(--radius); }
+.ride-intro__text p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.65; margin: 0; }
+.ride-intro__text .section-title { margin: 12px 0 16px; }
+.ride-ways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: calc(var(--sec) * .6) 0 0; }
+.ride-way { background: var(--bg); border-radius: var(--radius-sm); padding: 20px 22px; }
+.ride-way h3 { font-family: var(--font-serif); font-size: 1.25rem; color: var(--green-deep); margin: 0 0 4px; }
+.ride-way__transit { font-size: .78rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--green-mid); margin: 0 0 10px; }
+.ride-way p:last-child { font-size: .92rem; line-height: 1.55; color: var(--text-muted); margin: 0; }
+.ride-h3 { font-family: var(--font-serif); font-size: clamp(1.3rem, 2.4vw, 1.6rem); color: var(--green-deep); text-align: center; margin: calc(var(--sec) * .6) 0 24px; }
+.ride-routes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+@media (max-width: 1024px) { .ride-routes { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .ride-routes { grid-template-columns: 1fr; } }
+.ride-tips { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px 28px; font-size: .9rem; line-height: 1.55; color: var(--text-muted); }
+.ride-tips strong { display: block; color: var(--green-deep); margin-bottom: 2px; }
+.ride-tips a { color: var(--green-mid); }
+.ride-upsell { background: var(--green-deep); border-radius: var(--radius); padding: 2rem; margin: calc(var(--sec) * .6) 0 0; color: rgba(255,255,255,.85); }
+.marka-bikes__note { text-align: center; color: var(--text-muted); font-size: .95rem; margin: 32px auto 0; }
+@media (max-width: 768px) {
+  .ride-intro { grid-template-columns: 1fr; gap: 28px; }
+  .ride-ways, .ride-tips { grid-template-columns: 1fr; }
+}

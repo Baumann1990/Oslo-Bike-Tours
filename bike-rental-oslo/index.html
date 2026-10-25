@@ -276,7 +276,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=20261025c" />
+  <link rel="stylesheet" href="../css/style.css?v=20261025d" />
 </head>
 <body class="marka">
 
@@ -487,6 +487,7 @@
         </article>
 
       </div>
+      <p class="marka-bikes__note">The same bikes we ride on our own guided tours, properly maintained and sized to you.</p>
     </div>
   </section>
 
@@ -550,76 +551,98 @@
     </div>
   </section>
 
-  <!-- ─── Rental details ────────────────────────────────────────── -->
-  <section class="tour-page marka-ride">
+  <!-- ─── Where to ride ─────────────────────────────────────────── -->
+  <section class="section marka-ride">
     <div class="container">
-      <div class="tour-page__inner">
-        <div class="tour-page__body">
-          <p>These are the same bikes we ride on our own guided tours — properly maintained, correctly sized, helmet included. Not the city hybrids that pass for rentals elsewhere.</p>
-
-          <h2>Where to Ride a Gravel Bike in Oslo</h2>
-          <p>The Nordmarka is 1,700 square kilometres of gravel roads running north to lakes, ridgelines and cabins serving coffee and waffles, and there are three easy ways in — all of them free pickup points.</p>
-          <p><strong>Kjelsås</strong>, at the end of tram lines 12 and 15, runs you along Maridalsvannet and into the forest — the most scenic way in, and the start of our most popular loop. <strong>Huseby</strong>, two minutes from Montebello on metro line 3, opens the quiet western route up Mærradalen to Bogstad and on into Sørkedalen. Sognsvann, at the end of metro line 5, is the third way in. Here are the rides we point people at:</p>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.85rem;margin:0 0 1.3rem">
-            <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
-              <a href="/blog/kjelsas-to-maridalen/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Maridalsvannet and the valley</a>
-              <span style="font-size:.82rem;color:var(--text-muted)">13 km · 2 hrs · easy</span>
-              <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">Flat, scenic and along the water the whole way.</span>
-              <span class="ride-start" data-ride-hours="2" hidden></span>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
-              <span style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap"><span style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:var(--lichen);color:var(--green-deep);border-radius:99px;padding:.1rem .5rem">Most popular</span></span>
-              <a href="/blog/nordmarka-forest-oslo/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Ring 4 — the classic</a>
-              <span style="font-size:.82rem;color:var(--text-muted)">50–55 km · ~1 000 m up · 4–5 hrs</span>
-              <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">The Oslo gravel loop, with waffles at Kikutstua.</span>
-              <a href="/routes/ring4-kjelsas.gpx" download style="display:inline-flex;align-items:center;gap:.35rem;margin-top:.15rem;font-size:.8rem;font-weight:700;color:var(--green-mid);text-decoration:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>GPX · from Kjelsås</a>
-              <span class="ride-start" data-ride-hours="5" hidden></span>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
-              <a href="/blog/how-to-get-to-sognsvann/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">The short forest loop</a>
-              <span style="font-size:.82rem;color:var(--text-muted)">13 km · 2 hrs · easy</span>
-              <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">Gravel from the metro platform. Good first ride.</span>
-              <span class="ride-start" data-ride-hours="2" hidden></span>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
-              <a href="/oslo-gravel-loop/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">The Nordmarka loop</a>
-              <span style="font-size:.82rem;color:var(--text-muted)">25 km · 3 hrs · medium</span>
-              <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">Rolling terrain and the first real climbs.</span>
-              <span class="ride-start" data-ride-hours="3" hidden></span>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
-              <a href="/epic-marka-endurance/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Into the deep Marka</a>
-              <span style="font-size:.82rem;color:var(--text-muted)">85 km · full day · hard</span>
-              <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">Remote lakes, sustained climbing, few people.</span>
-              <span class="ride-start" data-ride-hours="6" hidden></span>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
-              <a href="/blog/gravel-riding-oslo-autumn/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Mærradalen to Bogstad</a>
-              <span style="font-size:.82rem;color:var(--text-muted)">6 km · 100 m up · easy</span>
-              <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">The quiet western valley into Sørkedalen.</span>
-              <span class="ride-start" data-ride-hours="1.5" hidden></span>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
-              <a href="/blog/nordmarka-overnight-bikepacking/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Nordmarka overnighter</a>
-              <span style="font-size:.82rem;color:var(--text-muted)">40–45 km/day · 2 days</span>
-              <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">Cabin or tent, deep in the forest.</span>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
-              <a href="/blog/oslo-to-gjovik-bikepacking/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Oslo to Gjøvik</a>
-              <span style="font-size:.82rem;color:var(--text-muted)">150 km · multi-day</span>
-              <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">North to Lake Mjøsa, train home in two hours.</span>
-            </div>
-          </div>
-          <p style="margin:0 0 1.3rem;font-size:.9rem;color:var(--text-muted)">Prefer to browse on a map? There is a good public <a href="https://www.komoot.com/guide/3453667/gravel-biking-in-oslo" target="_blank" rel="noopener">Komoot guide to gravel biking in Oslo</a> with GPS tracks you can send straight to your phone.</p>
-          <p>One honest note: the forest trails are unmarked for visitors. Bring offline maps and plan conservatively for daylight. <a href="/nordmarka-conditions/">Today's riding conditions and start times →</a></p>
-
-          <div style="background:var(--green-deep);border-radius:var(--radius);padding:2rem;margin:2.5rem 0;color:rgba(255,255,255,.85)">
-            <p style="font-family:var(--font-serif);font-size:1.25rem;font-weight:700;color:var(--white);margin-bottom:.5rem">Rather not navigate yourself?</p>
-            <p style="font-size:.95rem;margin-bottom:1.25rem;color:rgba(255,255,255,.85)">Our private guided tours start from NOK 890 per person — hotel pickup, a local guide who knows every trail, and bike rental included from NOK 349. The guide is how you find the best of the forest on the first try.</p>
-            <a href="/private-bike-tours-oslo/" class="btn btn--primary">See guided tours</a>
-          </div>
-
+      <div class="ride-intro">
+        <img src="../images/IMG_4914.webp" srcset="../images/IMG_4914-800w.webp 800w, ../images/IMG_4914.webp 1920w" sizes="(max-width: 768px) 100vw, 560px" alt="Rider on a rental gravel bike crossing a bridge over a forest lake in Nordmarka, Oslo" class="ride-intro__img" loading="lazy" width="1920" height="1778" />
+        <div class="ride-intro__text">
+          <span class="tag">Where to ride</span>
+          <h2 class="section-title">Where to Ride a Gravel Bike in Oslo</h2>
+          <p>The Nordmarka is 1,700 square kilometres of gravel roads running north to lakes, ridgelines and cabins serving coffee and waffles. There are three easy ways in, and all of them are free pickup points.</p>
         </div>
+      </div>
+
+      <div class="ride-ways">
+        <div class="ride-way">
+          <h3>Kjelsås</h3>
+          <p class="ride-way__transit">End of tram lines 12 and 15</p>
+          <p>Along Maridalsvannet and into the forest. The most scenic way in, and the start of our most popular loop.</p>
+        </div>
+        <div class="ride-way">
+          <h3>Huseby</h3>
+          <p class="ride-way__transit">Two minutes from Montebello, metro line 3</p>
+          <p>The quiet western route up Mærradalen to Bogstad and on into Sørkedalen.</p>
+        </div>
+        <div class="ride-way">
+          <h3>Sognsvann</h3>
+          <p class="ride-way__transit">End of metro line 5</p>
+          <p>Gravel from the metro platform, straight into the forest at the lake.</p>
+        </div>
+      </div>
+
+      <h3 class="ride-h3">Rides we point people at</h3>
+      <div class="ride-routes">
+        <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
+          <a href="/blog/kjelsas-to-maridalen/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Maridalsvannet and the valley</a>
+          <span style="font-size:.82rem;color:var(--text-muted)">13 km · 2 hrs · easy</span>
+          <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">Flat, scenic and along the water the whole way.</span>
+          <span class="ride-start" data-ride-hours="2" hidden></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
+          <span style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap"><span style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:var(--lichen);color:var(--green-deep);border-radius:99px;padding:.1rem .5rem">Most popular</span></span>
+          <a href="/blog/nordmarka-forest-oslo/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Ring 4 — the classic</a>
+          <span style="font-size:.82rem;color:var(--text-muted)">50–55 km · ~1 000 m up · 4–5 hrs</span>
+          <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">The Oslo gravel loop, with waffles at Kikutstua.</span>
+          <a href="/routes/ring4-kjelsas.gpx" download style="display:inline-flex;align-items:center;gap:.35rem;margin-top:.15rem;font-size:.8rem;font-weight:700;color:var(--green-mid);text-decoration:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>GPX · from Kjelsås</a>
+          <span class="ride-start" data-ride-hours="5" hidden></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
+          <a href="/blog/how-to-get-to-sognsvann/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">The short forest loop</a>
+          <span style="font-size:.82rem;color:var(--text-muted)">13 km · 2 hrs · easy</span>
+          <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">Gravel from the metro platform. Good first ride.</span>
+          <span class="ride-start" data-ride-hours="2" hidden></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
+          <a href="/oslo-gravel-loop/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">The Nordmarka loop</a>
+          <span style="font-size:.82rem;color:var(--text-muted)">25 km · 3 hrs · medium</span>
+          <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">Rolling terrain and the first real climbs.</span>
+          <span class="ride-start" data-ride-hours="3" hidden></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
+          <a href="/epic-marka-endurance/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Into the deep Marka</a>
+          <span style="font-size:.82rem;color:var(--text-muted)">85 km · full day · hard</span>
+          <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">Remote lakes, sustained climbing, few people.</span>
+          <span class="ride-start" data-ride-hours="6" hidden></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
+          <a href="/blog/gravel-riding-oslo-autumn/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Mærradalen to Bogstad</a>
+          <span style="font-size:.82rem;color:var(--text-muted)">6 km · 100 m up · easy</span>
+          <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">The quiet western valley into Sørkedalen.</span>
+          <span class="ride-start" data-ride-hours="1.5" hidden></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
+          <a href="/blog/nordmarka-overnight-bikepacking/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Nordmarka overnighter</a>
+          <span style="font-size:.82rem;color:var(--text-muted)">40–45 km/day · 2 days</span>
+          <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">Cabin or tent, deep in the forest.</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
+          <a href="/blog/oslo-to-gjovik-bikepacking/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Oslo to Gjøvik</a>
+          <span style="font-size:.82rem;color:var(--text-muted)">150 km · multi-day</span>
+          <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">North to Lake Mjøsa, train home in two hours.</span>
+        </div>
+      </div>
+
+      <ul class="ride-tips">
+        <li><strong>Unmarked for visitors.</strong> The forest roads have no route signs, so bring offline maps.</li>
+        <li><strong>Prefer a map?</strong> The public <a href="https://www.komoot.com/guide/3453667/gravel-biking-in-oslo" target="_blank" rel="noopener">Komoot guide to gravel biking in Oslo</a> has GPS tracks for your phone.</li>
+        <li><strong>Plan for daylight.</strong> <a href="/nordmarka-conditions/">Today's riding conditions and latest start times →</a></li>
+      </ul>
+
+      <div class="ride-upsell">
+        <p style="font-family:var(--font-serif);font-size:1.25rem;font-weight:700;color:var(--white);margin-bottom:.5rem">Rather not navigate yourself?</p>
+        <p style="font-size:.95rem;margin-bottom:1.25rem;color:rgba(255,255,255,.85)">Our private guided tours start from NOK 890 per person — hotel pickup, a local guide who knows every trail, and bike rental included from NOK 349. The guide is how you find the best of the forest on the first try.</p>
+        <a href="/private-bike-tours-oslo/" class="btn btn--primary">See guided tours</a>
       </div>
     </div>
   </section>
@@ -951,7 +974,7 @@
     </div>
   </footer>
 
-  <script src="../js/main.js?v=20261025c"></script>
+  <script src="../js/main.js?v=20261025d"></script>
   <script>
   (function () {
     /* ── State ── */
