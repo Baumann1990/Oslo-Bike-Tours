@@ -3011,15 +3011,15 @@ html.has-ride-ribbon .hero { padding-top: 40px; height: calc(100vh + 40px); heig
 
 /* ── Marka Bikes (rental sub-brand, see brand book v0.1) ─────────── */
 :root { --lichen: #e1e8e0; --ink: #1a2a20; }
-.marka-lockup {
-  display: inline-flex; align-items: center; gap: 12px;
-  margin: .5rem 0 1rem; padding: 6px 18px 6px 6px;
-  background: rgba(26,58,42,.88); border-radius: 999px; color: var(--bg);
+.marka-wordmark {
+  display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px;
+  margin: .5rem 0 1.1rem; padding: 14px 20px 12px;
+  background: var(--green-deep); color: var(--bg);
 }
-.marka-lockup svg { width: 44px; height: 44px; flex: none; }
-.marka-lockup > span { display: flex; flex-direction: column; gap: 3px; }
-.marka-lockup__name { font-family: var(--font-serif); font-weight: 800; font-size: 1.35rem; line-height: 1; }
-.marka-lockup__by { font-size: .68rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #c9d3c6; }
+.marka-wordmark__name { font-family: var(--font-serif); font-weight: 800; font-size: 2.6rem; line-height: 1; }
+.marka-wordmark__path { width: 100%; height: 12px; }
+.marka-wordmark__bikes { font-size: .78rem; font-weight: 600; letter-spacing: .4em; text-transform: uppercase; padding-top: 4px; }
+.marka-wordmark__by { font-size: .78rem; font-weight: 400; color: #c9d3c6; padding-top: 6px; }
 .marka-line {
   font-family: var(--font-serif); font-style: italic; font-weight: 500;
   font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--bg); margin: .9rem 0 0;
@@ -3039,6 +3039,5 @@ html.has-ride-ribbon .hero { padding-top: 40px; height: calc(100vh + 40px); heig
   .marka .tour-hero, html.has-ride-ribbon .marka .tour-hero { height: auto; min-height: 0; }
   .marka .tour-hero__img { position: absolute; inset: 0; }
   .marka .tour-hero__content { position: relative; padding-top: calc(var(--nav-h) + 72px); }
-  .marka-lockup svg { width: 36px; height: 36px; }
-  .marka-lockup__name { font-size: 1.15rem; }
+  .marka-wordmark { padding: 10px 16px 10px; }
 }
