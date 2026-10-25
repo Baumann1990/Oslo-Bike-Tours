@@ -276,7 +276,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=20261025b" />
+  <link rel="stylesheet" href="../css/style.css?v=20261025c" />
 </head>
 <body class="marka">
 
@@ -307,35 +307,32 @@
   <!-- ─── Hero ──────────────────────────────────────────────────── -->
   <section class="tour-hero marka-hero">
     <div class="container">
-      <div class="tour-hero__content">
-        <a href="/" class="tour-hero__back">← Home</a>
-        <p class="marka-wordmark" aria-label="Marka Bikes, by Oslo Bike Tours"><span class="marka-wordmark__name" aria-hidden="true">Marka</span><svg class="marka-wordmark__path" viewBox="0 0 220 18" aria-hidden="true"><path d="M4 12 C60 2 120 18 216 6" fill="none" stroke="#E09F3E" stroke-width="5" stroke-linecap="round"/></svg><span class="marka-wordmark__bikes" aria-hidden="true">Bikes</span><span class="marka-wordmark__by" aria-hidden="true">by Oslo Bike Tours</span></p>
-        <h1 class="tour-hero__title">Gravel Bike &amp; E-Bike Rental in Oslo</h1>
-        <p class="marka-hero__intro">Carbon and aluminium gravel bikes and e-bikes, by the day or for your whole trip. Collected at the metro or tram, from NOK 699.</p>
-        <p class="marka-line">Collect in Oslo. Ride Marka, or the rest of Norway.</p>
-        <div class="marka-hero__actions">
-          <a href="#book" class="btn btn--primary">Rent a bike</a>
-          <a href="#prices" class="btn marka-btn--outline">See prices</a>
-        </div>
-        <p class="marka-hero__trust"><span>★ 5.0 on Google</span><span>Reply within 2 hours</span><span>4 free pickup points</span></p>
+      <p class="marka-wordmark" aria-label="Marka Bikes, by Oslo Bike Tours"><span class="marka-wordmark__name" aria-hidden="true">Marka</span><svg class="marka-wordmark__path" viewBox="0 0 220 18" aria-hidden="true"><path d="M4 12 C60 2 120 18 216 6" fill="none" stroke="#E09F3E" stroke-width="5" stroke-linecap="round"/></svg><span class="marka-wordmark__bikes" aria-hidden="true">Bikes</span><span class="marka-wordmark__by" aria-hidden="true">by Oslo Bike Tours</span></p>
+      <div class="marka-hero__actions">
+        <a href="#book" class="btn btn--primary">Rent a bike</a>
+        <a href="#prices" class="btn marka-btn--outline">See prices</a>
       </div>
+      <p class="marka-hero__trust"><span>★ 5.0 on Google</span><span>Reply within 2 hours</span><span>4 free pickup points</span></p>
     </div>
   </section>
 
-  <!-- ─── Intro quote ───────────────────────────────────────────── -->
-  <section class="section" style="background:var(--white);padding:56px 0 0">
+  <!-- ─── Intro ─────────────────────────────────────────────────── -->
+  <section class="section marka-intro">
     <div class="container">
-      <blockquote style="max-width:760px;margin:0 auto;text-align:center;border:none;padding:0">
-        <p style="font-family:var(--font-serif);font-style:italic;font-size:clamp(1.1rem,2.4vw,1.55rem);line-height:1.45;color:var(--green-deep);margin:0 0 1rem">“Oslo has some of the best gravel riding in Scandinavia, and almost nobody rents the right bike for it.”</p>
-        <footer style="font-size:.9rem;color:var(--text-muted);font-weight:600">— Eivind, gravel bike expert &amp; guide</footer>
+      <h1 class="marka-intro__title">Gravel Bike &amp; E-Bike Rental in Oslo</h1>
+      <p class="marka-line">Collect in Oslo. Ride Marka, or the rest of Norway.</p>
+      <p class="marka-intro__lead">Carbon and aluminium gravel bikes and e-bikes, by the day or for your whole trip. Collected at the metro or tram, from NOK 699.</p>
+      <blockquote class="marka-intro__quote">
+        <p>“Oslo has some of the best gravel riding in Scandinavia, and almost nobody rents the right bike for it.”</p>
+        <footer>— Eivind, gravel bike expert &amp; guide</footer>
       </blockquote>
     </div>
   </section>
 
   <!-- ─── How it works ──────────────────────────────────────────── -->
-  <section class="section marka-panel" style="background:var(--white);padding:56px 0 48px">
+  <section class="section marka-panel">
     <div class="container">
-      <div class="section-header" style="text-align:center;padding-bottom:1.75rem">
+      <div class="section-header">
         <span class="tag">How it works</span>
         <h2 class="section-title">Renting is quick and fully digital</h2>
         <p class="section-sub">No shop visit, no paperwork, no waiting in line. Collection from 10:00, delivery and return until 20:00 — seven days a week, weekends included.</p>
@@ -371,7 +368,7 @@
   </section>
 
   <!-- ─── Gravel bikes ──────────────────────────────────────────── -->
-  <section class="section" style="background:var(--bg);padding-bottom:48px">
+  <section class="section marka-bikes-a">
     <div class="container">
       <div class="section-header">
         <span class="tag">Gravel</span>
@@ -432,7 +429,7 @@
   </section>
 
   <!-- ─── E-bikes ───────────────────────────────────────────────── -->
-  <section class="section" style="background:var(--bg);padding-top:0">
+  <section class="section marka-bikes-b">
     <div class="container">
       <div class="section-header">
         <span class="tag">E-Bikes</span>
@@ -494,7 +491,7 @@
   </section>
 
   <!-- ─── Price ladder ──────────────────────────────────────────── -->
-  <section class="section" id="prices" style="background:var(--bg);padding:56px 0">
+  <section class="section marka-prices" id="prices">
     <div class="container">
       <div style="max-width:860px;margin:0 auto">
         <p class="tour-why__eyebrow" style="text-align:center">What it costs</p>
@@ -533,7 +530,7 @@
   </section>
 
   <!-- ─── Practical strip ───────────────────────────────────────── -->
-  <section class="tour-why" style="padding:48px 0 64px;background:var(--white)">
+  <section class="tour-why marka-strip">
     <div class="container">
       <p class="tour-why__eyebrow">Good to know</p>
       <div class="tour-why__grid">
@@ -554,7 +551,7 @@
   </section>
 
   <!-- ─── Rental details ────────────────────────────────────────── -->
-  <section class="tour-page" style="padding-top:0;padding-bottom:0">
+  <section class="tour-page marka-ride">
     <div class="container">
       <div class="tour-page__inner">
         <div class="tour-page__body">
@@ -840,7 +837,7 @@
   <section class="faq section">
     <div class="container">
       <div style="max-width:740px;margin:0 auto">
-        <div class="section-header" style="text-align:left;padding:0 0 1.5rem">
+        <div class="section-header">
           <span class="tag">FAQ</span>
           <h2 class="section-title">Common questions</h2>
         </div>
@@ -954,7 +951,7 @@
     </div>
   </footer>
 
-  <script src="../js/main.js?v=20261025b"></script>
+  <script src="../js/main.js?v=20261025c"></script>
   <script>
   (function () {
     /* ── State ── */

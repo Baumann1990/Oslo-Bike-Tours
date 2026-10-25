@@ -3011,52 +3011,63 @@ html.has-ride-ribbon .hero { padding-top: 40px; height: calc(100vh + 40px); heig
 
 /* ── Marka Bikes (rental sub-brand, see brand book v0.1) ─────────── */
 :root { --lichen: #e1e8e0; --ink: #1a2a20; }
-.marka-wordmark {
-  display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px;
-  margin: .5rem 0 1.1rem; padding: 14px 20px 12px;
-  background: var(--green-deep); color: var(--bg);
+
+/* One spacing scale for every section on the page */
+.marka { --sec: 96px; }
+@media (max-width: 768px) { .marka { --sec: 64px; } }
+@media (max-width: 480px) { .marka { --sec: 48px; } }
+
+/* Wordmark: "Marka", the amber path, "BIKES", endorsement */
+.marka-wordmark { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px; margin: 0; color: var(--bg); }
+.marka-wordmark__name { font-family: var(--font-serif); font-weight: 800; font-size: clamp(3.4rem, 9vw, 6rem); line-height: 1; }
+.marka-wordmark__path { width: 100%; height: clamp(14px, 2vw, 22px); }
+.marka-wordmark__bikes { font-size: clamp(.95rem, 1.8vw, 1.3rem); font-weight: 600; letter-spacing: .4em; text-transform: uppercase; padding-top: 4px; }
+.marka-wordmark__by { font-size: clamp(.85rem, 1.4vw, 1rem); font-weight: 400; color: #c9d3c6; padding-top: 6px; }
+
+/* Hero: Spruce, the wordmark, two buttons and the reassurance row, centred */
+.marka .tour-hero.marka-hero, html.has-ride-ribbon .marka .tour-hero.marka-hero {
+  height: auto; min-height: 0; background: var(--green-deep); text-align: center;
+  padding: calc(var(--nav-h) + 88px) 0 calc(var(--sec) * .75);
 }
-.marka-wordmark__name { font-family: var(--font-serif); font-weight: 800; font-size: 2.6rem; line-height: 1; }
-.marka-wordmark__path { width: 100%; height: 12px; }
-.marka-wordmark__bikes { font-size: .78rem; font-weight: 600; letter-spacing: .4em; text-transform: uppercase; padding-top: 4px; }
-.marka-wordmark__by { font-size: .78rem; font-weight: 400; color: #c9d3c6; padding-top: 6px; }
-.marka-line {
-  font-family: var(--font-serif); font-style: italic; font-weight: 500;
-  font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--bg); margin: .9rem 0 0;
-}
+.marka-hero__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 2.25rem; }
+.marka-btn--outline { border: 1.5px solid rgba(247,244,239,.6); color: var(--bg); background: none; }
+.marka-btn--outline:hover { border-color: var(--bg); background: rgba(247,244,239,.08); }
+.marka-hero__trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 22px; margin: 1.25rem 0 0; font-size: .85rem; color: #c9d3c6; }
+
+/* Intro: the page heading, brand line, lead and quote */
+.marka-intro { background: var(--white); text-align: center; }
+.marka-intro .container { max-width: 800px; }
+.marka-intro__title { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.2; color: var(--green-deep); margin: 0; }
+.marka-line { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--green-mid); margin: .75rem 0 0; }
+.marka-intro__lead { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin: 1.25rem auto 0; max-width: 620px; }
+.marka-intro__quote { margin: calc(var(--sec) * .6) auto 0; padding: calc(var(--sec) * .5) 0 0; border: 0; border-top: 1px solid var(--border); max-width: 680px; }
+.marka-intro__quote p { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.1rem, 2.4vw, 1.45rem); line-height: 1.45; color: var(--green-deep); margin: 0 0 1rem; }
+.marka-intro__quote footer { font-size: .9rem; color: var(--text-muted); font-weight: 600; }
+
+/* Section rhythm: Spruce, white, Spruce, then Birch and white alternating */
+.marka .section { padding: var(--sec) 0; }
+.marka .section-header { margin-bottom: calc(var(--sec) * .5); }
+.marka-bikes-a, .marka-bikes-b { background: var(--bg); }
+.marka .marka-bikes-a { padding-bottom: calc(var(--sec) * .5); }
+.marka .marka-bikes-b { padding-top: calc(var(--sec) * .5); }
+.marka-prices { background: var(--white); }
+.marka .marka-strip { background: var(--bg); padding: calc(var(--sec) * .67) 0; }
+.marka .marka-ride { background: var(--white); padding: var(--sec) 0; }
+.marka .marka-ride .tour-page__inner { grid-template-columns: 1fr; max-width: 800px; margin: 0 auto; padding: 0; }
+.marka .marka-ride .tour-page__body > :last-child { margin-bottom: 0; }
+.marka .book { background: var(--bg); }
+.marka .book__form { background: var(--white); }
+.marka .faq { background: var(--white); }
+
+/* Brand details */
 .marka .tag { background: var(--lichen); color: var(--green-deep); border-radius: 999px; }
 .marka .btn--primary, .marka .btn--nav { color: var(--ink); }
 .marka .btn--sm { background: var(--amber); color: var(--ink); }
 .marka .btn--sm:hover { background: var(--amber-dark); color: var(--ink); }
 .marka .tour-card__badge { background: var(--lichen); color: var(--green-deep); }
+.marka .tour-card__img { background: #fff; padding: 1rem; box-sizing: border-box; }
 .marka-panel { background: var(--green-deep) !important; }
 .marka-panel .section-title, .marka-panel h3 { color: var(--bg) !important; }
 .marka-panel .section-sub, .marka-panel p { color: #c9d3c6 !important; }
 .marka-panel .tag { background: rgba(247,244,239,.12); color: var(--amber); }
 .marka-panel .marka-step { background: var(--amber) !important; color: var(--ink) !important; }
-/* Phones: the hero grows with its content so the lockup never slides under the nav */
-@media (max-width: 768px) {
-  .marka .tour-hero, html.has-ride-ribbon .marka .tour-hero { height: auto; min-height: 0; }
-  .marka .tour-hero__img { position: absolute; inset: 0; }
-  .marka .tour-hero__content { position: relative; padding-top: calc(var(--nav-h) + 72px); }
-  .marka-wordmark { padding: 10px 16px 10px; }
-}
-/* Hero without a photo: plain Spruce with the wordmark as the centrepiece */
-.marka-hero { background: var(--green-deep); }
-.marka-hero .marka-wordmark { background: none; padding: 0; margin: .75rem 0 1.5rem; }
-.marka-hero .marka-wordmark__name { font-size: clamp(3.4rem, 9vw, 6rem); }
-.marka-hero .marka-wordmark__path { height: clamp(14px, 2vw, 22px); }
-.marka-hero .marka-wordmark__bikes { font-size: clamp(.95rem, 1.8vw, 1.3rem); }
-.marka-hero .marka-wordmark__by { font-size: clamp(.85rem, 1.4vw, 1rem); }
-/* Hero: wordmark leads, heading second, then actions and reassurance */
-.marka-hero .tour-hero__title { font-size: clamp(1.7rem, 3.6vw, 2.6rem); }
-.marka-hero__intro { color: rgba(255,255,255,.85); margin: .5rem 0 0; font-size: 1.05rem; max-width: 640px; }
-.marka-hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.5rem; }
-.marka-btn--outline { border: 1.5px solid rgba(247,244,239,.6); color: var(--bg); background: none; }
-.marka-btn--outline:hover { border-color: var(--bg); background: rgba(247,244,239,.08); }
-.marka-hero__trust { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 1.25rem 0 0; font-size: .85rem; color: #c9d3c6; }
-/* Bike cards: one image treatment for all four */
-.marka .tour-card__img { background: #fff; padding: 1rem; box-sizing: border-box; }
-/* No photo, so the hero sizes to its content at every width */
-.marka .marka-hero, html.has-ride-ribbon .marka .marka-hero { height: auto; min-height: 0; }
-.marka .marka-hero .tour-hero__content { position: relative; padding-top: calc(var(--nav-h) + 72px); padding-bottom: 56px; }
