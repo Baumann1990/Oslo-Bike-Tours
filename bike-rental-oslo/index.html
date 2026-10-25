@@ -310,7 +310,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
 </head>
-<body>
+<body class="marka">
 
   <!-- ─── Nav ───────────────────────────────────────────────────── -->
   <header class="nav" id="nav">
@@ -343,8 +343,10 @@
     <div class="container">
       <div class="tour-hero__content">
         <a href="/" class="tour-hero__back">← Home</a>
+        <p class="marka-lockup" aria-label="Marka Bikes, by Oslo Bike Tours"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56" fill="#F7F4EF"/><path d="M12 66 C28 48 44 46 58 56 C72 66 88 62 107 46" fill="none" stroke="#1A3A2A" stroke-width="5" stroke-linecap="round"/><path d="M15 82 C34 68 50 70 62 76 C76 83 92 80 105 70" fill="none" stroke="#1A3A2A" stroke-width="5" stroke-linecap="round"/><polygon points="36,46 43,30 50,46" fill="#1A3A2A"/><polygon points="46,48 52,36 58,48" fill="#1A3A2A"/><polygon points="80,52 87,36 94,52" fill="#1A3A2A"/><path d="M58 116 C70 104 46 98 60 90" fill="none" stroke="#B87A20" stroke-width="6" stroke-linecap="round"/></svg><span><span class="marka-lockup__name">Marka Bikes</span><span class="marka-lockup__by">by Oslo Bike Tours</span></span></p>
         <h1 class="tour-hero__title">Gravel Bike &amp; E-Bike Rental in Oslo</h1>
         <p style="color:rgba(255,255,255,.85);margin:.5rem 0 0;font-size:1rem">Carbon &amp; aluminium gravel bikes and e-bikes, by the day or for your whole trip — pickup at Sognsvann, Kjelsås, Huseby or Oslo Central Station included, hotel delivery NOK 399</p>
+        <p class="marka-line">Collect in Oslo. Ride Marka, or the rest of Norway.</p>
       </div>
     </div>
   </section>
@@ -360,7 +362,7 @@
   </section>
 
   <!-- ─── How it works ──────────────────────────────────────────── -->
-  <section class="section" style="background:var(--white);padding:40px 0 8px">
+  <section class="section marka-panel" style="background:var(--white);padding:56px 0 48px">
     <div class="container">
       <div class="section-header" style="text-align:center;padding-bottom:1.75rem">
         <span class="tag">How it works</span>
@@ -369,27 +371,27 @@
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:1.5rem 1.25rem;max-width:1000px;margin:0 auto">
         <div style="text-align:center">
-          <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--green-deep);color:var(--white);font-weight:700;margin-bottom:.75rem">1</span>
+          <span class="marka-step" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--green-deep);color:var(--white);font-weight:700;margin-bottom:.75rem">1</span>
           <h3 style="font-size:1rem;margin:0 0 .35rem;color:var(--green-deep)">Enquire</h3>
           <p style="font-size:.85rem;line-height:1.5;color:var(--text-muted);margin:0">Pick your bike and dates and send the form. We reply within 2 hours between 08:00 and 22:00, every day — often with a bike ready the same day.</p>
         </div>
         <div style="text-align:center">
-          <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--green-deep);color:var(--white);font-weight:700;margin-bottom:.75rem">2</span>
+          <span class="marka-step" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--green-deep);color:var(--white);font-weight:700;margin-bottom:.75rem">2</span>
           <h3 style="font-size:1rem;margin:0 0 .35rem;color:var(--green-deep)">Two-minute setup</h3>
           <p style="font-size:.85rem;line-height:1.5;color:var(--text-muted);margin:0">Authorise a refundable deposit by card, and verify your ID online if needed — all from your phone.</p>
         </div>
         <div style="text-align:center">
-          <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--green-deep);color:var(--white);font-weight:700;margin-bottom:.75rem">3</span>
+          <span class="marka-step" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--green-deep);color:var(--white);font-weight:700;margin-bottom:.75rem">3</span>
           <h3 style="font-size:1rem;margin:0 0 .35rem;color:var(--green-deep)">Collect</h3>
           <p style="font-size:.85rem;line-height:1.5;color:var(--text-muted);margin:0">We lock the bike at your pickup location and send you the code. Bikes are out from 10:00, and since you unlock it yourself you can collect in the evening or at the weekend — no shop hours to work around.</p>
         </div>
         <div style="text-align:center">
-          <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--green-deep);color:var(--white);font-weight:700;margin-bottom:.75rem">4</span>
+          <span class="marka-step" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--green-deep);color:var(--white);font-weight:700;margin-bottom:.75rem">4</span>
           <h3 style="font-size:1rem;margin:0 0 .35rem;color:var(--green-deep)">Ride</h3>
           <p style="font-size:.85rem;line-height:1.5;color:var(--text-muted);margin:0">Explore Oslo and the Nordmarka forest at your own pace.</p>
         </div>
         <div style="text-align:center">
-          <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--green-deep);color:var(--white);font-weight:700;margin-bottom:.75rem">5</span>
+          <span class="marka-step" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--green-deep);color:var(--white);font-weight:700;margin-bottom:.75rem">5</span>
           <h3 style="font-size:1rem;margin:0 0 .35rem;color:var(--green-deep)">Return</h3>
           <p style="font-size:.85rem;line-height:1.5;color:var(--text-muted);margin:0">Lock the bike back at the agreed location any time up to 20:00, snap a couple of photos, and your deposit hold is released.</p>
         </div>
@@ -600,7 +602,7 @@
               <span class="ride-start" data-ride-hours="2" hidden></span>
             </div>
             <div style="display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:var(--surface)">
-              <span style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap"><span style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:var(--accent);color:var(--green-deep);border-radius:99px;padding:.1rem .5rem">Most popular</span></span>
+              <span style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap"><span style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:var(--lichen);color:var(--green-deep);border-radius:99px;padding:.1rem .5rem">Most popular</span></span>
               <a href="/blog/nordmarka-forest-oslo/" style="font-weight:700;color:var(--green-deep);line-height:1.25;text-decoration:none">Ring 4 — the classic</a>
               <span style="font-size:.82rem;color:var(--text-muted)">50–55 km · ~1 000 m up · 4–5 hrs</span>
               <span style="font-size:.85rem;color:var(--text-muted);line-height:1.45">The Oslo gravel loop, with waffles at Kikutstua.</span>
