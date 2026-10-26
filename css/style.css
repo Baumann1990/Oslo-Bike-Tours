@@ -3094,3 +3094,16 @@ html.has-ride-ribbon .hero { padding-top: 40px; height: calc(100vh + 40px); heig
   .ride-intro { grid-template-columns: 1fr; gap: 28px; }
   .ride-ways, .ride-tips { grid-template-columns: 1fr; }
 }
+
+/* ── Work with us ────────────────────────────────────────────────── */
+.jobs__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 960px; margin: 0 auto; }
+.job-card { background: var(--white); border-radius: var(--radius); padding: 32px; display: flex; flex-direction: column; gap: 10px; box-shadow: var(--shadow); }
+.job-card h3 { font-family: var(--font-serif); font-size: 1.4rem; color: var(--green-deep); margin: 0; }
+.job-card__meta { font-size: .78rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--green-mid); margin: 0; }
+.job-card p:not(.job-card__meta) { color: var(--text-muted); line-height: 1.6; margin: 0 0 8px; flex: 1; }
+.job-card .btn { align-self: flex-start; color: var(--green-deep); }
+.jobs__note { text-align: center; color: var(--text-muted); font-size: .9rem; margin: 32px auto 0; max-width: 620px; }
+.jobs__note a { color: var(--green-mid); }
+.guides__hiring { text-align: center; margin: 40px 0 0; color: var(--text-muted); }
+.guides__hiring a { color: var(--green-mid); font-weight: 600; }
+@media (max-width: 768px) { .jobs__grid { grid-template-columns: 1fr; } .job-card { padding: 24px; } }
