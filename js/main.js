@@ -534,22 +534,49 @@ function loadConditions() {
   return conditionsPromise;
 }
 
-/* ── Nordmarka riding-conditions ribbon (Apr – Nov) ──────────── */
+/* ── Season switch ───────────────────────────────────────────────
+   true while rentals and tours are closed for the winter: every booking
+   section gets a "book for spring" notice and the ribbon reports plain
+   weather instead of riding verdicts. Set to false when the season opens.
+   The conditions page and its deploy-time snapshot read this line too.
+   Also change by hand when reopening: the homepage strip, the rental page
+   promo bar, and "availability" PreOrder -> InStock in the rental and tour
+   page schema. */
+const SEASON_CLOSED = true;
+
+(function initSeasonNotice() {
+  if (!SEASON_CLOSED) return;
+  const book = document.querySelector('#book .container');
+  if (!book) return;
+  const rental = location.pathname.startsWith('/bike-rental-oslo');
+  const note = document.createElement('div');
+  note.className = 'season-note';
+  note.setAttribute('role', 'note');
+  note.innerHTML = '<strong>Closed for the winter.</strong> ' +
+    (rental ? 'Rentals reopen' : 'Tours and rentals reopen') +
+    ' in spring, once the snow has cleared from the forest roads. Send your dates now and we will hold them for you.';
+  book.prepend(note);
+})();
+
+/* ── Nordmarka conditions ribbon ─────────────────────────────── */
 (function initRideRibbon() {
   if (/^\/(deposit|verify-identity)\//.test(location.pathname)) return;
 
   const osloDate = d => new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Oslo' }).format(d); // YYYY-MM-DD
   const today = osloDate(new Date());
   const tomorrow = osloDate(new Date(Date.now() + 864e5));
-  const month = Number(today.split('-')[1]);
-  const inSeason = month >= 4 && month <= 11;
 
-  const LEVEL = { good: 'Good riding', showers: 'Showers', windy: 'Windy', wet: 'Wet', snow: 'Snow' };
-  const SHORT = { good: 'Good', showers: 'Showers', windy: 'Windy', wet: 'Wet', snow: 'Snow' };
+  // Out of season the forecast stays, but as weather: "Good riding" means nothing on snow
+  const LEVEL = SEASON_CLOSED
+    ? { good: 'Dry', showers: 'Showers', windy: 'Windy', wet: 'Rain', snow: 'Snow' }
+    : { good: 'Good riding', showers: 'Showers', windy: 'Windy', wet: 'Wet', snow: 'Snow' };
+  const SHORT = SEASON_CLOSED
+    ? { good: 'Dry', showers: 'Showers', windy: 'Windy', wet: 'Rain', snow: 'Snow' }
+    : { good: 'Good', showers: 'Showers', windy: 'Windy', wet: 'Wet', snow: 'Snow' };
   const onRentalPage = location.pathname.startsWith('/bike-rental-oslo');
   const both = (long, short) =>
     `<span class="ride-ribbon__long">${long}</span><span class="ride-ribbon__short">${short}</span>`;
-  const cta = `<a href="${onRentalPage ? '#book' : '/bike-rental-oslo/#book'}">${inSeason ? 'Rent a bike' : 'See the bikes'} →</a>`;
+  const cta = `<a href="${onRentalPage ? '#book' : '/bike-rental-oslo/#book'}">${SEASON_CLOSED ? 'Book for spring' : 'Rent a bike'} →</a>`;
   const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
   const dayName = d =>
     d.date === today ? 'today'
@@ -564,13 +591,12 @@ function loadConditions() {
   const linkOpen = location.pathname.startsWith(COND) ? '<span class="ride-ribbon__link">' : `<a class="ride-ribbon__link" href="${COND}">`;
   const linkClose = location.pathname.startsWith(COND) ? '</span>' : '</a>';
   ribbon.innerHTML = linkOpen + '<span class="ride-dot"></span><span class="ride-ribbon__text">' +
-    (inSeason
-      ? both('Gravel season in the Nordmarka — bikes at four pickup points across Oslo', 'Gravel bike rental in Oslo')
-      : both('Nordmarka gravel season reopens in spring', 'Season reopens in spring')) +
+    (SEASON_CLOSED
+      ? both('Closed for the winter. Gravel season reopens in spring', 'Reopens in spring')
+      : both('Gravel season in the Nordmarka — bikes at four pickup points across Oslo', 'Gravel bike rental in Oslo')) +
     '</span>' + linkClose + cta;
   document.body.prepend(ribbon);
   document.documentElement.classList.add('has-ride-ribbon');
-  if (!inSeason) return;
 
   loadConditions().then(render).catch(() => {});
 
@@ -582,14 +608,15 @@ function loadConditions() {
     const first = days[0];
     const rain = Number(first.precip) > 0 ? `${Number(first.precip)} mm` : 'dry';
     const detail = `${Number(first.temp_max)}° · ${rain} · sunset ${first.sunset}`;
-    // When today isn't good, point to the next good day in the outlook
-    const better = first.level === 'good' ? null : days.slice(1).find(d => d.level === 'good');
+    // When today isn't good, point to the next good day in the outlook (riding season only)
+    const better = SEASON_CLOSED || first.level === 'good' ? null : days.slice(1).find(d => d.level === 'good');
     const later = better
       ? `<span class="ride-ribbon__later"><span class="sep">·</span> ${cap(dayName(better))}: <strong>${LEVEL.good}</strong></span>`
       : '';
+    const dot = SEASON_CLOSED && first.level === 'good' ? 'dry' : first.level;
 
     ribbon.innerHTML = linkOpen +
-      `<span class="ride-dot ride-dot--${first.level}"></span>` +
+      `<span class="ride-dot ride-dot--${dot}"></span>` +
       `<span class="ride-ribbon__text">${both('Nordmarka ' + dayName(first), cap(dayName(first)))}: ` +
       `<strong>${both(LEVEL[first.level], SHORT[first.level])}</strong>` +
       `<span class="ride-ribbon__short"> · sunset ${first.sunset}</span></span>` +

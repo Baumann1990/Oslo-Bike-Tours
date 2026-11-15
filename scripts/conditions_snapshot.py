@@ -12,10 +12,16 @@ from __future__ import annotations
 
 import html
 import json
+import re
 import sys
 from datetime import date, datetime, timedelta
+from pathlib import Path
 
-LEVEL = {"good": "Good riding", "showers": "Showers", "windy": "Windy", "wet": "Wet", "snow": "Snow"}
+# The season switch lives in main.js; while closed, days are described as weather, not riding.
+MAIN_JS = Path(__file__).resolve().parent.parent / "js" / "main.js"
+CLOSED = bool(re.search(r"const SEASON_CLOSED = true", MAIN_JS.read_text(encoding="utf-8")))
+LEVEL = ({"good": "Dry", "showers": "Showers", "windy": "Windy", "wet": "Rain", "snow": "Snow"} if CLOSED else
+         {"good": "Good riding", "showers": "Showers", "windy": "Windy", "wet": "Wet", "snow": "Snow"})
 # Riding time per route, stops included (same as the page's script).
 ROUTES = [("Maridalen and the lake", 2), ("The short forest loop", 2), ("The Nordmarka loop", 3),
           ("Ring 4", 5), ("Into the deep Marka", 6)]
@@ -24,8 +30,9 @@ START, END = "<!--SNAPSHOT-->", "<!--/SNAPSHOT-->"
 
 def day_line(d: dict) -> str:
     when = date.fromisoformat(d["date"])
-    temp = f'{d["temp_max"]} °C' if d["temp_min"] == d["temp_max"] else f'{d["temp_min"]}–{d["temp_max"]} °C'
-    rain = f'{d["precip"]} mm rain' if d["precip"] > 0 else "dry"
+    deg = lambda t: f"−{-t}" if t < 0 else f"{t}"  # true minus sign; "to" because a dash reads as one
+    temp = f'{deg(d["temp_max"])} °C' if d["temp_min"] == d["temp_max"] else f'{deg(d["temp_min"])} to {deg(d["temp_max"])} °C'
+    rain = f'{d["precip"]} mm {"snow" if d["level"] == "snow" else "rain"}' if d["precip"] > 0 else "dry"
     outlook = " (outlook)" if d.get("outlook") else ""
     return (f'<li><strong>{when:%A} {when.day} {when:%B}{outlook}: {LEVEL[d["level"]]}</strong>. '
             f'{temp}, {rain}, wind up to {d["wind_max"]} m/s, sunset {d["sunset"]}.</li>')
@@ -47,12 +54,14 @@ def snapshot(data: dict) -> str:
         return ""
     generated = datetime.fromisoformat(data["generated"])
     first = days[0]
+    starts = ('' if CLOSED else
+              f'<p>Latest start to finish in daylight on {date.fromisoformat(first["date"]):%A}: '
+              f'{html.escape(latest_starts(first))}.</p>')
     return (
         '<div class="cx-snapshot" id="cxSnapshot">'
-        f'<p>Nordmarka forecast as of {generated:%d %B %Y, %H:%M} UTC, for the riding hours from 10:00 to sunset:</p>'
+        f'<p>Nordmarka forecast as of {generated:%d %B %Y, %H:%M} UTC, for the hours from 10:00 to sunset:</p>'
         f'<ul>{"".join(day_line(d) for d in days)}</ul>'
-        f'<p>Latest start to finish in daylight on {date.fromisoformat(first["date"]):%A}: '
-        f'{html.escape(latest_starts(first))}.</p>'
+        f'{starts}'
         '</div>'
     )
 

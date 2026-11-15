@@ -3107,3 +3107,18 @@ html.has-ride-ribbon .hero { padding-top: 40px; height: calc(100vh + 40px); heig
 .guides__hiring { text-align: center; margin: 40px 0 0; color: var(--text-muted); }
 .guides__hiring a { color: var(--green-mid); font-weight: 600; }
 @media (max-width: 768px) { .jobs__grid { grid-template-columns: 1fr; } .job-card { padding: 24px; } }
+
+/* ─── Winter closure (SEASON_CLOSED in main.js) ─────────────── */
+.season-note {
+  max-width: 720px;
+  margin: 0 auto 40px;
+  padding: 16px 20px;
+  background: var(--green-deep);
+  color: rgba(255,255,255,.85);
+  border-left: 4px solid var(--amber);
+  border-radius: 8px;
+  font-size: .95rem;
+  line-height: 1.55;
+}
+.season-note strong { color: var(--white); }
+.ride-dot--dry { background: #cfd8d2; }

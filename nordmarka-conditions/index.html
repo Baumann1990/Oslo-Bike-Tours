@@ -75,7 +75,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=20261026" />
+  <link rel="stylesheet" href="../css/style.css?v=20261115" />
 </head>
 <body>
 
@@ -227,10 +227,15 @@
     </div>
   </footer>
 
-  <script src="../js/main.js?v=20261026"></script>
+  <script src="../js/main.js?v=20261115"></script>
   <script>
   (function () {
-    var LEVEL = { good: 'Good riding', showers: 'Showers', windy: 'Windy', wet: 'Wet', snow: 'Snow' };
+    // SEASON_CLOSED comes from main.js: in winter the page reports weather, not riding verdicts
+    var closed = typeof SEASON_CLOSED !== 'undefined' && SEASON_CLOSED;
+    var LEVEL = closed
+      ? { good: 'Dry', showers: 'Showers', windy: 'Windy', wet: 'Rain', snow: 'Snow' }
+      : { good: 'Good riding', showers: 'Showers', windy: 'Windy', wet: 'Wet', snow: 'Snow' };
+    var dot = function (d) { return closed && d.level === 'good' ? 'dry' : d.level; };
     var ROUTES = [
       { name: 'Maridalen and the lake', hours: 2, href: '/blog/kjelsas-to-maridalen/' },
       { name: 'The short forest loop', hours: 2, href: '/blog/how-to-get-to-sognsvann/' },
@@ -246,8 +251,9 @@
         : new Date(d.date + 'T12:00:00Z').toLocaleDateString('en-GB', { weekday: 'long', timeZone: 'UTC' });
     };
     var dateLabel = function (d) { return new Date(d.date + 'T12:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', timeZone: 'UTC' }); };
-    var rain = function (d) { return Number(d.precip) > 0 ? Number(d.precip) + ' mm rain' : 'Dry'; };
-    var temp = function (d) { return d.temp_min === d.temp_max ? d.temp_max + '°' : d.temp_min + '–' + d.temp_max + '°'; };
+    var rain = function (d) { return Number(d.precip) > 0 ? Number(d.precip) + (d.level === 'snow' ? ' mm snow' : ' mm rain') : 'Dry'; };
+    var deg = function (t) { return t < 0 ? '−' + -t : String(t); };
+    var temp = function (d) { return d.temp_min === d.temp_max ? deg(d.temp_max) + '°' : deg(d.temp_min) + ' to ' + deg(d.temp_max) + '°'; };
     var latest = function (d, hours) {
       var t = new Date(new Date(d.end).getTime() - hours * 3600e3);
       t.setMinutes(Math.floor(t.getMinutes() / 15) * 15, 0, 0);
@@ -267,10 +273,10 @@
       if (snap) snap.hidden = true;
 
       var first = days[0];
-      var better = first.level === 'good' ? null : days.slice(1).filter(function (d) { return d.level === 'good'; })[0];
+      var better = closed || first.level === 'good' ? null : days.slice(1).filter(function (d) { return d.level === 'good'; })[0];
       document.getElementById('cxToday').innerHTML =
         '<p class="cx-today__when">' + dayName(first) + ' · ' + dateLabel(first) + '</p>' +
-        '<p class="cx-today__level"><span class="ride-dot ride-dot--' + first.level + '"></span>' + LEVEL[first.level] + '</p>' +
+        '<p class="cx-today__level"><span class="ride-dot ride-dot--' + dot(first) + '"></span>' + LEVEL[first.level] + '</p>' +
         '<ul class="cx-facts">' +
           '<li><span>Temperature</span><strong>' + temp(first) + '</strong></li>' +
           '<li><span>Conditions</span><strong>' + rain(first) + '</strong></li>' +
@@ -281,15 +287,16 @@
 
       document.getElementById('cxDaysTitle').hidden = false;
       document.getElementById('cxDays').innerHTML = days.slice(1).map(function (d) {
-        return '<div class="cx-day' + (d.level === 'good' ? ' cx-day--good' : '') + '">' +
+        return '<div class="cx-day' + (!closed && d.level === 'good' ? ' cx-day--good' : '') + '">' +
           '<p class="cx-day__name">' + dayName(d) + (d.outlook ? ' <span class="cx-outlook" title="Beyond about two and a half days the forecast is less precise">Outlook</span>' : '') + '</p>' +
           '<p class="cx-day__date">' + dateLabel(d) + '</p>' +
-          '<p class="cx-day__level"><span class="ride-dot ride-dot--' + d.level + '"></span>' + LEVEL[d.level] + '</p>' +
+          '<p class="cx-day__level"><span class="ride-dot ride-dot--' + dot(d) + '"></span>' + LEVEL[d.level] + '</p>' +
           '<p class="cx-day__meta">' + temp(d) + ' · ' + rain(d) + '</p>' +
           '<p class="cx-day__meta">Wind ' + d.wind_max + ' m/s · sunset ' + d.sunset + '</p>' +
         '</div>';
       }).join('');
 
+      if (closed) return; // no rentals to start from until spring
       var cols = days.slice(0, 3);
       document.getElementById('cxStartsTitle').hidden = false;
       document.getElementById('cxStartsNote').hidden = false;
