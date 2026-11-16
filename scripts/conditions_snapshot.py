@@ -5,7 +5,7 @@ This puts the same forecast into the HTML itself at deploy time, so search engin
 and AI tools see real, current conditions. The page's script hides it once the
 live panels have loaded.
 
-Usage: python scripts/conditions_snapshot.py <conditions.json> <page.html>
+Usage: python scripts/conditions_snapshot.py <conditions.json> <page.html> [snow.json]
 Standard library only.
 """
 from __future__ import annotations
@@ -48,10 +48,26 @@ def latest_starts(d: dict) -> str:
     return "; ".join(parts)
 
 
-def snapshot(data: dict) -> str:
+def snow_line(snow: dict | None) -> str:
+    """Today's snow depth at both points, if there is any to report."""
+    if not snow:
+        return ""
+    points = {p["id"]: p for p in snow.get("points", []) if p.get("days")}
+    edge, deep = points.get("edge"), points.get("deep")
+    if not edge or not deep:
+        return ""
+    e, d = edge["days"][0]["depth_cm"], deep["days"][0]["depth_cm"]
+    if not CLOSED and not e and not d:
+        return ""
+    return (f'<p>Snow depth this morning: {e} cm at {edge["name"]} on the forest edge ({edge["altitude"]} m) '
+            f'and {d} cm at {deep["name"]} deeper in the Marka ({deep["altitude"]} m), '
+            f'from the seNorge snow model by NVE and MET Norway.</p>')
+
+
+def snapshot(data: dict, snow: dict | None = None) -> str:
     days = [d for d in data.get("days", []) if d.get("level") in LEVEL]
     if not days:
-        return ""
+        return snow_line(snow) and f'<div class="cx-snapshot" id="cxSnapshot">{snow_line(snow)}</div>'
     generated = datetime.fromisoformat(data["generated"])
     first = days[0]
     starts = ('' if CLOSED else
@@ -59,6 +75,7 @@ def snapshot(data: dict) -> str:
               f'{html.escape(latest_starts(first))}.</p>')
     return (
         '<div class="cx-snapshot" id="cxSnapshot">'
+        f'{snow_line(snow)}'
         f'<p>Nordmarka forecast as of {generated:%d %B %Y, %H:%M} UTC, for the hours from 10:00 to sunset:</p>'
         f'<ul>{"".join(day_line(d) for d in days)}</ul>'
         f'{starts}'
@@ -66,14 +83,21 @@ def snapshot(data: dict) -> str:
     )
 
 
-def main(json_path: str, page_path: str) -> None:
+def main(json_path: str, page_path: str, snow_path: str | None = None) -> None:
     with open(json_path, encoding="utf-8") as fh:
         data = json.load(fh)
+    snow = None
+    if snow_path:
+        try:
+            with open(snow_path, encoding="utf-8") as fh:
+                snow = json.load(fh)
+        except (OSError, ValueError):
+            pass  # the snow step failed; the weather snapshot still goes out
     with open(page_path, encoding="utf-8") as fh:
         page = fh.read()
     head, rest = page.split(START, 1)
     _, tail = rest.split(END, 1)
-    page = head + START + snapshot(data) + END + tail
+    page = head + START + snapshot(data, snow) + END + tail
     page = page.replace('"dateModified": ""', f'"dateModified": "{data["generated"]}"')
     with open(page_path, "w", encoding="utf-8") as fh:
         fh.write(page)
@@ -81,6 +105,6 @@ def main(json_path: str, page_path: str) -> None:
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        sys.exit("usage: conditions_snapshot.py <conditions.json> <page.html>")
-    main(sys.argv[1], sys.argv[2])
+    if len(sys.argv) not in (3, 4):
+        sys.exit("usage: conditions_snapshot.py <conditions.json> <page.html> [snow.json]")
+    main(*sys.argv[1:])

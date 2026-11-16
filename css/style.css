@@ -3122,3 +3122,19 @@ html.has-ride-ribbon .hero { padding-top: 40px; height: calc(100vh + 40px); heig
 }
 .season-note strong { color: var(--white); }
 .ride-dot--dry { background: #cfd8d2; }
+
+/* ─── Conditions page: snow depth (data/snow.json) ──────────── */
+.cx-snow { margin: 0 0 2.5rem; }
+.cx-snow[hidden] { display: none; }
+.cx-snow .cx-h2 { margin-top: 0; }
+.cx-snow__status { font-size: 1.05rem; color: var(--ink); margin: 0 0 1.25rem; }
+.cx-snow__now { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 0 0 1.25rem; }
+.cx-snow__point { background: var(--green-deep); color: rgba(255,255,255,.8); border-radius: var(--radius); padding: 1.1rem 1.25rem; }
+.cx-snow__point p { margin: 0; }
+.cx-snow__label { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; opacity: .75; }
+.cx-snow__depth { font-family: var(--font-serif); font-size: 2.6rem; font-weight: 700; color: var(--white); line-height: 1.1; margin: .25rem 0 !important; }
+.cx-snow__depth span { font-family: var(--font-sans); font-size: 1rem; font-weight: 500; opacity: .8; }
+.cx-snow__where { font-size: .85rem; }
+.cx-snow__table { margin-bottom: .6rem; }
+.cx-snow__cell { width: 38%; text-align: left; }
+.cx-snow__bar { display: block; height: 4px; margin-top: 5px; background: var(--green-mid); border-radius: 2px; }

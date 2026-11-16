@@ -1,3 +1,13 @@
+/* ── Season switch ───────────────────────────────────────────────
+   true while rentals and tours are closed for the winter: every booking
+   section gets a "book for spring" notice and the ribbon reports plain
+   weather instead of riding verdicts. Set to false when the season opens.
+   The conditions page and its deploy-time snapshot read this line too.
+   Also change by hand when reopening: the homepage strip, the rental page
+   promo bar, and "availability" PreOrder -> InStock in the rental and tour
+   page schema. */
+const SEASON_CLOSED = true;
+
 /* ── Scroll restoration ──────────────────────────────────────── */
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 document.documentElement.style.scrollBehavior = 'auto';
@@ -258,7 +268,7 @@ document.addEventListener('keydown', e => {
   const isRentalPage = path.startsWith('/bike-rental-oslo');
   const isRental = isRentalPage || /^\/(nordmarka-conditions|bike-rental-terms)\//.test(path);
   const href  = isRental ? (isRentalPage ? '#book' : '/bike-rental-oslo/#book') : (isHome ? '#book' : '/#book');
-  const label = isRental ? 'Rent a bike' : 'Book a Tour';
+  const label = SEASON_CLOSED ? 'Book for spring' : isRental ? 'Rent a bike' : 'Book a Tour';
 
   bar.innerHTML = `
     <a href="${href}" class="btn btn--primary btn--full">
@@ -534,15 +544,13 @@ function loadConditions() {
   return conditionsPromise;
 }
 
-/* ── Season switch ───────────────────────────────────────────────
-   true while rentals and tours are closed for the winter: every booking
-   section gets a "book for spring" notice and the ribbon reports plain
-   weather instead of riding verdicts. Set to false when the season opens.
-   The conditions page and its deploy-time snapshot read this line too.
-   Also change by hand when reopening: the homepage strip, the rental page
-   promo bar, and "availability" PreOrder -> InStock in the rental and tour
-   page schema. */
-const SEASON_CLOSED = true;
+let snowPromise;
+function loadSnow() {
+  snowPromise = snowPromise || fetch('/data/snow.json', { cache: 'no-cache' })
+    .then(r => (r.ok ? r.json() : Promise.reject()))
+    .then(d => (Date.now() - new Date(d.generated).getTime() > 12 * 3600e3 ? Promise.reject() : d));
+  return snowPromise;
+}
 
 (function initSeasonNotice() {
   if (!SEASON_CLOSED) return;
@@ -598,9 +606,11 @@ const SEASON_CLOSED = true;
   document.body.prepend(ribbon);
   document.documentElement.classList.add('has-ride-ribbon');
 
-  loadConditions().then(render).catch(() => {});
+  // In winter the snow on the ground matters more than the sunset
+  const snowWanted = SEASON_CLOSED ? loadSnow().catch(() => null) : null;
+  Promise.all([loadConditions(), snowWanted]).then(([data, snow]) => render(data, snow)).catch(() => {});
 
-  function render(data) {
+  function render(data, snow) {
     if (Date.now() - new Date(data.generated).getTime() > 12 * 3600e3) return; // stale: keep season message
     const days = (data.days || []).filter(d => LEVEL[d.level] && new Date(d.end).getTime() > Date.now());
     if (!days.length) return;
@@ -614,13 +624,18 @@ const SEASON_CLOSED = true;
       ? `<span class="ride-ribbon__later"><span class="sep">·</span> ${cap(dayName(better))}: <strong>${LEVEL.good}</strong></span>`
       : '';
     const dot = SEASON_CLOSED && first.level === 'good' ? 'dry' : first.level;
+    const deep = snow && snow.points.find(p => p.id === 'deep');
+    const snowDay = deep && deep.days.find(d => d.date === first.date);  // same day as the weather shown
+    const cm = snowDay ? snowDay.depth_cm : null;
+    const shortTail = cm === null ? `sunset ${first.sunset}` : cm > 0 ? `${cm} cm snow` : 'no snow';
+    const snowDetail = cm === null ? '' : `<span class="sep">·</span> ${cm > 0 ? cm + ' cm snow in the forest' : 'no snow in the forest'} `;
 
     ribbon.innerHTML = linkOpen +
       `<span class="ride-dot ride-dot--${dot}"></span>` +
       `<span class="ride-ribbon__text">${both('Nordmarka ' + dayName(first), cap(dayName(first)))}: ` +
       `<strong>${both(LEVEL[first.level], SHORT[first.level])}</strong>` +
-      `<span class="ride-ribbon__short"> · sunset ${first.sunset}</span></span>` +
-      `<span class="ride-ribbon__detail"><span class="sep">·</span> ${detail}</span>` +
+      `<span class="ride-ribbon__short"> · ${shortTail}</span></span>` +
+      `<span class="ride-ribbon__detail"><span class="sep">·</span> ${detail} ${snowDetail}</span>` +
       later + `<span class="ride-ribbon__detail ride-ribbon__credit"><span class="sep">·</span> MET Norway</span>` + linkClose + cta;
     ribbon.title = 'Forecast for the Nordmarka near Ullevålseter, 10:00 to sunset. Data: MET Norway, CC BY 4.0. Tap for the next few days.';
   }

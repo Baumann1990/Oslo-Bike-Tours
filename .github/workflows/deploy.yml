@@ -1,5 +1,5 @@
 # Publishes the site to GitHub Pages on every push, and every 3 hours with a
-# fresh Nordmarka riding forecast and exchange rates (data/*.json is generated here, never committed).
+# fresh Nordmarka riding forecast, snow depth and exchange rates (data/*.json is generated here, never committed).
 # Requires: Settings → Pages → Build and deployment → Source: "GitHub Actions".
 name: Deploy site
 
@@ -48,10 +48,15 @@ jobs:
           mkdir -p _site/data
           python scripts/riding_forecast.py _site/data/conditions.json
 
-      # Plain-HTML copy of the forecast in the conditions page, for crawlers that skip JavaScript.
+      # Snow depth from the seNorge model (NVE). Without it the page simply has no snow section.
+      - name: Fetch Nordmarka snow depth
+        continue-on-error: true
+        run: python scripts/snow_depth.py _site/data/snow.json
+
+      # Plain-HTML copy of the forecast and snow depth in the conditions page, for crawlers that skip JavaScript.
       - name: Write forecast into conditions page
         continue-on-error: true
-        run: python scripts/conditions_snapshot.py _site/data/conditions.json _site/nordmarka-conditions/index.html
+        run: python scripts/conditions_snapshot.py _site/data/conditions.json _site/nordmarka-conditions/index.html _site/data/snow.json
 
       # Same fallback: without rates the rental page simply shows NOK only.
       - name: Fetch exchange rates
