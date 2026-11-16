@@ -548,7 +548,8 @@ let snowPromise;
 function loadSnow() {
   snowPromise = snowPromise || fetch('/data/snow.json', { cache: 'no-cache' })
     .then(r => (r.ok ? r.json() : Promise.reject()))
-    .then(d => (Date.now() - new Date(d.generated).getTime() > 12 * 3600e3 ? Promise.reject() : d));
+    // the snow model updates once a day, so a file from yesterday is still current
+    .then(d => (Date.now() - new Date(d.generated).getTime() > 36 * 3600e3 ? Promise.reject() : d));
   return snowPromise;
 }
 
@@ -611,7 +612,7 @@ function loadSnow() {
   Promise.all([loadConditions(), snowWanted]).then(([data, snow]) => render(data, snow)).catch(() => {});
 
   function render(data, snow) {
-    if (Date.now() - new Date(data.generated).getTime() > 12 * 3600e3) return; // stale: keep season message
+    if (Date.now() - new Date(data.generated).getTime() > 18 * 3600e3) return; // stale: keep season message
     const days = (data.days || []).filter(d => LEVEL[d.level] && new Date(d.end).getTime() > Date.now());
     if (!days.length) return;
 

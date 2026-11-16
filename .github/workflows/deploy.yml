@@ -8,6 +8,8 @@ on:
     branches: [main]
   schedule:
     - cron: "20 */3 * * *"
+    # GitHub skips many scheduled runs; a second slot halves the gaps
+    - cron: "50 1-22/3 * * *"
   workflow_dispatch:
 
 permissions:

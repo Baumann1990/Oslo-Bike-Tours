@@ -16,6 +16,7 @@ import re
 import sys
 from datetime import date, datetime, timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 # The season switch lives in main.js; while closed, days are described as weather, not riding.
 MAIN_JS = Path(__file__).resolve().parent.parent / "js" / "main.js"
@@ -68,7 +69,7 @@ def snapshot(data: dict, snow: dict | None = None) -> str:
     days = [d for d in data.get("days", []) if d.get("level") in LEVEL]
     if not days:
         return snow_line(snow) and f'<div class="cx-snapshot" id="cxSnapshot">{snow_line(snow)}</div>'
-    generated = datetime.fromisoformat(data["generated"])
+    generated = datetime.fromisoformat(data["generated"]).astimezone(ZoneInfo("Europe/Oslo"))
     first = days[0]
     starts = ('' if CLOSED else
               f'<p>Latest start to finish in daylight on {date.fromisoformat(first["date"]):%A}: '
@@ -76,7 +77,7 @@ def snapshot(data: dict, snow: dict | None = None) -> str:
     return (
         '<div class="cx-snapshot" id="cxSnapshot">'
         f'{snow_line(snow)}'
-        f'<p>Nordmarka forecast as of {generated:%d %B %Y, %H:%M} UTC, for the hours from 10:00 to sunset:</p>'
+        f'<p>Nordmarka forecast as of {generated.day} {generated:%B %Y, %H:%M} Oslo time, for the hours from 10:00 to sunset:</p>'
         f'<ul>{"".join(day_line(d) for d in days)}</ul>'
         f'{starts}'
         '</div>'
