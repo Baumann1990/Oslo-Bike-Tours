@@ -60,6 +60,10 @@ jobs:
         continue-on-error: true
         run: python scripts/conditions_snapshot.py _site/data/conditions.json _site/nordmarka-conditions/index.html _site/data/snow.json
 
+      - name: Write forecast into Norwegian snow page
+        continue-on-error: true
+        run: python scripts/conditions_snapshot.py _site/data/conditions.json _site/snodybde-nordmarka/index.html _site/data/snow.json
+
       # Same fallback: without rates the rental page simply shows NOK only.
       - name: Fetch exchange rates
         continue-on-error: true

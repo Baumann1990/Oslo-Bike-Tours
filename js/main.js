@@ -266,7 +266,7 @@ document.addEventListener('keydown', e => {
   const path = window.location.pathname;
   const isHome = path === '/' || path === '/index.html';
   const isRentalPage = path.startsWith('/bike-rental-oslo');
-  const isRental = isRentalPage || /^\/(nordmarka-conditions|bike-rental-terms)\//.test(path);
+  const isRental = isRentalPage || /^\/(nordmarka-conditions|snodybde-nordmarka|bike-rental-terms)\//.test(path);
   const href  = isRental ? (isRentalPage ? '#book' : '/bike-rental-oslo/#book') : (isHome ? '#book' : '/#book');
   const label = SEASON_CLOSED ? 'Book for spring' : isRental ? 'Rent a bike' : 'Book a Tour';
 
@@ -597,8 +597,9 @@ function loadSnow() {
   ribbon.className = 'ride-ribbon';
   ribbon.setAttribute('role', 'status');
   const COND = '/nordmarka-conditions/';
-  const linkOpen = location.pathname.startsWith(COND) ? '<span class="ride-ribbon__link">' : `<a class="ride-ribbon__link" href="${COND}">`;
-  const linkClose = location.pathname.startsWith(COND) ? '</span>' : '</a>';
+  const onCond = location.pathname.startsWith(COND) || location.pathname.startsWith('/snodybde-nordmarka/');
+  const linkOpen = onCond ? '<span class="ride-ribbon__link">' : `<a class="ride-ribbon__link" href="${COND}">`;
+  const linkClose = onCond ? '</span>' : '</a>';
   ribbon.innerHTML = linkOpen + '<span class="ride-dot"></span><span class="ride-ribbon__text">' +
     (SEASON_CLOSED
       ? both('Closed for the winter. Gravel season reopens in spring', 'Reopens in spring')

@@ -175,6 +175,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.oslobiketours.no/snodybde-nordmarka/</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.oslobiketours.no/bike-rental-terms/</loc>
     <lastmod>2026-10-20</lastmod>
     <changefreq>yearly</changefreq>

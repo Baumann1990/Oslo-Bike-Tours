@@ -29,27 +29,49 @@ ROUTES = [("Maridalen and the lake", 2), ("The short forest loop", 2), ("The Nor
 START, END = "<!--SNAPSHOT-->", "<!--/SNAPSHOT-->"
 
 
-def day_line(d: dict) -> str:
+# Norwegian copy for the Norwegian page (<html lang="nb">); Python's own day names depend on the server locale.
+NB_LEVEL = ({"good": "Opphold", "showers": "Byger", "windy": "Vind", "wet": "Regn", "snow": "Snø"} if CLOSED else
+            {"good": "Gode sykkelforhold", "showers": "Byger", "windy": "Vind", "wet": "Vått", "snow": "Snø"})
+NB_DAYS = ["mandag", "tirsdag", "onsdag", "torsdag", "fredag", "lørdag", "søndag"]
+NB_MONTHS = ["januar", "februar", "mars", "april", "mai", "juni", "juli", "august", "september",
+             "oktober", "november", "desember"]
+NB_ROUTES = ["Maridalen og vannet", "Den korte skogsrunden", "Nordmarksrunden", "Ring 4", "Dypt inn i marka"]
+
+
+def nb_date(d: date) -> str:
+    return f"{d.day}. {NB_MONTHS[d.month - 1]}"
+
+
+def day_line(d: dict, nb: bool = False) -> str:
     when = date.fromisoformat(d["date"])
     deg = lambda t: f"−{-t}" if t < 0 else f"{t}"  # true minus sign; "to" because a dash reads as one
-    temp = f'{deg(d["temp_max"])} °C' if d["temp_min"] == d["temp_max"] else f'{deg(d["temp_min"])} to {deg(d["temp_max"])} °C'
+    to = "til" if nb else "to"
+    temp = f'{deg(d["temp_max"])} °C' if d["temp_min"] == d["temp_max"] else f'{deg(d["temp_min"])} {to} {deg(d["temp_max"])} °C'
+    if nb:
+        rain = f'{d["precip"]} mm {"snø" if d["level"] == "snow" else "regn"}'.replace(".", ",") if d["precip"] > 0 else "opphold"
+        outlook = " (usikkert)" if d.get("outlook") else ""
+        return (f'<li><strong>{NB_DAYS[when.weekday()].capitalize()} {nb_date(when)}{outlook}: {NB_LEVEL[d["level"]]}</strong>. '
+                f'{temp}, {rain}, vind opptil {d["wind_max"]} m/s, solnedgang {d["sunset"]}.</li>')
     rain = f'{d["precip"]} mm {"snow" if d["level"] == "snow" else "rain"}' if d["precip"] > 0 else "dry"
     outlook = " (outlook)" if d.get("outlook") else ""
     return (f'<li><strong>{when:%A} {when.day} {when:%B}{outlook}: {LEVEL[d["level"]]}</strong>. '
             f'{temp}, {rain}, wind up to {d["wind_max"]} m/s, sunset {d["sunset"]}.</li>')
 
 
-def latest_starts(d: dict) -> str:
+def latest_starts(d: dict, nb: bool = False) -> str:
     end = datetime.fromisoformat(d["end"])
     parts = []
-    for name, hours in ROUTES:
+    for i, (name, hours) in enumerate(ROUTES):
         t = end - timedelta(hours=hours)
         t = t.replace(minute=t.minute // 15 * 15)
-        parts.append(f"{name} {t:%H:%M}" if t.hour >= 10 else f"{name} too long for the daylight")
+        if nb:
+            parts.append(f"{NB_ROUTES[i]} {t:%H:%M}" if t.hour >= 10 else f"{NB_ROUTES[i]} for lang for dagslyset")
+        else:
+            parts.append(f"{name} {t:%H:%M}" if t.hour >= 10 else f"{name} too long for the daylight")
     return "; ".join(parts)
 
 
-def snow_line(snow: dict | None) -> str:
+def snow_line(snow: dict | None, nb: bool = False) -> str:
     """Today's snow depth at both points, if there is any to report."""
     if not snow:
         return ""
@@ -60,25 +82,38 @@ def snow_line(snow: dict | None) -> str:
     e, d = edge["days"][0]["depth_cm"], deep["days"][0]["depth_cm"]
     if not CLOSED and not e and not d:
         return ""
+    if nb:
+        return (f'<p>Snødybde i morges: {e} cm ved {edge["name"]} i skogkanten ({edge["altitude"]} moh.) '
+                f'og {d} cm ved {deep["name"]} dypt i marka ({deep["altitude"]} moh.), '
+                f'fra snømodellen seNorge (NVE og Meteorologisk institutt).</p>')
     return (f'<p>Snow depth this morning: {e} cm at {edge["name"]} on the forest edge ({edge["altitude"]} m) '
             f'and {d} cm at {deep["name"]} deeper in the Marka ({deep["altitude"]} m), '
             f'from the seNorge snow model by NVE and MET Norway.</p>')
 
 
-def snapshot(data: dict, snow: dict | None = None) -> str:
+def snapshot(data: dict, snow: dict | None = None, nb: bool = False) -> str:
     days = [d for d in data.get("days", []) if d.get("level") in LEVEL]
+    snow_p = snow_line(snow, nb)
     if not days:
-        return snow_line(snow) and f'<div class="cx-snapshot" id="cxSnapshot">{snow_line(snow)}</div>'
+        return snow_p and f'<div class="cx-snapshot" id="cxSnapshot">{snow_p}</div>'
     generated = datetime.fromisoformat(data["generated"]).astimezone(ZoneInfo("Europe/Oslo"))
     first = days[0]
-    starts = ('' if CLOSED else
-              f'<p>Latest start to finish in daylight on {date.fromisoformat(first["date"]):%A}: '
-              f'{html.escape(latest_starts(first))}.</p>')
+    first_date = date.fromisoformat(first["date"])
+    if nb:
+        starts = ('' if CLOSED else
+                  f'<p>Seneste start for å rekke hjem i dagslys {NB_DAYS[first_date.weekday()]}: '
+                  f'{html.escape(latest_starts(first, nb))}.</p>')
+        intro = (f'<p>Værvarsel for Nordmarka per {nb_date(generated)} {generated.year} kl. {generated:%H:%M}, '
+                 'for timene fra kl. 10 til solnedgang:</p>')
+    else:
+        starts = ('' if CLOSED else
+                  f'<p>Latest start to finish in daylight on {first_date:%A}: '
+                  f'{html.escape(latest_starts(first))}.</p>')
+        intro = f'<p>Nordmarka forecast as of {generated.day} {generated:%B %Y, %H:%M} Oslo time, for the hours from 10:00 to sunset:</p>'
     return (
         '<div class="cx-snapshot" id="cxSnapshot">'
-        f'{snow_line(snow)}'
-        f'<p>Nordmarka forecast as of {generated.day} {generated:%B %Y, %H:%M} Oslo time, for the hours from 10:00 to sunset:</p>'
-        f'<ul>{"".join(day_line(d) for d in days)}</ul>'
+        f'{snow_p}{intro}'
+        f'<ul>{"".join(day_line(d, nb) for d in days)}</ul>'
         f'{starts}'
         '</div>'
     )
@@ -98,7 +133,8 @@ def main(json_path: str, page_path: str, snow_path: str | None = None) -> None:
         page = fh.read()
     head, rest = page.split(START, 1)
     _, tail = rest.split(END, 1)
-    page = head + START + snapshot(data, snow) + END + tail
+    nb = '<html lang="nb"' in page  # the Norwegian page gets Norwegian copy
+    page = head + START + snapshot(data, snow, nb) + END + tail
     page = page.replace('"dateModified": ""', f'"dateModified": "{data["generated"]}"')
     with open(page_path, "w", encoding="utf-8") as fh:
         fh.write(page)
