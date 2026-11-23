@@ -30,13 +30,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # HEIC originals are never served, so they stay out of the upload.
+      # Only the website goes up: no HEIC originals, local tools, scripts or credentials.
       - name: Assemble site
         run: |
           mkdir _site
           rsync -a ./ _site/ --exclude '.git' --exclude '.github' --exclude '_site' \
             --exclude 'scripts' --exclude '.claude' --exclude 'data' \
-            --exclude '*.heic' --exclude '*.HEIC'
+            --exclude '*.heic' --exclude '*.HEIC' \
+            --exclude 'config.json' --exclude '*.env' --exclude '.env*' --exclude 'token.json' \
+            --exclude '*.py' --exclude '*.sh' --exclude '*.command' --exclude '*.plist' --exclude '*.plugin' \
+            --exclude '*.md' --exclude 'serve.js' --exclude 'relay.html' --exclude 'netlify.toml' \
+            --exclude '.gitignore'
 
       - uses: actions/setup-python@v5
         with:

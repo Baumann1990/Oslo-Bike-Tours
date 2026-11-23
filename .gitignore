@@ -11,8 +11,32 @@ processed_messages.json
 run_log.md
 run_log_*.md
 
-# Local secrets (review before committing)
-# config.json
+# Local secrets: never commit (the Facebook credentials were public once)
+config.json
+processed_messages.json
+oauth_credentials.json
+token.json
+*.env
+.env*
+
+# Local tools and automation (live on this Mac, not part of the site)
+SETUP_INSTRUCTIONS.md
+poster.py
+agent.py
+add_faqs.py
+relay.html
+serve.js
+setup_mac_scheduler.sh
+install_autostart.sh
+no.oslobiketours.serve.plist
+push-to-github.sh
+push-to-github.command
+oslo-blog-writer.plugin
+netlify.toml
+
+# Photo originals (the deploy never served them; they carry GPS)
+*.heic
+*.HEIC
 
 # Riding forecast, generated at deploy time (see .github/workflows/deploy.yml)
 data/
